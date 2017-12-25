@@ -5,8 +5,8 @@
 <title>Attractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="css/style1.css">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="../css/style1.css">
 
 <script type="text/javascript">
 function ConfirmDelete(id)
@@ -19,6 +19,7 @@ function ConfirmDelete(id)
     return false;
 }
 </script>
+
 </head>
 <body id="top">
   <header role="banner">
@@ -27,8 +28,8 @@ function ConfirmDelete(id)
     <nav class="main-nav">
       <ul>
         <!-- inser more links here -->
-        <li><a class="cd-signin" href="login.html">Sign in</a></li>
-        <li><a class="cd-signup" href="register.html">Sign up</a></li>
+        <li><a class="cd-signin" href="../login.html">Sign in</a></li>
+        <li><a class="cd-signup" href="../register.html">Sign up</a></li>
       </ul>
     </nav>
   </header>
@@ -37,27 +38,29 @@ function ConfirmDelete(id)
   <header id="header" class="hoc clear">
 
     <div id="logo" class="fl_left">
-      <h1><a href="index2.php">SUT</a></h1>
+      <h1><a href="../index1.php">SUT</a></h1>
       <p>Attractions in Thailand</p>
     </div>
 
 		<nav id="mainav" class="fl_right">
 			<ul class="clear">
-				<li class="active"><a href="index2.php">Home</a></li>
+				<li class="active"><a href="../index1.php">Home</a></li>
 				<li><a class="drop" href="#">ค้นหาสถานที่</a>
 					<ul>
-						<li><a href="pages/empSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-						<li><a href="pages/empSearch2.php">ค้นหาร้านอาหาร</a></li>
-						<li><a href="pages/empSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-						<li><a href="pages/empSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+						<li><a href="../pages/adminSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+						<li><a href="../pages/adminSearch2.php">ค้นหาร้านอาหาร</a></li>
+						<li><a href="../pages/adminSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+						<li><a href="../pages/adminSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 					</ul>
 				</li>
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
-				<li><a href="pages/insertAttraction.html">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="../pages/insertAttraction.html">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="../pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
-				<li><a href="pages/selectReview.php">Report</a></li>
-				<li><a href="pages/aboutAs.html">About Me</a></li>
+
+				<li><a href="../pages/selectMember.php">Report</a></li>
+				<li><a href="../pages/aboutAs.html">About Me</a></li>
 			</ul>
 		</nav>
 
@@ -86,7 +89,7 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อมูลทั้งหมด</header>
+
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","RegisterDB");
@@ -97,12 +100,13 @@ function ConfirmDelete(id)
 	// Print Header of Table
 	echo "<table border='1' cellpadding='10' width=80%>"; //open table
 	echo "<tr>
-	<th>ID</th>
-	<th>Username</th>
-	<th>หัวข้อรีวิว</th>
-	<th>คะแนน</th>
-	<th>หมายเลขสถานที่</th>
-	<th>รายละเอียด</th>
+			<th>ชื่อร้านอาหาร</th>
+			<th>วันเปิดทำการ</th>
+			<th>เวลาเปิดทำการ</th>
+			<th>ค่าเข้าชม</th>
+			<th>ที่อยู่</th>
+			<th>เบอร์โทรศัพท์</th>
+			<th>Photo</th>
 			</tr>";
 	// loop through results of database query, displaying them in the table
 	while($row = $rs->fetch_assoc()) {
@@ -115,8 +119,8 @@ function ConfirmDelete(id)
 		echo '<td>' . $row['Gender'] . '</td>';
     echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
 		echo '<td><a href="editForm.php?id=' . $row['ID'] . '">View</a> ';
-				echo '<td><a href="editForm.php?id=' . $row['ID'] . '">Edit</a> ';
-		echo '<a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
+		echo '<td><a href="editForm.php?id=' . $row['ID'] . '">Edit</a> ';
+				echo '<a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
 		echo "</tr>";
 	}
 	echo "</table>"; // close table
@@ -146,12 +150,9 @@ function ConfirmDelete(id)
     <div class="clear"></div>
   </main>
 </div>
-
 <div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
-
-
-    <div class="one_quarter">
+		<div class="one_quarter">
       <h6 class="title">ที่อยู่:</h6>
       <ul class="nospace linklist contact">
         <li><i class="fa fa-map-marker"></i>

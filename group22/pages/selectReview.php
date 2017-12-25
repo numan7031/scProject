@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Lolwork | Pages | Gallery</title>
+<title>Attractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -21,7 +21,6 @@ function ConfirmDelete(id)
 </script>
 </head>
 <body id="top">
-	<form name="Reports" method="post" action="roportMember.html">
   <header role="banner">
 
 
@@ -37,10 +36,10 @@ function ConfirmDelete(id)
 <div class="wrapper row1">
   <header id="header" class="hoc clear">
 
-		<div id="logo" class="fl_left">
-			<h1><a href="../index2.php">SUT</a></h1>
-			<p>Attractions in Thailand</p>
-		</div>
+    <div id="logo" class="fl_left">
+      <h1><a href="../index2.php">SUT</a></h1>
+      <p>Attractions in Thailand</p>
+    </div>
 
 		<nav id="mainav" class="fl_right">
 			<ul class="clear">
@@ -56,10 +55,8 @@ function ConfirmDelete(id)
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
 				<li><a href="../pages/insertAttraction.html">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				<li><a href="../pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
-			<li><a href="../pages/gallery.html">Gallery</a></li>
-				<li><a href="../pages/selectReview.php">Report</a></li>
+				<li><a href="../pages/selectMember.php">Report</a></li>
 				<li><a href="../pages/aboutAs.html">About Me</a></li>
 			</ul>
 		</nav>
@@ -89,7 +86,7 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อมูลทั้งหมด</header>
+          <header class="heading">ข้อมูลรีวิว</header>
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","RegisterDB");
@@ -100,12 +97,12 @@ function ConfirmDelete(id)
 	// Print Header of Table
 	echo "<table border='1' cellpadding='10' width=80%>"; //open table
 	echo "<tr>
-			<th>ID</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Age</th>
-			<th>Gender</th>
-			<th>Photo</th>
+	<th>ID</th>
+	<th>Username</th>
+	<th>หัวข้อรีวิว</th>
+	<th>คะแนน</th>
+	<th>หมายเลขสถานที่</th>
+	<th>รายละเอียด</th>
 			</tr>";
 	// loop through results of database query, displaying them in the table
 	while($row = $rs->fetch_assoc()) {
@@ -127,11 +124,11 @@ function ConfirmDelete(id)
       </div>
     </div>
     <!-- / main body -->
-    <div class="clear"><a class="btn small" href="../pages/reportReview.html">Report</a></div>
+    <div class="clear"><a class="btn small" href="../pages/reportMember.html">Report</a></div>
   </main>
 </div>
 
-<div class="wrapper row4 bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');">
+<div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
 
 

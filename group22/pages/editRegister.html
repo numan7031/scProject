@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>SUT | Pages</title>
+<title>Attractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -79,6 +79,7 @@
 My-Image: <input type="file" name="my-image" id="image" accept="image/gif, image/jpeg, image/png" multiple>
 <table>
 <tr><td>Status: <select name="thelist" onChange="combo(this, 'theinput')"><br>
+            <option>User</option>
             <option>Admin</option>
             <option>Employee</option>
           </select></td></tr><br>
@@ -87,8 +88,8 @@ My-Image: <input type="file" name="my-image" id="image" accept="image/gif, image
 <tr><td>Username: <input type="text" name="username" maxlength="20" size="20" placeholder="" multiple></td>
 <td>Password: <input type="text" name="psw" maxlength="20" size="20" placeholder="" multiple></td></tr>
 <tr><td>E-Mail: <input type="email" placeholder="Email" name="em"></td>
-<td>Phone: <input type="tel" pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}" maxlength="13" size="26" name="tel" placeholder="Mobile: (xxx)xxx-xxxx">
-<tr><td>Address: <textarea name="textarea" rows="5" cols="30">Write something here</textarea></td></tr></table>
+<td>Confrim Password: <input type="text" name="cpsw" maxlength="20" size="20" placeholder="" multiple></td></tr>
+</table>
 <input class="btn" type="submit" name="submit" value="Save">
         </figure>
       </div>
@@ -97,7 +98,7 @@ My-Image: <input type="file" name="my-image" id="image" accept="image/gif, image
     <div class="clear"></div>
   </main>
 </div>
-<div class="wrapper row4 bgded overlay" style="background-image:url('../images/demo/backgrounds/03.png');">
+<div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
     <div class="one_quarter">
       <h6 class="title">ที่อยู่:</h6>

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Lolwork | Pages | Gallery</title>
+<title>Attractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -57,7 +57,6 @@ function ConfirmDelete(id)
 				<li><a href="../pages/insertAttraction.html">เพิ่มสถานที่ท่องเที่ยว</a></li>
 				<li><a href="../pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
-				<li><a href="../pages/gallery.html">Gallery</a></li>
 				<li><a href="../pages/selectMember.php">Report</a></li>
 				<li><a href="../pages/aboutAs.html">About Me</a></li>
 			</ul>
@@ -88,7 +87,7 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อมูลทั้งหมด</header>
+          <header class="heading">ข้อมูลสมาชิก</header>
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","RegisterDB");
@@ -116,6 +115,7 @@ function ConfirmDelete(id)
 		echo '<td>' . $row['Age'] . '</td>';
 		echo '<td>' . $row['Gender'] . '</td>';
     echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
+				echo '<a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
 		echo "</tr>";
 	}
 	echo "</table>"; // close table
@@ -130,7 +130,7 @@ function ConfirmDelete(id)
   </main>
 </div>
 
-<div class="wrapper row4 bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');">
+<div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
 
 

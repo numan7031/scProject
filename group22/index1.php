@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Lolwork | Pages | Gallery</title>
+<title>Attractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -46,10 +46,10 @@ function ConfirmDelete(id)
 				<li class="active"><a href="index1.php">Home</a></li>
 				<li><a class="drop" href="#">ค้นหาสถานที่</a>
 					<ul>
-						<li><a href="pages/view.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-						<li><a href="pages/view1.php">ค้นหาร้านอาหาร</a></li>
-						<li><a href="pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
-						<li><a href="pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
+						<li><a href="pages/adminSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+						<li><a href="pages/adminSearch2.php">ค้นหาร้านอาหาร</a></li>
+						<li><a href="pages/adminSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+						<li><a href="pages/adminSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 					</ul>
 				</li>
 				<li><a class="drop" href="#">Scope</a>
@@ -57,7 +57,7 @@ function ConfirmDelete(id)
 				<li><a href="pages/insertAttraction.html">เพิ่มสถานที่ท่องเที่ยว</a></li>
 				<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
-				<li><a href="pages/gallery.html">Gallery</a></li>
+
 				<li><a href="pages/selectMember.php">Report</a></li>
 				<li><a href="pages/aboutAs.html">About Me</a></li>
 			</ul>
@@ -88,7 +88,7 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อมูลทั้งหมด</header>
+          <header class="heading">ข้อมูลรีวิว</header>
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","RegisterDB");
@@ -100,11 +100,11 @@ function ConfirmDelete(id)
 	echo "<table border='1' cellpadding='10' width=80%>"; //open table
 	echo "<tr>
 			<th>ID</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Age</th>
-			<th>Gender</th>
-			<th>Photo</th>
+			<th>Username</th>
+			<th>หัวข้อรีวิว</th>
+			<th>คะแนน</th>
+			<th>หมายเลขสถานที่</th>
+			<th>รายละเอียด</th>
 			</tr>";
 	// loop through results of database query, displaying them in the table
 	while($row = $rs->fetch_assoc()) {
@@ -116,7 +116,8 @@ function ConfirmDelete(id)
 		echo '<td>' . $row['Age'] . '</td>';
 		echo '<td>' . $row['Gender'] . '</td>';
     echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
-		echo '<td><a href="editForm.php?id=' . $row['ID'] . '">Edit</a> ';
+		echo '<td><a href="editForm.php?id=' . $row['ID'] . '">view</a> ';
+						echo '<td><a href="editForm.php?id=' . $row['ID'] . '">Edit</a> ';
 		echo '<a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
 		echo "</tr>";
 	}
@@ -148,7 +149,7 @@ function ConfirmDelete(id)
   </main>
 </div>
 
-<div class="wrapper row4 bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');">
+<div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
 
 

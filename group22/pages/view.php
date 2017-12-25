@@ -2,12 +2,14 @@
 
 <html>
 <head>
-<title>SUT | Pages </title>
+<title>Attractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="../css/style1.css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 function ConfirmDelete(id)
 {
@@ -80,30 +82,34 @@ function ConfirmDelete(id)
 <div class="wrapper row3">
   <main class="hoc container clear">
     <!-- main body -->
-    <div class="content">
+		<div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ค้นหาสถานที่ท่องเที่ยวจาก:</header>
+					<a href="#demo" class="btn small" data-toggle="collapse">ค้นหาสถานที่ท่องเที่ยวจาก</a>
+  <div id="demo" class="collapse">
 <table border='1' cellpadding='10' width=80%>
 <tr>
 <th><input type="checkbox" value="None" id="one" name="check1" checked />มีบริการห้องสุขา</th>
 <th><input type="checkbox" value="None" id="four" name="check4" checked />Unseen Thailand</th>
-<th><input type="checkbox" value="None" id="five" name="check5" checked />มีบริการนำเที่ยว</th>
-<th><input type="checkbox" value="None" id="three" name="check3" checked />มี Wifi</th>
-<th><input type="checkbox" value="None" id="two" name="check2" checked />มี 3G-4G</th></tr>
+<th><input type="checkbox" value="None" id="five" name="check5" checked />มีบริการนำเที่ยว</th></tr>
 <tr>
-<th><input type="checkbox" value="None" id="six" name="check6" checked />มีหน่วยบริการแพทย์</th>
+<th><input type="checkbox" value="None" id="three" name="check3" checked />มี Wifi</th>
+<th><input type="checkbox" value="None" id="two" name="check2" checked />มี 3G-4G</th>
+<th><input type="checkbox" value="None" id="six" name="check6" checked />มีหน่วยบริการแพทย์</th></tr>
+<tr>
 <th><input type="checkbox" value="None" id="seven" name="check7" checked />สิ่งอำนวยความสะดวก</th>
 <th><input type="checkbox" value="None" id="eight" name="check8" checked />มีเรื่องเล่า ประวัติ</th>
-<th><input type="checkbox" value="None" id="nine" name="check9" checked />มีกิจกรรมให้ร่วมสนุก</th>
-<th><input type="checkbox" value="None" id="ten" name="check10" checked />ช่วงเทศกาล</th></tr>
+<th><input type="checkbox" value="None" id="nine" name="check9" checked />มีกิจกรรมให้ร่วมสนุก</th></tr>
 <tr>
+<th><input type="checkbox" value="None" id="ten" name="check10" checked />ช่วงเทศกาล</th>
 <th><input type="checkbox" value="None" id="eleven" name="check11" checked />มีหน่วยบริการรักษาความปลอดภัย</th>
-<th><input type="checkbox" value="None" id="twelve" name="check12" checked />สถานที่ท่องเที่ยวที่มีหลายบรรยากาศ</th>
+<th><input type="checkbox" value="None" id="twelve" name="check12" checked />สถานที่ท่องเที่ยวที่มีหลายบรรยากาศ</th></tr>
+<tr>
 <th><input type="checkbox" value="None" id="thirteen" name="check13" checked />สถานที่ท่องเที่ยวทดแทนต่างประเทศ</th>
 <th><input type="checkbox" value="None" id="fourteen" name="check14" checked />สถานที่ท่องเที่ยวทดแทนในประเทศ</th>
 <th></th></tr>
 </table>
+</div>
 
           <?php
 	// connect to the database
@@ -162,7 +168,7 @@ function ConfirmDelete(id)
     <div class="clear"></div>
   </main>
 </div>
-<div class="wrapper row4 bgded overlay" style="background-image:url('../images/demo/backgrounds/03.png');">
+<div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
 		<div class="one_quarter">
       <h6 class="title">ที่อยู่:</h6>
