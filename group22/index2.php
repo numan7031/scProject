@@ -57,7 +57,6 @@ function ConfirmDelete(id)
 				<li><a href="pages/insertAttraction.html">เพิ่มสถานที่ท่องเที่ยว</a></li>
 			</ul>
 				<li><a href="pages/selectReview.php">Report</a></li>
-				<li><a href="pages/aboutAs.html">About Me</a></li>
 			</ul>
 		</nav>
 
