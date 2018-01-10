@@ -63,6 +63,21 @@ function ConfirmDelete(id)
   </header>
 </div>
 
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+
+
+    <div class="fl_right">
+      <form class="clear" method="post" action="#">
+        <fieldset>
+          <legend>Search:</legend>
+          <input type="search" value="" placeholder="Search Here&hellip;">
+          <button class="fa fa-search" type="submit" title="Search"><em>Search</em></button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
 
 <div class="wrapper row3">
   <main class="hoc container clear">
@@ -71,21 +86,6 @@ function ConfirmDelete(id)
       <div id="gallery">
         <figure>
 					<a href="#demo" class="btn small" data-toggle="collapse">ค้นหาสถานที่ท่องเที่ยวจาก</a>
-					<div class="wrapper row0">
-					  <div id="topbar" class="hoc clear">
-
-
-					    <div class="fl_right">
-					      <form class="clear" method="post" action="#">
-					        <fieldset>
-					          <legend>Search:</legend>
-					          <input type="search" value="" placeholder="Search Here&hellip;">
-					          <button class="fa fa-search" type="submit" title="Search"><em>Search</em></button>
-					        </fieldset>
-					      </form>
-					    </div>
-					  </div>
-					</div>
   <div id="demo" class="collapse">
 <table border='1' cellpadding='10' width=80%>
 <tr>
