@@ -59,7 +59,6 @@ function ConfirmDelete(id)
 			</ul>
 
 				<li><a href="pages/selectMember.php">Report</a></li>
-				<li><a href="pages/aboutAs.html">About Me</a></li>
 			</ul>
 		</nav>
 

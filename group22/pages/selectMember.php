@@ -58,7 +58,6 @@ function ConfirmDelete(id)
 				<li><a href="../pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
 				<li><a href="../pages/selectMember.php">Report</a></li>
-				<li><a href="../pages/aboutAs.html">About Me</a></li>
 			</ul>
 		</nav>
 
@@ -115,7 +114,7 @@ function ConfirmDelete(id)
 		echo '<td>' . $row['Age'] . '</td>';
 		echo '<td>' . $row['Gender'] . '</td>';
     echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
-				echo '<a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
+				echo '<td><a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
 		echo "</tr>";
 	}
 	echo "</table>"; // close table

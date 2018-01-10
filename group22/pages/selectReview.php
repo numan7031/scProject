@@ -56,8 +56,7 @@ function ConfirmDelete(id)
 					<ul>
 				<li><a href="../pages/insertAttraction.html">เพิ่มสถานที่ท่องเที่ยว</a></li>
 			</ul>
-				<li><a href="../pages/selectMember.php">Report</a></li>
-				<li><a href="../pages/aboutAs.html">About Me</a></li>
+				<li><a href="../pages/selectReview.php">Report</a></li>
 			</ul>
 		</nav>
 
@@ -124,7 +123,7 @@ function ConfirmDelete(id)
       </div>
     </div>
     <!-- / main body -->
-    <div class="clear"><a class="btn small" href="../pages/reportMember.html">Report</a></div>
+    <div class="clear"><a class="btn small" href="../pages/reportReview.html">Report</a></div>
   </main>
 </div>
 
