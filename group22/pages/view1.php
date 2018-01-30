@@ -1,3 +1,22 @@
+<?php
+	session_start();
+	require_once("../connect.php");
+
+	if(!isset($_SESSION['userID']))
+	{
+		echo "Please Login!";
+		exit();
+	}
+
+	//*** Update Last Stay in Login System
+	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
+	//$query = mysqli_query($con,$sql);
+
+	//*** Get User Login
+	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
+	$objQuery = mysqli_query($con,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 
 <html>
@@ -28,8 +47,8 @@ function ConfirmDelete(id)
     <nav class="main-nav">
       <ul>
         <!-- inser more links here -->
-        <li><a class="cd-signin" href="../login.html">Sign in</a></li>
-        <li><a class="cd-signup" href="../register.html">Sign up</a></li>
+				<?php echo $objResult["email"];?>
+        <li><a class="cd-signup" href="../logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -38,13 +57,13 @@ function ConfirmDelete(id)
   <header id="header" class="hoc clear">
 
     <div id="logo" class="fl_left">
-      <h1><a href="../index.html">SUT</a></h1>
+      <h1><a href="../index.php">SUT</a></h1>
       <p>Attractions in Thailand</p>
     </div>
 
 		<nav id="mainav" class="fl_right">
 			<ul class="clear">
-				<li class="active"><a href="../index.html">Home</a></li>
+				<li class="active"><a href="../index.php">Home</a></li>
 				<li><a class="drop" href="#">ค้นหาสถานที่</a>
 					<ul>
 						<li><a href="../pages/view.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
@@ -53,8 +72,8 @@ function ConfirmDelete(id)
 						<li><a href="../pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
 					</ul>
 				</li>
-				<li><a href="../pages/gallery.html">Gallery</a></li>
-				<li><a href="../pages/aboutAs.html">About Me</a></li>
+				<li><a href="../pages/gallery.php">Gallery</a></li>
+				<li><a href="../pages/aboutAs.php">About Me</a></li>
 			</ul>
 		</nav>
 
@@ -191,3 +210,6 @@ function ConfirmDelete(id)
 <script  src="../js/index.js"></script>
 </body>
 </html>
+<?
+	mysqli_close($con);
+?>

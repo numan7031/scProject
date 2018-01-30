@@ -1,3 +1,22 @@
+<?php
+	session_start();
+	require_once("../connect.php");
+
+	if(!isset($_SESSION['userID']))
+	{
+		echo "Please Login!";
+		exit();
+	}
+
+	//*** Update Last Stay in Login System
+	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
+	//$query = mysqli_query($con,$sql);
+
+	//*** Get User Login
+	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
+	$objQuery = mysqli_query($con,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 
 <html>
@@ -30,8 +49,8 @@ function ConfirmDelete(id)
     <nav class="main-nav">
       <ul>
         <!-- inser more links here -->
-        <li><a class="cd-signin" href="../login.html">Sign in</a></li>
-        <li><a class="cd-signup" href="../register.html">Sign up</a></li>
+				<?php echo $objResult["email"];?>
+        <li><a class="cd-signup" href="../logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -225,3 +244,6 @@ function ConfirmDelete(id)
 <script  src="../js/index.js"></script>
 </body>
 </html>
+<?
+	mysqli_close($con);
+?>

@@ -1,0 +1,27 @@
+<?php
+	session_start();
+	require_once("../connect.php");
+
+	if(!isset($_SESSION['userID']))
+	{
+		echo "Please Login!";
+		exit();
+	}
+
+	//*** Update Last Stay in Login System
+	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
+	//$query = mysqli_query($con,$sql);
+
+	//*** Get User Login
+	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
+	$objQuery = mysqli_query($con,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
+
+
+<?php echo $objResult["email"];?>
+
+
+<?
+	mysqli_close($con);
+?>
