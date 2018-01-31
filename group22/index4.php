@@ -137,7 +137,7 @@ img {vertical-align: middle;}
         <li><a class="drop" href="#">ค้นหาสถานที่</a>
           <ul>
             <li><a href="pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-            <li><a href="pages/view1.php">ค้นหาร้านอาหาร</a></li>
+            <li><a href="pages/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
             <li><a href="pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
             <li><a href="pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
           </ul>

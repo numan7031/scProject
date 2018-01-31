@@ -9,18 +9,19 @@
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 }
-if (($_POST["textUsername"] <> "") && ($_POST["textFirstName"] <> "") && ($_POST["textLastName"] <> "") &&
+if (($_POST["textStatus"] <> "") &&($_POST["textUsername"] <> "") && ($_POST["textFirstName"] <> "") && ($_POST["textLastName"] <> "") &&
       ($_POST["txtUsername"] <> "") && ($_POST["txtPassword"] <> ""))
         {
-          $username = $_POST["textUsername"];
+					$status = $_POST["textStatus"];
+					$username = $_POST["textUsername"];
           $fname = $_POST["textFirstName"];
           $lname = $_POST["textLastName"];
           $email = $_POST["txtUsername"];
 					$password = $_POST["txtPassword"];
  } else exit("คณุยังกรอกขอ้มลูไมค่รบ!");
-$sql = "INSERT INTO users (username,fname,lname,email,password)";
+$sql = "INSERT INTO users (status,username,fname,lname,email,password)";
 $sql .="VALUES ";
-$sql .="('".$_POST["textUsername"]."','".$_POST["textFirstName"]."','".$_POST["textLastName"]."','".$_POST["txtUsername"]."','".$_POST["txtPassword"]."') ";
+$sql .="('".$_POST["textStatus"]."','".$_POST["textUsername"]."','".$_POST["textFirstName"]."','".$_POST["textLastName"]."','".$_POST["txtUsername"]."','".$_POST["txtPassword"]."') ";
 
 if ($con->query($sql) === TRUE) {
     echo "Insertion successfully!!";

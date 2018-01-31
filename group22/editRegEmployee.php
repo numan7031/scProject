@@ -16,6 +16,7 @@
 	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
 	$objQuery = mysqli_query($con,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -158,85 +159,90 @@ img {vertical-align: middle;}
     </nav>
   </header>
 
-	<div class="wrapper row1">
-	  <header id="header" class="hoc clear">
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
 
-	    <div id="logo" class="fl_left">
-	      <h1><a href="index2.php">SUT</a></h1>
-	      <p>Attractions in Thailand</p>
-	    </div>
+    <div id="logo" class="fl_left">
+      <h1><a href="index.php">SUT</a></h1>
+      <p>Attractions in Thailand</p>
+    </div>
 
-			<nav id="mainav" class="fl_right">
-				<ul class="clear">
-					<li class="active"><a href="index2.php">Home</a></li>
-					<li><a class="drop" href="#">ค้นหาสถานที่</a>
-						<ul>
-							<li><a href="pages/empSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-							<li><a href="pages/empSearch2.php">ค้นหาร้านอาหาร</a></li>
-							<li><a href="pages/empSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-							<li><a href="pages/empSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
-						</ul>
-					</li>
-					<li><a class="drop" href="#">Scope</a>
-						<ul>
-					<li><a href="pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				</ul>
-					<li><a href="pages/selectReview.php">Report</a></li>
-					<li><a href="editRegEmployee.php">Profile</a></li>
-				</ul>
-			</nav>
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li class="active"><a href="index.php">Home</a></li>
+        <li><a class="drop" href="#">ค้นหาสถานที่</a>
+          <ul>
+            <li><a href="pages/view.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+            <li><a href="pages/view1.php">ค้นหาร้านอาหาร</a></li>
+            <li><a href="pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
+            <li><a href="pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
+          </ul>
+        </li>
+        <li><a href="pages/gallery.php">Gallery</a></li>
+        <li><a href="pages/aboutAs.php">About Me</a></li>
+				<li><a href="editRegister.php">Profile</a></li>
+      </ul>
+    </nav>
 
-	  </header>
-	</div>
+  </header>
+</div>
 
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="images/user.png" alt="IMG">
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100">
+
+			<form name="form1" class="login100-form validate-form" enctype="multipart/form-data" method="post" action="edit.php">
+				<span class="login100-form-title">
+					MY PROFILE
+				</span>
+					<input type="hidden" name="iduser" value="<?php echo $objResult["userID"];?>">
+
+				<div class="wrap-input100 validate-input">
+					<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
+					<input type="file" name="uploadedfile" id="uploadedfile">
 				</div>
-				<form name="form1" class="login100-form validate-form" method="post" action="edit.php">
-					<span class="login100-form-title">
-						Register Form
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="textUsername" id="textUsername" placeholder="Username" value="<?php echo $objResult["username"];?>">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div>
+					<input class="input100" type="text" name="textFirstName" id="textFirstName" placeholder="FirstName" value="<?php echo $objResult["fname"];?>">
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="textLastName" id="textLastName" placeholder="LastName" value="<?php echo $objResult["lname"];?>">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input100" type="text" name="txtUsername" id="txtUsername" placeholder="Email" value="<?php echo $objResult["email"];?>">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-envelope" aria-hidden="true"></i>
 					</span>
-						<input type="hidden" name="iduser" value="<?php echo $objResult["userID"];?>">
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="textUsername" id="textUsername" placeholder="Username" value="<?php echo $objResult["username"];?>">
-						<span class="focus-input100"></span>
-					</div>
+				</div>
 
-					<div>
-						<input class="input100" type="text" name="textFirstName" id="textFirstName" placeholder="FirstName" value="<?php echo $objResult["fname"];?>">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="textLastName" id="textLastName" placeholder="LastName" value="<?php echo $objResult["lname"];?>">
-						<span class="focus-input100"></span>
-					</div>
+				<div class="wrap-input100 validate-input" data-validate = "Password is required">
+					<input class="input100" type="password" name="txtPassword" id="txtPassword" placeholder="Password" value="<?php echo $objResult["password"];?>">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-lock" aria-hidden="true"></i>
+					</span>
+				</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="txtUsername" id="txtUsername" placeholder="Email" value="<?php echo $objResult["email"];?>">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="txtPassword" id="txtPassword" placeholder="Password" value="<?php echo $objResult["password"];?>">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<input class="login100-form-btn" type="submit" name="Submit" value="Create account">
-					</div>
-				</form>
-			</div>
+				<div class="container-login100-form-btn">
+					<input class="login100-form-btn" type="submit" name="Submit" value="Update Profile">
+				</div>
+			</form>
+			<div class="login100-pic js-tilt" data-tilt>
+			<img src="<?php echo $objResult["image"];?>">
+		</div>
 		</div>
 	</div>
+</div>
+
+
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -254,6 +260,8 @@ img {vertical-align: middle;}
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+
 
 	<div class="wrapper row4 bgded overlay">
 	  <footer id="footer" class="hoc clear">

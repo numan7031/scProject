@@ -158,12 +158,12 @@ img {vertical-align: middle;}
 	        <li><a class="drop" href="#">ค้นหาสถานที่</a>
 	          <ul>
 	            <li><a href="../pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-	            <li><a href="pages/#">ค้นหาร้านอาหาร</a></li>
-	            <li><a href="pages/#">ค้นหาร้านขายของที่ระลึก</a></li>
-	            <li><a href="pages/#">ค้นหาสถานที่พักผ่อน</a></li>
+	            <li><a href="#">ค้นหาร้านอาหาร</a></li>
+	            <li><a href="#">ค้นหาร้านขายของที่ระลึก</a></li>
+	            <li><a href="#">ค้นหาสถานที่พักผ่อน</a></li>
 	          </ul>
 	        </li>
-
+	        <li><a href="../pages/UsGallery.php">Gallery</a></li>
 					<li><a href="../editRegister.php">Profile</a></li>
 	      </ul>
 	    </nav>

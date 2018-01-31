@@ -157,15 +157,17 @@ img {vertical-align: middle;}
     $db=new mysqli('localhost','root','','scdb');
     $db->query("SET NAMES UTF8");
     $all_row=$db->query("SELECT * FROM attractions");
+
 ?>
 <div class="container">
      <div class="row">
        <div class="fl_right">
-         <form class="clear" method="post" action="#">
+         <form class="clear" method="post" action="#" id="search_form">
            <fieldset>
              <legend>Search:</legend>
-             <input type="search" value="" placeholder="Search Here&hellip;">
-             <button class="fa fa-search" type="submit" title="Search" name="Submit"><em>Search</em></button>
+             <input type="search" class="sort_rang" value="" placeholder="Search Here&hellip;">
+
+             <button class="sort_rang" type="submit" title="Search" name="Submit"><em>Search</em></button>
            </fieldset>
          </form>
        </div>
@@ -233,28 +235,28 @@ img {vertical-align: middle;}
 
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
-<script src="layout/scripts/jquery.min.js"></script>
-<script src="layout/scripts/jquery.backtotop.js"></script>
-<script src="layout/scripts/jquery.mobilemenu.js"></script>
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
 
-<script src="layout/scripts/jquery.placeholder.min.js"></script>
-<script src="js/jquery-2.1.1.min.js"></script>
+<script src="../layout/scripts/jquery.placeholder.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.isotope.min.js"></script>
-<script src="js/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="js/fliplightbox.min.js"></script>
-<script src="js/functions.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.isotope.min.js"></script>
+<script src="../js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="../js/fliplightbox.min.js"></script>
+<script src="../js/functions.js"></script>
 <script type="text/javascript">$('.portfolio').flipLightBox()</script>
-  <script  src="js/index.js"></script>
+  <script  src="../js/index.js"></script>
 </body>
 </html>
 
 <script type="text/javascript">
 $(document).on('change','.sort_rang',function(){
-   var url = "../ajax_search.php";
+   var url = "../ajax_search1.php";
    $.ajax({
      type: "POST",
      url: url,

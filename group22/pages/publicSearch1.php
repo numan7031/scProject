@@ -157,6 +157,7 @@ img {vertical-align: middle;}
     $db=new mysqli('localhost','root','','scdb');
     $db->query("SET NAMES UTF8");
     $all_row=$db->query("SELECT * FROM attractions");
+
 ?>
 <div class="container">
      <div class="row">
@@ -192,7 +193,7 @@ img {vertical-align: middle;}
         <?php foreach ($all_row as $key => $product) { ?>
         <div class="col-sm-3 col-md-3">
         	<div class="well">
-            <a href="#"><img src="product_images/<?php echo $product['image']; ?>"></a>
+            <a href="#"><img src=".img/<?php echo $product['image']; ?>"></a>
         		<h2 class="text-info"><?php echo $product['atname']; ?></h2>
         		<p><span class="label label-info">ประเภทของจุดเด่น : <?php echo $product['type_id']; ?></span></p>
         		<p>ที่อยู่: <?php echo $product['adress']; ?></p>

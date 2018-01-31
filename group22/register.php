@@ -35,6 +35,11 @@
 					</span>
 
 					<div class="wrap-input100 validate-input">
+						<input class="input100" type="hidden" name="textStatus" id="textStatus" value="user">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" name="textUsername" id="textUsername" placeholder="Username">
 						<span class="focus-input100"></span>
 					</div>

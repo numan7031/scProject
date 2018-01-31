@@ -160,8 +160,7 @@ img {vertical-align: middle;}
             <li><a href="#">ค้นหาสถานที่พักผ่อน</a></li>
           </ul>
         </li>
-        <li><a href="pages/gallery.php">Gallery</a></li>
-        <li><a href="pages/aboutAs.php">About Me</a></li>
+        <li><a href="pages/UsGallery.php">Gallery</a></li>
 				<li><a href="editRegister.php">Profile</a></li>
       </ul>
     </nav>

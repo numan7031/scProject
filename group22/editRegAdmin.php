@@ -194,14 +194,18 @@ img {vertical-align: middle;}
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="images/user.png" alt="IMG">
-				</div>
-				<form name="form1" class="login100-form validate-form" method="post" action="edit.php">
+
+				<form name="form1" class="login100-form validate-form" enctype="multipart/form-data" method="post" action="edit.php">
 					<span class="login100-form-title">
-						Register Form
+						MY PROFILE
 					</span>
 						<input type="hidden" name="iduser" value="<?php echo $objResult["userID"];?>">
+
+					<div class="wrap-input100 validate-input">
+						<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
+						<input type="file" name="uploadedfile" id="uploadedfile">
+					</div>
+
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" name="textUsername" id="textUsername" placeholder="Username" value="<?php echo $objResult["username"];?>">
 						<span class="focus-input100"></span>
@@ -233,12 +237,16 @@ img {vertical-align: middle;}
 					</div>
 
 					<div class="container-login100-form-btn">
-						<input class="login100-form-btn" type="submit" name="Submit" value="Create account">
+						<input class="login100-form-btn" type="submit" name="Submit" value="Update Profile">
 					</div>
 				</form>
+				<div class="login100-pic js-tilt" data-tilt>
+				<img src="<?php echo $objResult["image"];?>">
+			</div>
 			</div>
 		</div>
 	</div>
+
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>

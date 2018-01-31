@@ -105,35 +105,35 @@ function ConfirmDelete(id)
 
           <?php
 	// connect to the database
-	$conn=mysqli_connect("localhost", "root", "","RegisterDB");
+	$conn=mysqli_connect("localhost", "root", "","scdb");
 	$conn->query("SET NAMES UTF8");
 	// get results from database
-	$sql="SELECT * FROM Register";
+	$sql="SELECT * FROM restaurant";
 	$rs=$conn->query($sql);
 	// Print Header of Table
 	echo "<table border='1' cellpadding='10' width=80%>"; //open table
 	echo "<tr>
+			<th>หมายเลขร้านอาหาร</th>
 			<th>ชื่อร้านอาหาร</th>
-			<th>วันเปิดทำการ</th>
-			<th>เวลาเปิดทำการ</th>
-			<th>ค่าเข้าชม</th>
 			<th>ที่อยู่</th>
+			<th>เบอร์โทรติดต่อ</th>
+			<th>รายละเอียด</th>
 			<th>เบอร์โทรศัพท์</th>
-			<th>Photo</th>
+			<th>ค้นหาสถานที่ท่องเที่ยวใกล้เคียง</th>
 			</tr>";
 	// loop through results of database query, displaying them in the table
 	while($row = $rs->fetch_assoc()) {
 		// echo out the contents of each row into a table
 		echo "<tr>";
-		echo '<td>' . $row['ID'] . '</td>';
-		echo '<td>' . $row['FirstName'] . '</td>';
-		echo '<td>' . $row['LastName'] . '</td>';
-		echo '<td>' . $row['Age'] . '</td>';
-		echo '<td>' . $row['Gender'] . '</td>';
-    echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
-		echo '<td><a href="editForm.php?id=' . $row['ID'] . '">View</a> ';
-		echo '<td><a href="editForm.php?id=' . $row['ID'] . '">Edit</a> ';
-				echo '<a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
+		echo '<td>' . $row['resID'] . '</td>';
+		echo '<td>' . $row['resname'] . '</td>';
+		echo '<td>' . $row['adress'] . '</td>';
+		echo '<td>' . $row['phone'] . '</td>';
+		echo '<td>' . $row['description'] . '</td>';
+    //echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
+		echo '<td><a href="editForm.php?id=' . $row['resID'] . '">View</a> ';
+		echo '<td><a href="editForm.php?id=' . $row['resID'] . '">Edit</a> ';
+				echo '<a href="delete.php?id=' . $row['resID'] . '" onclick="return ConfirmDelete(' . $row['resID'] . ');">Delete</a></td>';
 		echo "</tr>";
 	}
 	echo "</table>"; // close table
