@@ -1,10 +1,13 @@
 
 	<?php
 	// connect to the database
+	session_start();
+	ob_start();
 	$_review = $_REQUEST['rev'];
 	$_user = 1;
 	$_point = $_REQUEST['poin'];
-	$_attrac = $_REQUEST['att'];
+	$_attrac = $_SESSION['abc'];
+	date_default_timezone_set("Asia/Bangkok");
 	$_datenow = date("Y-m-d H:i:s");
 
 	if( !isset($_SESSION["userID"]) ){
@@ -24,11 +27,11 @@
 	//$_genderup = ucwords($_gender);
 	//echo $_genderup;
 
-	$sql = "INSERT INTO review(datereview,reviewdes, score, userID, attracID) VALUES ('$_datenow','$_review','$_point','$_user','$_attrac')";
+	$sql = "INSERT INTO review(datereview,reviewdes, score, userID, attracID) VALUES ('$_datenow','$_review',$_point,'$_user','$_attrac')";
 
 	if(mysqli_query($conn, $sql)){
 
-		echo "Insertion successfully.";
+		header("location:../actractionpage.php?id=".$_attrac."");
 
 	} else{
 
