@@ -64,10 +64,17 @@ body {font-family: Verdana, sans-serif; margin:0}
 img {vertical-align: middle;}
 
 /* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+.slideshow > div {
+    position: absolute;
+    max-width: 100%;
+    width: 100%;
+    height: 240px;
+    max-height: 100%;
+}
+
+.slideshow > div > img {
+    height: 100%;
+    width: 100%;
 }
 
 /* Next & previous buttons */
@@ -201,17 +208,17 @@ img {vertical-align: middle;}
 <div class="slideshow-container">
 
 <div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
+  <div class="numbertext"></div>
   <img src="img/gg.jpg" style="width:100%">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
+  <div class="numbertext"></div>
   <img src="img/dd.jpg" style="width:100%">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
+  <div class="numbertext"></div>
   <img src="img/ds.jpg" style="width:100%">
 </div>
 
@@ -263,10 +270,10 @@ function showSlides(n) {
       <h2 class="heading">สถานที่รีวิว</h2>
       <p>สถานที่ต่างๆที่ถูกรีวิว</p>
     </div>
-    จัดอันดับ:<select name="level">
+  <!--  จัดอันดับ:<select name="level">
 <option value="1">น้อย-มาก</option>
 <option value="2">มาก-น้อย</option>
-</select>
+</select>-->
 
 <!--//กล่องเรียงสวยนับจากนี้-->
    <?php
