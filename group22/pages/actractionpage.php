@@ -69,13 +69,52 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+  <link rel="stylesheet" href="../css/jquery.bxslider.css">
+  <link rel="stylesheet" href="../css/style1.css">
 </head>
 <body>
+  <header role="banner">
+
+
+    <nav class="main-nav">
+      <ul>
+        <!-- inser more links here
+        <li><a class="cd-signin" href="../login.html">Sign in</a></li>
+        <li><a class="cd-signup" href="../register.html">Sign up</a></li>-->
+      </ul>
+    </nav>
+  </header>
+
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+
+  		<div id="logo" class="fl_left">
+        <h1><a href="../index4.php">SUT</a></h1>
+        <p>Attractions in Thailand</p>
+      </div>
+
+  		<nav id="mainav" class="fl_right">
+  			<ul class="clear">
+  				<li class="active"><a href="../index4.php">Home</a></li>
+  				<li><a class="drop" href="#">ค้นหาสถานที่</a>
+  					<ul>
+  						<li><a href="../pages/view.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+  						<li><a href="../pages/view1.php">ค้นหาร้านอาหาร</a></li>
+  						<li><a href="../pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
+  						<li><a href="../pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
+  					</ul>
+  				</li>
+  				<li><a href="../pages/gallery.html">Gallery</a></li>
+  				<li><a href="../pages/aboutAs.html">About Me</a></li>
+  			</ul>
+  		</nav>
+
+    </header>
+  </div>
 
 <div class="container-fluid">
   <div class="row content">
-
-
     <div class="col-sm-8">
       <h4><small>RECENT POSTS</small></h4>
       <hr>
@@ -144,21 +183,14 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
                     <div class="pull-left meta">
                         <div class="title h5">
                             <a href="#"><b><?php echo $row['fullname']; ?></b></a>
-                            <h5 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $row['dater']; ?></h5>
+                            <h12 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $row['dater']; ?></h12>
                         </div>
-                        <h6 class="text-muted time"><?php echo $row['timer']; ?>&nbsp;น.</h6>
+                        <h14 class="text-muted time"><?php echo $row['timer']; ?>&nbsp;น.</h14>
                     </div>
                 </div>
                 <div class="post-description">
                     <p><?php echo $row['reviewdes']; ?></p>
-                    <div class="stats">
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="fa fa-thumbs-up icon"></i>2
-                        </a>
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="fa fa-thumbs-down icon"></i>12
-                        </a>
-                    </div>
+
                 </div>
             </div>
         </div>
