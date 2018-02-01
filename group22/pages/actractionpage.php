@@ -1,12 +1,6 @@
 <?php
 require 'connect.php';
-
-
-if( !isset($_REQUEST['id']) ){
-
-}else {
-  $id = $_REQUEST['id'];
-}
+$id = $_REQUEST['id'];
 //$var_value = $_REQUEST['varname'];
 session_start();
 ob_start();
@@ -15,11 +9,8 @@ if (isset($id)) {
   $_SESSION['abc']=$id;
 }
 
-//date_default_timezone_set("Asia/Bangkok");
-//echo date_default_timezone_get();
-//echo date("Y-m-d H:i:s");
 
-$sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
+$sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d/%l/%Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
 	//$rs = mysqli_query($conn,$sql);
   //$sql = "SELECT*FROM review";
 
@@ -68,7 +59,7 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>สถานที่ท่องเที่ยวยอดนิยม</title>
+  <title><?php echo $id ?></title>
 
   <link rel="stylesheet" type="text/css" href="css/attpage.css">
 
@@ -155,14 +146,14 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
       								<div class="status-upload">
       									<form name="review" method="post" action="processphp/insert.php">
                           <!--<input type="text" class="form-control" id="topic" placeholder="หัวข้อ">-->
-      										<textarea name="rev" placeholder="Add review" required ></textarea>
+      										<textarea name="rev" placeholder="Add review" ></textarea>
       										<ul>
                             <li>ให้คะแนน </li>
-      											<li><label class="radio-inline"><input type="radio" name="poin" value="-2" checked="checked">1 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="-1">2 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="0">3 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="1">4 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="2">5 คะแนน</label></li>
+      											<li><label class="radio-inline"><input type="radio" name="poin" value="1">1 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="2">2 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="3">3 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="4">4 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="5">5 คะแนน</label></li>
 
       										</ul>
                           <input type="hidden" id="hid" name="att" value="<?php echo $id ?>">
@@ -198,7 +189,11 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
                     <div class="pull-left meta">
                         <div class="title h5">
                             <a href="#"><b><?php echo $row['fullname']; ?></b></a>
+<<<<<<< HEAD
                             <h12 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $row['dater']; ?></h12>
+=======
+                            made a post.&nbsp;<?php echo $row['dater']; ?>
+>>>>>>> parent of 7852b8c... หน้าแสดงสถานที่ท่องเที่ยวได้50%ล่ะ
                         </div>
                         <h14 class="text-muted time"><?php echo $row['timer']; ?>&nbsp;น.</h14>
                     </div>

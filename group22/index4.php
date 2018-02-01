@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 
 <?php
+
 require 'connect.php';
 
 $sql = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID";
