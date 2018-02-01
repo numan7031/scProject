@@ -136,18 +136,20 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
       <div class="row">
 
           <div class="col-md-12">
+
           						<div class="widget-area no-padding blank">
+                        <h7><p>แสดงความคิดเห็น:</p></h7>
       								<div class="status-upload">
       									<form name="review" method="post" action="processphp/insert.php">
                           <!--<input type="text" class="form-control" id="topic" placeholder="หัวข้อ">-->
       										<textarea name="rev" placeholder="Add review" required ></textarea>
       										<ul>
-                            <li>ให้คะแนน </li>
-      											<li><label class="radio-inline"><input type="radio" name="poin" value="-2" checked="checked">1 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="-1">2 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="0">3 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="1">4 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="2">5 คะแนน</label></li>
+                            <li>ให้คะแนน &nbsp;</li>
+      											<li><label class="radio-inline"><input type="radio" name="poin" value="-2" >แย่&nbsp;</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="-1">ไม่ชอบ&nbsp;</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="0" checked="checked">เฉยๆ&nbsp;</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="1">ชอบ&nbsp;</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="2">ชอบมาก</label></li>
 
       										</ul>
                           <input type="hidden" id="hid" name="att" value="<?php echo $id ?>">
