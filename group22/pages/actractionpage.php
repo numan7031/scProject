@@ -1,34 +1,31 @@
 <?php
 require 'connect.php';
-$id = $_REQUEST['id'];
+if( !isset($_REQUEST['id']) ){
+}else {
+  $id = $_REQUEST['id'];
+}
 //$var_value = $_REQUEST['varname'];
 session_start();
 ob_start();
-
 if (isset($id)) {
   $_SESSION['abc']=$id;
 }
-
-
-$sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d/%l/%Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
+//date_default_timezone_set("Asia/Bangkok");
+//echo date_default_timezone_get();
+//echo date("Y-m-d H:i:s");
+$sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
 	//$rs = mysqli_query($conn,$sql);
   //$sql = "SELECT*FROM review";
-
   $rs=$con->query($sql);
-
 	$num_rows = mysqli_num_rows($rs);
-
 	$per_page = 3;   // Per Page
 	$page  = 1;
-
 	if(isset($_GET["Page"]))
 	{
 		$page = $_GET["Page"];
 	}
-
 	$prev_page = $page-1;
 	$next_page = $page+1;
-
 	$row_start = (($per_page*$page)-$per_page);
 	if($num_rows<=$per_page)
 	{
@@ -48,18 +45,15 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
 	{
 		$row_end = $num_rows;
 	}
-
-
 	$sql .= " ORDER BY r.revID ASC LIMIT $row_start ,$row_end ";
 	//$rs = mysqli_query($conn,$sql);
   $rs=$con->query($sql);
-
  ?>
 
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><?php echo $id ?></title>
+  <title>สถานที่ท่องเที่ยวยอดนิยม</title>
 
   <link rel="stylesheet" type="text/css" href="css/attpage.css">
 
@@ -75,52 +69,13 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-  <link rel="stylesheet" href="../css/jquery.bxslider.css">
-  <link rel="stylesheet" href="../css/style1.css">
 </head>
 <body>
-  <header role="banner">
-
-
-    <nav class="main-nav">
-      <ul>
-        <!-- inser more links here
-        <li><a class="cd-signin" href="../login.html">Sign in</a></li>
-        <li><a class="cd-signup" href="../register.html">Sign up</a></li>-->
-      </ul>
-    </nav>
-  </header>
-
-  <div class="wrapper row1">
-    <header id="header" class="hoc clear">
-
-  		<div id="logo" class="fl_left">
-        <h1><a href="../index4.php">SUT</a></h1>
-        <p>Attractions in Thailand</p>
-      </div>
-
-  		<nav id="mainav" class="fl_right">
-  			<ul class="clear">
-  				<li class="active"><a href="../index4.php">Home</a></li>
-  				<li><a class="drop" href="#">ค้นหาสถานที่</a>
-  					<ul>
-  						<li><a href="../pages/view.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-  						<li><a href="../pages/view1.php">ค้นหาร้านอาหาร</a></li>
-  						<li><a href="../pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
-  						<li><a href="../pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
-  					</ul>
-  				</li>
-  				<li><a href="../pages/gallery.html">Gallery</a></li>
-  				<li><a href="../pages/aboutAs.html">About Me</a></li>
-  			</ul>
-  		</nav>
-
-    </header>
-  </div>
 
 <div class="container-fluid">
   <div class="row content">
+
+
     <div class="col-sm-8">
       <h4><small>RECENT POSTS</small></h4>
       <hr>
@@ -146,14 +101,14 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
       								<div class="status-upload">
       									<form name="review" method="post" action="processphp/insert.php">
                           <!--<input type="text" class="form-control" id="topic" placeholder="หัวข้อ">-->
-      										<textarea name="rev" placeholder="Add review" ></textarea>
+      										<textarea name="rev" placeholder="Add review" required ></textarea>
       										<ul>
                             <li>ให้คะแนน </li>
-      											<li><label class="radio-inline"><input type="radio" name="poin" value="1">1 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="2">2 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="3">3 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="4">4 คะแนน</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="5">5 คะแนน</label></li>
+      											<li><label class="radio-inline"><input type="radio" name="poin" value="-2" checked="checked">1 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="-1">2 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="0">3 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="1">4 คะแนน</label></li>
+                            <li><label class="radio-inline"><input type="radio" name="poin" value="2">5 คะแนน</label></li>
 
       										</ul>
                           <input type="hidden" id="hid" name="att" value="<?php echo $id ?>">
@@ -189,18 +144,21 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
                     <div class="pull-left meta">
                         <div class="title h5">
                             <a href="#"><b><?php echo $row['fullname']; ?></b></a>
-<<<<<<< HEAD
-                            <h12 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $row['dater']; ?></h12>
-=======
-                            made a post.&nbsp;<?php echo $row['dater']; ?>
->>>>>>> parent of 7852b8c... หน้าแสดงสถานที่ท่องเที่ยวได้50%ล่ะ
+                            <h5 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $row['dater']; ?></h5>
                         </div>
-                        <h14 class="text-muted time"><?php echo $row['timer']; ?>&nbsp;น.</h14>
+                        <h6 class="text-muted time"><?php echo $row['timer']; ?>&nbsp;น.</h6>
                     </div>
                 </div>
                 <div class="post-description">
                     <p><?php echo $row['reviewdes']; ?></p>
-
+                    <div class="stats">
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-up icon"></i>2
+                        </a>
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-down icon"></i>12
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -214,7 +172,6 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
     {
     	echo " <a href='$_SERVER[SCRIPT_NAME]?Page=$prev_page'><< Back</a> ";
     }
-
     for($i=1; $i<=$num_pages; $i++){
     	if($i != $page)
     	{
