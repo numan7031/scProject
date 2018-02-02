@@ -53,9 +53,17 @@ if (isset($id)) {
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+  <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
   <link rel="stylesheet" href="../css/jquery.bxslider.css">
   <link rel="stylesheet" href="../css/style1.css">
+
+  <script src="js/imgbox.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/imgbox.css">
+  <link rel="stylesheet" type="text/css" href="css/imgbox2.css">
+  <link rel="stylesheet" type="text/css" href="css/imgbox3.css">
+
+
+
 </head>
 <body>
   <header role="banner">
@@ -228,21 +236,25 @@ $total_page = ceil($total_record / $perpage);
     </div>
 
      <div class="col-sm-4 sidenav">
-      <h4>John's Blog</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
-        <li><a href="#section2">Friends</a></li>
-        <li><a href="#section3">Family</a></li>
-        <li><a href="#section3">Photos</a></li>
-      </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Blog..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
+
+<!-- ช่องซ้าย -->
+<h3><p>Gallery</p></h3>
+<?php
+//$folder_path = '../img/'; //image's folder path
+$_atid = $_SESSION['abc'];
+$sql3 = "SELECT * FROM `attracimages` WHERE attracID  = $_atid LIMIT 9";
+$query3 = mysqli_query($con, $sql3);
+
+	while($result3 = mysqli_fetch_assoc($query3))
+	{
+			?>
+            <a href="../img/<?php echo $result3['imageURL']; ?> ?>"><img src="../img/<?php echo $result3['imageURL']; ?>"  height="180" /></a>
+            <?php
+	}
+
+?>
+
+
     </div>
   </div>
 </div>
