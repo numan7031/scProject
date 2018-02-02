@@ -205,7 +205,7 @@ if (isset($id)) {
                     <div class="pull-left meta">
                         <div class="title h5">
                             <a href="#"><b><?php echo $result['fullname']; ?></b></a>
-                            <h12 class="text-muted time">&nbsp;&nbsp;<?php echo time_elapsed_string($result['datereview']); ?>น.</h12>
+                            <h12 class="text-muted time">&nbsp;&nbsp;<?php //echo time_elapsed_string($result['datereview']); ?></h12>
                         </div>
                         <h14 class="text-muted time"><?php echo time_elapsed_string($result['datereview']);?></h14>
                     </div>
