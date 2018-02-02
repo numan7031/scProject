@@ -1,9 +1,10 @@
 <?php
 require 'connect.php';
-
+//$id = 12;
 if( isset($_REQUEST['id']) ){
   $id = $_REQUEST['id'];
 }
+
 
 session_start();
 ob_start();
@@ -13,43 +14,21 @@ if (isset($id)) {
 //date_default_timezone_set("Asia/Bangkok");
 //echo date_default_timezone_get();
 //echo date("Y-m-d H:i:s");
-$sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
+ $perpage = 3;
+ if (isset($_GET['page'])) {
+ $page = $_GET['page'];
+ } else {
+ $page = 1;
+ }
 
-  $rs=$con->query($sql);
-	$num_rows = mysqli_num_rows($rs);
+ $start = ($page - 1) * $perpage;
 
-	$per_page = 2;   // Per Page
-	$page  = 1;
-	if(isset($_GET["Page"]))
-	{
-		$page = $_GET["Page"];
-	}
-	$prev_page = $page-1;
-	$next_page = $page+1;
 
-	$row_start = (($per_page*$page)-$per_page);
+  $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']." LIMIT $start ,$perpage";
 
-	if($num_rows<=$per_page)
-	{
-		$num_pages =1;
-	}
-	else if(($num_rows % $per_page)==0)
-	{
-		$num_pages =($num_rows/$per_page) ;
-	}
-	else
-	{
-		$num_pages =($num_rows/$per_page)+1;
-		$num_pages = (int)$num_pages;
-	}
-	$row_end = $per_page * $page;
-	if($row_end > $num_rows)
-	{
-		$row_end = $num_rows;
-	}
-	$sql .= " ORDER BY r.revID ASC LIMIT $row_start ,$row_end ";
-	//$rs = mysqli_query($conn,$sql);
-  $rs=$con->query($sql);
+  $query = mysqli_query($con, $sql);
+
+
  ?>
 
  <!DOCTYPE html>
@@ -166,34 +145,34 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
       <br><br>
 
 
-      <p><span class="badge"><?php echo $num_rows;?></span> ความคิดเห็น:</p><br>
+      <p><span class="badge"><?php //echo $total_record;?></span> ความคิดเห็น:</p><br>
 
       <div class="row">
         <?php
         //$i = 0;
         //$arrayName = array('one_third first','one_third','one_third');//เก็บอาเรย์เรียงจากขวาไปซ้าย
         //$numOfCols = 3;
-        //$rowCount = 0;
+        //$resultCount = 0;
         //$bootstrapColWidth = 12 / $numOfCols;
-        while($row=$rs->fetch_assoc())
+        while ($result = mysqli_fetch_assoc($query))
         {
          ?>
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
-                        <img src="../img/<?php echo $row['image']; ?>" class="img-circle avatar" alt="user profile image">
+                        <img src="../img/<?php echo $result['image']; ?>" class="img-circle avatar" alt="user profile image">
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b><?php echo $row['fullname']; ?></b></a>
-                            <h12 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $row['dater']; ?></h12>
+                            <a href="#"><b><?php echo $result['fullname']; ?></b></a>
+                            <h12 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $result['dater']; ?></h12>
                         </div>
-                        <h14 class="text-muted time"><?php echo $row['timer']; ?>&nbsp;น.</h14>
+                        <h14 class="text-muted time"><?php echo $result['timer']; ?>&nbsp;น.</h14>
                     </div>
                 </div>
                 <div class="post-description">
-                    <p><?php echo $row['reviewdes']; ?></p>
+                    <p><?php echo $result['reviewdes']; ?></p>
 
                 </div>
             </div>
@@ -202,29 +181,29 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
     </div>
 
 
-    Total <?php echo $num_rows;?> Record : <?php echo $num_pages;?> Page :
     <?php
-    if($prev_page)
-    {
-    	echo " <a href='$_SERVER[SCRIPT_NAME]?Page=$prev_page'><< Back</a> ";
-    }
-    for($i=1; $i<=$num_pages; $i++){
-    	if($i != $page)
-    	{
-    		echo "[ <a href='$_SERVER[SCRIPT_NAME]?Page=$i'>$i</a> ]";
-    	}
-    	else
-    	{
-    		echo "<b> $i </b>";
-    	}
-    }
-    if($page!=$num_pages)
-    {
-    	echo " <a href ='$_SERVER[SCRIPT_NAME]?Page=$next_page'>Next>></a> ";
-    }
-    $con = null;
-    ?>
-
+$sql2 = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
+$query2 = mysqli_query($con, $sql2);
+$total_record = mysqli_num_rows($query2);
+$total_page = ceil($total_record / $perpage);
+?>
+<nav>
+<ul class="pagination">
+<li>
+<a href="actractionpageTest.php?page=1" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span>
+</a>
+</li>
+<?php for($i=1;$i<=$total_page;$i++){ ?>
+<li><a href="actractionpageTest.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+<?php } ?>
+<li>
+<a href="actractionpageTest.php?page=<?php echo $total_page;?>" aria-label="Next">
+<span aria-hidden="true">&raquo;</span>
+</a>
+</li>
+</ul>
+</nav>
     </div>
 
      <div class="col-sm-4 sidenav">
