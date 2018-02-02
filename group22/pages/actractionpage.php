@@ -1,10 +1,10 @@
 <?php
 require 'connect.php';
-if( !isset($_REQUEST['id']) ){
-}else {
+
+if( isset($_REQUEST['id']) ){
   $id = $_REQUEST['id'];
 }
-//$var_value = $_REQUEST['varname'];
+
 session_start();
 ob_start();
 if (isset($id)) {
@@ -14,11 +14,11 @@ if (isset($id)) {
 //echo date_default_timezone_get();
 //echo date("Y-m-d H:i:s");
 $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
-	//$rs = mysqli_query($conn,$sql);
-  //$sql = "SELECT*FROM review";
+
   $rs=$con->query($sql);
 	$num_rows = mysqli_num_rows($rs);
-	$per_page = 3;   // Per Page
+
+	$per_page = 2;   // Per Page
 	$page  = 1;
 	if(isset($_GET["Page"]))
 	{
@@ -26,7 +26,9 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
 	}
 	$prev_page = $page-1;
 	$next_page = $page+1;
+
 	$row_start = (($per_page*$page)-$per_page);
+
 	if($num_rows<=$per_page)
 	{
 		$num_pages =1;
@@ -220,7 +222,7 @@ $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(dater
     {
     	echo " <a href ='$_SERVER[SCRIPT_NAME]?Page=$next_page'>Next>></a> ";
     }
-    $conn = null;
+    $con = null;
     ?>
 
     </div>
