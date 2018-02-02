@@ -4,7 +4,7 @@
 	ob_start();
 	$_review = $_REQUEST['rev'];
 	$_user = 1;
-	$_point = $_REQUEST['poin'];
+	$_point = $_REQUEST['rating'];
 	$_attrac = $_SESSION['abc'];
 	date_default_timezone_set("Asia/Bangkok");
 	$_datenow = date("Y-m-d H:i:s");

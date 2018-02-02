@@ -1,5 +1,6 @@
 <?php
-require 'connect.php';
+require '../connect.php';
+require 'processphp/timeago.php';//ฟังก์ชั้นเวลา
 //$id = 12;
 if( isset($_REQUEST['id']) ){
   $id = $_REQUEST['id'];
@@ -11,6 +12,8 @@ ob_start();
 if (isset($id)) {
   $_SESSION['abc']=$id;
 }
+
+
 //date_default_timezone_set("Asia/Bangkok");
 //echo date_default_timezone_get();
 //echo date("Y-m-d H:i:s");
@@ -24,10 +27,9 @@ if (isset($id)) {
  $start = ($page - 1) * $perpage;
 
 
-  $sql = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']." LIMIT $start ,$perpage";
+  $sql = "SELECT u.image,r.datereview,CONCAT(u.fname,' ',u.lname) AS fullname,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']." LIMIT $start ,$perpage";
 
   $query = mysqli_query($con, $sql);
-
 
  ?>
 
@@ -35,6 +37,7 @@ if (isset($id)) {
 <html lang="en">
 <head>
   <title>สถานที่ท่องเที่ยวยอดนิยม</title>
+  <link rel="stylesheet" type="text/css" href="css/starability-css/starability-all.css"/>
 
   <link rel="stylesheet" type="text/css" href="css/attpage.css">
 
@@ -47,7 +50,7 @@ if (isset($id)) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -125,13 +128,28 @@ if (isset($id)) {
                           <!--<input type="text" class="form-control" id="topic" placeholder="หัวข้อ">-->
       										<textarea name="rev" placeholder="Add review" required ></textarea>
       										<ul>
-                            <li>ให้คะแนน &nbsp;</li>
-      											<li><label class="radio-inline"><input type="radio" name="poin" value="-2" >แย่&nbsp;</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="-1">ไม่ชอบ&nbsp;</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="0" checked="checked">เฉยๆ&nbsp;</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="1">ชอบ&nbsp;</label></li>
-                            <li><label class="radio-inline"><input type="radio" name="poin" value="2">ชอบมาก</label></li>
 
+                            <fieldset class="starability-slot">
+
+                              <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+
+                              <input type="radio" id="rate1" name="rating" value="1" />
+                              <label for="rate1">1 star.</label>
+
+                              <input type="radio" id="rate2" name="rating" value="2" />
+                              <label for="rate2">2 stars.</label>
+
+                              <input type="radio" id="rate3" name="rating" value="3" />
+                              <label for="rate3">3 stars.</label>
+
+                              <input type="radio" id="rate4" name="rating" value="4" />
+                              <label for="rate4">4 stars.</label>
+
+                              <input type="radio" id="rate5" name="rating" value="5" />
+                              <label for="rate5">5 stars.</label>
+
+                              <span class="starability-focus-ring"></span>
+                            </fieldset>
       										</ul>
                           <input type="hidden" id="hid" name="att" value="<?php echo $id ?>">
       										<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>รีวิว</button>
@@ -145,7 +163,7 @@ if (isset($id)) {
       <br><br>
 
 
-      <p><span class="badge"><?php //echo $total_record;?></span> ความคิดเห็น:</p><br>
+      <p><span class="badge"><?php  ?></span> ความคิดเห็น:</p><br>
 
       <div class="row">
         <?php
@@ -166,9 +184,9 @@ if (isset($id)) {
                     <div class="pull-left meta">
                         <div class="title h5">
                             <a href="#"><b><?php echo $result['fullname']; ?></b></a>
-                            <h12 class="text-muted time">เขียนเมื่อวันที่.&nbsp;<?php echo $result['dater']; ?></h12>
+                            <h12 class="text-muted time">&nbsp;&nbsp;<?php echo time_elapsed_string($result['datereview']); ?>น.</h12>
                         </div>
-                        <h14 class="text-muted time"><?php echo $result['timer']; ?>&nbsp;น.</h14>
+                        <h14 class="text-muted time"><?php echo time_elapsed_string($result['datereview']);?></h14>
                     </div>
                 </div>
                 <div class="post-description">
@@ -186,19 +204,22 @@ $sql2 = "SELECT u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(date
 $query2 = mysqli_query($con, $sql2);
 $total_record = mysqli_num_rows($query2);
 $total_page = ceil($total_record / $perpage);
+
+
+
 ?>
 <nav>
 <ul class="pagination">
 <li>
-<a href="actractionpageTest.php?page=1" aria-label="Previous">
+<a href="actractionpage.php?page=1" aria-label="Previous">
 <span aria-hidden="true">&laquo;</span>
 </a>
 </li>
 <?php for($i=1;$i<=$total_page;$i++){ ?>
-<li><a href="actractionpageTest.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+<li><a href="actractionpage.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 <?php } ?>
 <li>
-<a href="actractionpageTest.php?page=<?php echo $total_page;?>" aria-label="Next">
+<a href="actractionpage.php?page=<?php echo $total_page;?>" aria-label="Next">
 <span aria-hidden="true">&raquo;</span>
 </a>
 </li>
