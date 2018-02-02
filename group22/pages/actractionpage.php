@@ -37,18 +37,20 @@ if (isset($id)) {
 <html lang="en">
 <head>
   <title>สถานที่ท่องเที่ยวยอดนิยม</title>
-  <link rel="stylesheet" type="text/css" href="css/starability-css/starability-all.css"/>
 
-  <link rel="stylesheet" type="text/css" href="css/attpage.css">
+  <link rel="stylesheet" type="text/css" href="css/starability-css/starability-all.css"/><!--ดาว-->
 
-  <link rel="stylesheet" type="text/css" href="css/comment_box.css">
-  <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="css/attpage.css"><!--เฉพาะหน้า actractionpage-->
 
-  <link rel="stylesheet" type="text/css" href="css/comments2.css">
-  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/comment_box.css"><!--กล่อง คอมเม้น-->
+  <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css"><!--กล่อง คอมเม้น-->
+
+  <link rel="stylesheet" type="text/css" href="css/comments2.css"><!--ตัวแสดงคอมเม้น-->
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"><!--ตัวแสดงคอมเม้น-->
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -57,13 +59,24 @@ if (isset($id)) {
   <link rel="stylesheet" href="../css/jquery.bxslider.css">
   <link rel="stylesheet" href="../css/style1.css">
 
-  <script src="js/imgbox.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/imgbox.css">
-  <link rel="stylesheet" type="text/css" href="css/imgbox2.css">
-  <link rel="stylesheet" type="text/css" href="css/imgbox3.css">
+  <script src="js/imgbox.js"></script><!--กล่องรูปภาพ-->
+  <link rel="stylesheet" type="text/css" href="css/imgbox.css"><!--กล่องรูปภาพ-->
+  <link rel="stylesheet" type="text/css" href="css/imgbox2.css"><!--กล่องรูปภาพ-->
+  <link rel="stylesheet" type="text/css" href="css/imgbox3.css"><!--กล่องรูปภาพ-->
+  <style>
+  table {
+      border-collapse: collapse;
+      width: 100%;
+  }
 
+  th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
 
-
+  tr:hover {background-color:#f5f5f5;}
+  </style>
 </head>
 <body>
   <header role="banner">
@@ -248,12 +261,93 @@ $query3 = mysqli_query($con, $sql3);
 	while($result3 = mysqli_fetch_assoc($query3))
 	{
 			?>
-            <a href="../img/<?php echo $result3['imageURL']; ?> ?>"><img src="../img/<?php echo $result3['imageURL']; ?>"  height="180" /></a>
+            <a href="../img/<?php echo $result3['imageURL']; ?>"><img src="../img/<?php echo $result3['imageURL']; ?>"  height="180" /></a>
             <?php
 	}
 
 ?>
 
+<?php
+//$folder_path = '../img/'; //image's folder path
+
+$sql4 = "SELECT * FROM `attractions` WHERE attracID  =  $_atid";
+$query4 = mysqli_query($con, $sql4);
+
+	while($result4 = mysqli_fetch_assoc($query4))
+	{
+			?>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">รายละเอียดสถานที่ท่องเที่ยว</th>
+    </tr>
+    <tr>
+      <th>บริการ</th>
+      <th>สถานะ</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>ห้องน้า</td>
+      <td><?php echo $result4['toilet'];?></td>
+    </tr>
+    <tr>
+      <td>4G/3G</td>
+      <td><?php echo $result4['threeGfourG'];?></td>
+    </tr>
+    <tr>
+      <td>Unseen</td>
+      <td><?php echo $result4['unseen'];?></td>
+    </tr>
+    <tr>
+      <td>ราคา</td>
+      <td><?php echo $result4['price'];?></td>
+    </tr>
+    <tr>
+      <td>Security</td>
+      <td><?php echo $result4['security'];?></td>
+    </tr>
+    <tr>
+      <td>สิ่งอานวยความสะดวกแก่ผู้พิการ คนชรา สตรีมีครรภ์</td>
+      <td><?php echo $result4['facilitiesfordisabled'];?></td>
+    </tr>
+    <tr>
+      <td>WiFi</td>
+      <td><?php echo $result4['wifi'];?></td>
+    </tr>
+    <tr>
+      <td>บริการนาเที่ยว</td>
+      <td><?php echo $result4['tourdesk'];?></td>
+    </tr>
+    <tr>
+      <td>สถานที่ท่องเที่ยวช่วงเทศกาล</td>
+      <td><?php echo $result4['festival'];?></td>
+    </tr>
+    <tr>
+      <td>สถานที่ท่องเที่ยวหลากหลายบรรยากาศ</td>
+      <td><?php echo $result4['variousnature'];?></td>
+    </tr>
+    <tr>
+      <td>สถานที่ท่องเที่ยวทดแทนในไทย</td>
+      <td><?php echo $result4['replacein'];?></td>
+    </tr>
+    <tr>
+      <td>สถานที่ท่องเที่ยวทดแทนในต่างประเทศ</td>
+      <td><?php echo $result4['replaceout'];?></td>
+    </tr>
+    <tr>
+      <td>สถานพยาบาล</td>
+      <td><?php echo $result4['Medical'];?></td>
+    </tr>
+  </tbody>
+</table>
+
+<?php
+}
+
+?>
 
     </div>
   </div>
