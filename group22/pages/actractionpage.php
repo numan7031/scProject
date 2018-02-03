@@ -13,6 +13,7 @@ if (isset($id)) {
   $_SESSION['abc']=$id;
 }
 
+$_atid = $_SESSION['abc'];
 
 //date_default_timezone_set("Asia/Bangkok");
 //echo date_default_timezone_get();
@@ -37,6 +38,15 @@ if (isset($id)) {
 <html lang="en">
 <head>
   <title>สถานที่ท่องเที่ยวยอดนิยม</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+  <!--<link rel="stylesheet" href="../css/jquery.bxslider.css">-->
+  <link rel="stylesheet" href="../css/style1.css">
 
   <link rel="stylesheet" type="text/css" href="css/starability-css/starability-all.css"/><!--ดาว-->
 
@@ -48,21 +58,14 @@ if (isset($id)) {
   <link rel="stylesheet" type="text/css" href="css/comments2.css"><!--ตัวแสดงคอมเม้น-->
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"><!--ตัวแสดงคอมเม้น-->
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-  <link rel="stylesheet" href="../css/jquery.bxslider.css">
-  <link rel="stylesheet" href="../css/style1.css">
 
   <script src="js/imgbox.js"></script><!--กล่องรูปภาพ-->
   <link rel="stylesheet" type="text/css" href="css/imgbox.css"><!--กล่องรูปภาพ-->
   <link rel="stylesheet" type="text/css" href="css/imgbox2.css"><!--กล่องรูปภาพ-->
   <link rel="stylesheet" type="text/css" href="css/imgbox3.css"><!--กล่องรูปภาพ-->
+
+  <link rel="stylesheet" type="text/css" href="css/imgresize.css"><!--กล่องรูปภาพ-->
+
   <style>
   table {
       border-collapse: collapse;
@@ -79,64 +82,75 @@ if (isset($id)) {
   </style>
 </head>
 <body>
-  <header role="banner">
 
-
-    <nav class="main-nav">
-      <ul>
-        <!-- inser more links here
-        <li><a class="cd-signin" href="../login.html">Sign in</a></li>
-        <li><a class="cd-signup" href="../register.html">Sign up</a></li>-->
-      </ul>
-    </nav>
-  </header>
-
-  <div class="wrapper row1">
-    <header id="header" class="hoc clear">
-
-  		<div id="logo" class="fl_left">
-        <h1><a href="../index4.php">SUT</a></h1>
-        <p>Attractions in Thailand</p>
-      </div>
-
-  		<nav id="mainav" class="fl_right">
-  			<ul class="clear">
-  				<li class="active"><a href="../index4.php">Home</a></li>
-  				<li><a class="drop" href="#">ค้นหาสถานที่</a>
-  					<ul>
-  						<li><a href="../pages/view.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-  						<li><a href="../pages/view1.php">ค้นหาร้านอาหาร</a></li>
-  						<li><a href="../pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
-  						<li><a href="../pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
-  					</ul>
-  				</li>
-  				<li><a href="../pages/gallery.html">Gallery</a></li>
-  				<li><a href="../pages/aboutAs.html">About Me</a></li>
-  			</ul>
-  		</nav>
-
-    </header>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
   </div>
+</nav>
+
 
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-8">
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h2>I Love Food</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
-      <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-      <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <br><br>
+      <?php
+      //$folder_path = '../img/'; //image's folder path
 
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h2>Officially Blogging</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
-      <h5><span class="label label-success">Lorem</span></h5><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
+      $sql5 = "SELECT * FROM `attractions` WHERE attracID  =  $_atid";
+      $query5 = mysqli_query($con, $sql5);
 
+      	while($result5 = mysqli_fetch_assoc($query5))
+      	{
+
+      			?>
+
+      <h4><small><?php echo $result5['atname']; ?></small></h4>
+
+      <table>
+        <tr>
+          <td colspan="2"><div class="img-resize"><a href="../img/<?php echo $result5['image']; ?>"><img src="../img/<?php echo $result5['image']; ?>"/></a></td></div>
+        </tr>
+          <tr><td><p>ประวัติความเป็นมา</p></td>
+          <td><?php echo $result5['history']; ?></td></tr>
+          <tr><td>ที่อยู่</td>
+            <td><?php echo $result5['adress']; ?></td></tr>
+          <tr><td>คำแนะนำ</td>
+            <td><?php echo $result5['traveladvice']; ?></td></tr>
+          <tr><td>คำแนะนำสำหรับผู้พิการ</td>
+            <td><?php echo $result5['advicefordisabled']; ?></td></tr>
+          <tr><td>กิจกรรม</td>
+            <td><?php echo $result5['activities']; ?></td></tr>
+            <tr><td>บรรยากาศสไตร์</td>
+              <td><?php echo $result5['variousnature']; ?></td></tr>
+              <tr><td>สถานที่ในไทยทีบรรยากาศใกล้เคียง</td>
+                <td><?php echo $result5['replacein']; ?></td></tr>
+                <tr><td>สถานที่ต่างประเทศทีบรรยากาศใกล้เคียง</td>
+                <td><?php echo $result5['replaceout']; ?></td></tr>
+      </table>
+      
+      <a class="btn small" href="#">แนะนำสถานที่ใกล้เคียง</a>
+      <a class="btn small" href="https://maps.google.com/maps?q=loc:<?php echo $result5['lat']; ?>,<?php echo $result5['lng']; ?>" target="_blank">การเดินทาง</a>
+      <?php
+      }
+
+      ?>
 
       <div class="row">
 
@@ -254,7 +268,6 @@ $total_page = ceil($total_record / $perpage);
 <h3><p>Gallery</p></h3>
 <?php
 //$folder_path = '../img/'; //image's folder path
-$_atid = $_SESSION['abc'];
 $sql3 = "SELECT * FROM `attracimages` WHERE attracID  = $_atid LIMIT 9";
 $query3 = mysqli_query($con, $sql3);
 
@@ -320,22 +333,6 @@ $query4 = mysqli_query($con, $sql4);
     <tr>
       <td>บริการนาเที่ยว</td>
       <td><?php echo $result4['tourdesk'];?></td>
-    </tr>
-    <tr>
-      <td>สถานที่ท่องเที่ยวช่วงเทศกาล</td>
-      <td><?php echo $result4['festival'];?></td>
-    </tr>
-    <tr>
-      <td>สถานที่ท่องเที่ยวหลากหลายบรรยากาศ</td>
-      <td><?php echo $result4['variousnature'];?></td>
-    </tr>
-    <tr>
-      <td>สถานที่ท่องเที่ยวทดแทนในไทย</td>
-      <td><?php echo $result4['replacein'];?></td>
-    </tr>
-    <tr>
-      <td>สถานที่ท่องเที่ยวทดแทนในต่างประเทศ</td>
-      <td><?php echo $result4['replaceout'];?></td>
     </tr>
     <tr>
       <td>สถานพยาบาล</td>

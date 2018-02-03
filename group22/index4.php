@@ -273,7 +273,7 @@ function showSlides(n) {
             <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>">More</a></figcaption>
           </figure>
           <div class="excerpt">
-            <text name="Top1"><strong>คะแนน<?php echo $result["sumcor"];  ?></strong></text>
+            <text name="Top1"><strong><?php echo $result["sumcor"];  ?>คะแนน</strong></text>
             <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>"><?php echo $result["atname"];?></a></h6>
             <p><?php echo $result["typeAttraction"];?>&hellip;</p>
           </div>
