@@ -116,7 +116,7 @@ $_atid = $_SESSION['abc'];
 
       ?>
 
-        <li><a href="#"><?php echo $result6['email']; ?></a></li>
+        <li><a href="../editRegister.php"><?php echo $result6['email']; ?></a></li>
         <li><a href="../logout.php"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
     <?php  }
     }

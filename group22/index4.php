@@ -307,6 +307,7 @@ $total_page = ceil($total_record / $perpage);
 
 
 ?>
+<!-- ตัวกดเปลี่ยนหน้าจากนี้ -->
 <nav>
 <ul class="pagination">
 <li>
@@ -324,6 +325,7 @@ $total_page = ceil($total_record / $perpage);
 </li>
 </ul>
 </nav>
+<!-- ถึงนีตัวกดเปลี่ยนหน้า -->
 
 <div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
