@@ -1,5 +1,13 @@
 <?php
-$database = "testapimap";
+$database = "scdb";
+
+if( isset($_REQUEST['attlat'])&&isset($_REQUEST['attlng']) ){
+  $attlat = $_REQUEST['attlat'];
+	$attlng = $_REQUEST['attlng'];
+}else {
+	header("location:actractionpage.php");
+	exit();
+}
 
 $conn=mysqli_connect("localhost", "root", "","$database");
 	$conn->query("SET NAMES UTF8");
@@ -11,7 +19,7 @@ $conn=mysqli_connect("localhost", "root", "","$database");
     <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-        <title>Google Maps</title>
+        <title>พื้นที่ใกล้เคียง</title>
         <style type="text/css">
             body { font: normal 10pt Helvetica, Arial; }
             #map { width: 100%; height: 100%; border: 0px; padding: 0px; }
@@ -31,6 +39,7 @@ $conn=mysqli_connect("localhost", "root", "","$database");
             //var center = null;
             var map = null;
             var currentPopup;
+
             //var bounds = new google.maps.LatLngBounds();
 
             function addMarker(lat, lng, info) {
@@ -64,7 +73,9 @@ $conn=mysqli_connect("localhost", "root", "","$database");
                 var uluru = {lat: -33.879917, lng: 151.210449};
                 map = new google.maps.Map(document.getElementById("map"), {
 
-                    center: uluru,
+                    center: {
+                             lat: parseFloat(<?php echo $attlat ?>),
+                             lng: parseFloat(<?php echo $attlng ?>)},
                     zoom: 13,
 
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -80,7 +91,7 @@ $conn=mysqli_connect("localhost", "root", "","$database");
 
 
 <?php
-$query = "SELECT * FROM markers";
+$query = "SELECT * FROM attractions";
 //$result = mysql_query($query);
 $result=$conn->query($query);
 if (!$result) {
@@ -90,10 +101,10 @@ if (!$result) {
 
 while($row = $result->fetch_assoc())
 {
-  $name = $row['name'];
+  $name = $row['atname'];
   $lat = $row['lat'];
   $lon = $row['lng'];
-  $desc = $row['type'];
+  $desc = $row['adress'];
 
 
 
