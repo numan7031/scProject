@@ -86,22 +86,30 @@ $_atid = $_SESSION['abc'];
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="../index4.php">Easy Travel</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+      <li><a href="../index4.php">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ค้นหาสถานที่<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          <li><a href="pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+          <li><a href="pages/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
+          <li><a href="pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
+          <li><a href="pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
         </ul>
       </li>
-      <li><a href="#">Page 2</a></li>
+      <!--<li><a href="#">Page 2</a></li>-->
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <?php
+      if( !isset($_SESSION["userID"]) ){?>
+        <li><a href="../register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="../index3.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    <?php  }else {?>
+        <li><a href="../logout.php"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+    <?php  }
+
+                  ?>
     </ul>
   </div>
 </nav>
@@ -303,7 +311,7 @@ $query4 = mysqli_query($con, $sql4);
 
   <tbody>
     <tr>
-      <td>ห้องน้า</td>
+      <td>ห้องน้ำ</td>
       <td><?php echo $result4['toilet'];?></td>
     </tr>
     <tr>
@@ -331,7 +339,7 @@ $query4 = mysqli_query($con, $sql4);
       <td><?php echo $result4['wifi'];?></td>
     </tr>
     <tr>
-      <td>บริการนาเที่ยว</td>
+      <td>บริการนำเที่ยว</td>
       <td><?php echo $result4['tourdesk'];?></td>
     </tr>
     <tr>
