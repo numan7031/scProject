@@ -19,6 +19,52 @@
 ?>
 <!DOCTYPE html>
 
+<?php
+
+$sql = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID";
+	//$rs = mysqli_query($conn,$sql);
+
+  $rs=$con->query($sql);
+
+	$num_rows = mysqli_num_rows($rs);
+
+	$per_page = 6;   // Per Page
+	$page  = 1;
+
+	if(isset($_GET["Page"]))
+	{
+		$page = $_GET["Page"];
+	}
+
+	$prev_page = $page-1;
+	$next_page = $page+1;
+
+	$row_start = (($per_page*$page)-$per_page);
+	if($num_rows<=$per_page)
+	{
+		$num_pages =1;
+	}
+	else if(($num_rows % $per_page)==0)
+	{
+		$num_pages =($num_rows/$per_page) ;
+	}
+	else
+	{
+		$num_pages =($num_rows/$per_page)+1;
+		$num_pages = (int)$num_pages;
+	}
+	$row_end = $per_page * $page;
+	if($row_end > $num_rows)
+	{
+		$row_end = $num_rows;
+	}
+
+
+	$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $row_start ,$row_end ";
+	//$rs = mysqli_query($conn,$sql);
+  $rs=$con->query($sql);
+
+ ?>
 <html>
 <head>
 <title>Attractions</title>
@@ -131,7 +177,7 @@ img {vertical-align: middle;}
   <header role="banner">
 
 
-    <nav class="main-nav">
+		<nav class="main-nav">
       <ul>
         <!-- inser more links here -->
 
@@ -141,32 +187,32 @@ img {vertical-align: middle;}
     </nav>
   </header>
 
-<div class="wrapper row1">
-  <header id="header" class="hoc clear">
+	<div class="wrapper row1">
+	  <header id="header" class="hoc clear">
 
-    <div id="logo" class="fl_left">
-      <h1><a href="index.php">SUT</a></h1>
-      <p>Attractions in Thailand</p>
-    </div>
+	    <div id="logo" class="fl_left">
+	      <h1><a href="index.php">SUT</a></h1>
+	      <p>Attractions in Thailand</p>
+	    </div>
 
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li class="active"><a href="index.php">Home</a></li>
-        <li><a class="drop" href="#">ค้นหาสถานที่</a>
-          <ul>
-            <li><a href="pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-            <li><a href="#">ค้นหาร้านอาหาร</a></li>
-            <li><a href="#">ค้นหาร้านขายของที่ระลึก</a></li>
-            <li><a href="#">ค้นหาสถานที่พักผ่อน</a></li>
-          </ul>
-        </li>
-        <li><a href="pages/UsGallery.php">Gallery</a></li>
-				<li><a href="editRegister.php">Profile</a></li>
-      </ul>
-    </nav>
+	    <nav id="mainav" class="fl_right">
+	      <ul class="clear">
+	        <li class="active"><a href="index.php">Home</a></li>
+	        <li><a class="drop" href="#">ค้นหาสถานที่</a>
+	          <ul>
+	            <li><a href="pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+	            <li><a href="search/UsSearch2.php">ค้นหาร้านอาหาร</a></li>
+	            <li><a href="search/UsSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+	            <li><a href="search/UsSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+	          </ul>
+	        </li>
+	        <li><a href="pages/UsGallery.php">Gallery</a></li>
+					<li><a href="editRegister.php">Profile</a></li>
+	      </ul>
+	    </nav>
 
-  </header>
-</div>
+	  </header>
+	</div>
 
 <div class="slideshow-container">
 
@@ -233,129 +279,75 @@ function showSlides(n) {
       <h2 class="heading">สถานที่รีวิว</h2>
       <p>สถานที่ต่างๆที่ถูกรีวิว</p>
     </div>
-    จัดอันดับ:<select name="level">
-<option value="1">น้อย-มาก</option>
-<option value="2">มาก-น้อย</option>
-</select>
-    <ul class="nospace group btmspace-50">
-      <li class="one_third first">
+<!--//กล่องเรียงสวยนับจากนี้-->
+   <?php
+    $i = 0;
+    $arrayName = array('one_third first','one_third','one_third');//เก็บอาเรย์เรียงจากขวาไปซ้าย
+    $numOfCols = 3;
+    $rowCount = 0;
+    //$bootstrapColWidth = 12 / $numOfCols;
+    while($row=$rs->fetch_assoc())
+    {
+    ?>
+
+      <?php
+
+      if($rowCount == 0) echo '<ul class="nospace group btmspace-50">';
+      $rowCount++;
+
+      ?>
+      <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
         <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="pages/pattayaAubon.html">More</a></figcaption>
+          <figure><img src="img/<?php echo $row['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $row["typeAttraction"]; ?>">
+            <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $row["attracID"]; ?>">More</a></figcaption>
           </figure>
           <div class="excerpt">
-            <text name="Top1"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="pages/pattayaAubon.html">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
+            <text name="Top1"><strong>คะแนน<?php echo $row["sumcor"];  ?></strong></text>
+            <h6 class="heading"><a href="actractionpage.php?id=<?php echo $row["attracID"]; ?>"><?php echo $row["atname"];?></a></h6>
+            <p><?php echo $row["typeAttraction"];?>&hellip;</p>
           </div>
         </article>
       </li>
-      <li class="one_third">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="#">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top2"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="#">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-      <li class="one_third">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="#">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top3"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="#">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-    </ul>
-    <ul class="nospace group btmspace-50">
-      <li class="one_third first">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="pages/pattayaAubon.html">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top4"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="pages/pattayaAubon.html">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-      <li class="one_third">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="#">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top5"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="#">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-      <li class="one_third">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="#">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top6"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="#">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-    </ul>
-    <ul class="nospace group btmspace-50">
-      <li class="one_third first">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="pages/pattayaAubon.html">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top7"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="pages/pattayaAubon.html">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-      <li class="one_third">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="#">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top8"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="#">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-      <li class="one_third">
-        <article class="element">
-          <figure><img src="images/demo/320x210.png" alt="">
-            <figcaption><a class="btn small" href="#">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top9"><strong>ระดับรีวิว</strong></text>
-            <h6 class="heading"><a href="#">ชื่อสถานที่ท่องเที่ยว</a></h6>
-            <p>รายละเอียด&hellip;</p>
-          </div>
-        </article>
-      </li>
-    </ul>
+
+    <?php
+    //$rowCount++;
+    $i++;
+    if($rowCount== 3) echo '</ul>';
+    if ($rowCount == 3) $rowCount = 0;
+    if ($i==3) $i=0;
+
+     }
+    ?>
+<!--//กล่องเรียงสวยถึงตรงนี้-->
 
     <div class="clear"></div>
   </main>
 </div>
 
+
+Total <?php echo $num_rows;?> Record : <?php echo $num_pages;?> Page :
+<?php
+if($prev_page)
+{
+	echo " <a href='$_SERVER[SCRIPT_NAME]?Page=$prev_page'><< Back</a> ";
+}
+
+for($i=1; $i<=$num_pages; $i++){
+	if($i != $page)
+	{
+		echo "[ <a href='$_SERVER[SCRIPT_NAME]?Page=$i'>$i</a> ]";
+	}
+	else
+	{
+		echo "<b> $i </b>";
+	}
+}
+if($page!=$num_pages)
+{
+	echo " <a href ='$_SERVER[SCRIPT_NAME]?Page=$next_page'>Next>></a> ";
+}
+$conn = null;
+?>
 
 <div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
@@ -417,6 +409,3 @@ function showSlides(n) {
   <script  src="js/index.js"></script>
 </body>
 </html>
-<?
-	mysqli_close($con);
-?>

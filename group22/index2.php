@@ -66,14 +66,17 @@ function ConfirmDelete(id)
 				<li><a class="drop" href="#">ค้นหาสถานที่</a>
 					<ul>
 						<li><a href="pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-						<li><a href="pages/empSearch2.php">ค้นหาร้านอาหาร</a></li>
-						<li><a href="pages/empSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-						<li><a href="pages/empSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+						<li><a href="search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
+						<li><a href="search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+						<li><a href="search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 					</ul>
 				</li>
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
 				<li><a href="pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="#">เพิ่มร้านอาหาร</a></li>
+				<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
+				<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
 			</ul>
 				<li><a href="pages/selectReview.php">Report</a></li>
 				<li><a href="editRegEmployee.php">Profile</a></li>

@@ -18,158 +18,166 @@
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-<title>Attractions</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="../css/jquery.bxslider.css">
-<link rel="stylesheet" href="../css/style1.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<style>
-* {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/jquery.bxslider.css">
+    <link rel="stylesheet" href="../css/style1.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <style>
+    * {box-sizing: border-box}
+    body {font-family: Verdana, sans-serif; margin:0}
+    .mySlides {display: none}
+    img {vertical-align: middle;}
 
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
 
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-}
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+    }
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
 
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
 
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
 
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
 
-.active, .dot:hover {
-  background-color: #717171;
-}
+    .active, .dot:hover {
+      background-color: #717171;
+    }
 
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
+    /* Fading animation */
+    .fade {
+      -webkit-animation-name: fade;
+      -webkit-animation-duration: 1.5s;
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
 
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
+    @-webkit-keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
 
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-}
-</style>
-</head>
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .prev, .next,.text {font-size: 11px}
+    }
+    </style>
+    </head>
 
-<body id="top">
-  <header role="banner">
+    <body id="top">
+      <header role="banner">
 
 
-    <nav class="main-nav">
-      <ul>
-        <!-- inser more links here -->
-
-        <?php echo $objResult["email"];?>
-        <li><a class="cd-signup" href="../logout.php">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
-
-<div class="wrapper row1">
-  <header id="header" class="hoc clear">
-
-    <div id="logo" class="fl_left">
-      <h1><a href="../index1.php">SUT</a></h1>
-      <p>Attractions in Thailand</p>
-    </div>
-
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li class="active"><a href="../index1.php">Home</a></li>
-        <li><a class="drop" href="#">ค้นหาสถานที่</a>
+        <nav class="main-nav">
           <ul>
-            <li><a href="../pages/adSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-            <li><a href="pages/view1.php">ค้นหาร้านอาหาร</a></li>
-            <li><a href="pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
-            <li><a href="pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
+            <!-- inser more links here -->
+    				<?php echo $objResult["email"];?>
+            <li><a class="cd-signup" href="../logout.php">Logout</a></li>
           </ul>
-        </li>
-        <li><a href="../pages/gallery1.php">Gallery</a></li>
-        <li><a href="../pages/aboutAs.php">About Me</a></li>
-      </ul>
-    </nav>
+        </nav>
+      </header>
 
-  </header>
-</div>
+    <div class="wrapper row1">
+      <header id="header" class="hoc clear">
+
+        <div id="logo" class="fl_left">
+          <h1><a href="../index1.php">SUT</a></h1>
+          <p>Attractions in Thailand</p>
+        </div>
+
+    		<nav id="mainav" class="fl_right">
+    			<ul class="clear">
+    				<li class="active"><a href="../index1.php">Home</a></li>
+    				<li><a class="drop" href="#">ค้นหาสถานที่</a>
+    					<ul>
+    						<li><a href="../pages/adSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+    						<li><a href="../search/AdSearch2.php">ค้นหาร้านอาหาร</a></li>
+    						<li><a href="../search/AdSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+    						<li><a href="../search/AdSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+    					</ul>
+    				</li>
+    				<li><a class="drop" href="#">Scope</a>
+    					<ul>
+    				<li><a href="../pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+            <li><a href="#">เพิ่มร้านอาหาร</a></li>
+            <li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
+            <li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
+    				<li><a href="../pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
+    			</ul>
+
+    				<li><a href="../pages/selectMember.php">Report</a></li>
+    				<li><a href="../editRegAdmin.php">Profile</a></li>
+    			</ul>
+    		</nav>
+
+      </header>
+    </div>
 
 <?php
     $db=new mysqli('localhost','root','','scdb');
@@ -211,7 +219,8 @@ img {vertical-align: middle;}
         <div class="col-sm-3 col-md-3">
         	<div class="well">
 
-            <a href="#"><img src="product_images/<?php echo $product['image']; ?>"></a>
+						<figure><a href="#"><img src="../img/<?php echo $product['image']; ?>" style="width:320px;height:210px;"></a>
+						</figure>
 						<p>ID: <?php echo $product['attracID']; ?></p>
         		<h2 class="text-info"><?php echo $product['atname']; ?></h2>
         		<p><span class="label label-info">ประเภทของจุดเด่น : <?php echo $product['type_id']; ?></span></p>
@@ -219,7 +228,7 @@ img {vertical-align: middle;}
         		<hr>
         		<h3>จุดเด่น: <?php echo $product['typeAttraction']; ?></h3>
         		<hr>
-              <p><a class="btn btn-default btn-lg" href="../pages/selectAtt1.php?id=' . $product['attracID'] . '"><i class="icon-ok"></i>รายละเอียด</a></p>
+              <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $row["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
         	</div>
         </div>
         <?php } ?>

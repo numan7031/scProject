@@ -11,14 +11,15 @@
     <?php foreach ($all_row as $key => $product) { ?>
     <div class="col-sm-3 col-md-3">
     	<div class="well">
-        <a href="#"><img src="product_images/<?php echo $product['image']; ?>"></a>
+        <figure><a href="#"><img src="../img/<?php echo $product['image']; ?>" style="width:320px;height:210px;"></a>
+        </figure>
     		<h2 class="text-info"><?php echo $product['atname']; ?></h2>
     		<p><span class="label label-info">ประเภทของจุดเด่น : <?php echo $product['type_id']; ?></span></p>
     		<p>ที่อยู่: <?php echo $product['adress']; ?></p>
     		<hr>
     		<h3>จุดเด่น: <?php echo $product['typeAttraction']; ?></h3>
     		<hr>
-          <p><a class="btn btn-default btn-lg" href="../pasge/selectAtt.php?=$product['attracID']"><i class="icon-ok"></i>รายละเอียด</a></p>
+          <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $row["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
     	</div>
     </div>
    <?php } ?>

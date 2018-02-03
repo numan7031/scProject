@@ -1,5 +1,5 @@
 <?php
-require_once('../confic.php');
+require_once('../connect.php');
 
 $actionName = $_POST["action"];
 if($actionName == "showPost"){
@@ -14,13 +14,13 @@ if($actionName == "showPost"){
 			$searchKey .= " where post_title like '%".$search_key."%' ";
 			$searchKey .= " or post_desc like '%".$search_key."%' ";
 		}else if($search_type == 'many'){
-			$searchKey .= " where atname REGEXP '". str_replace(" ", "|", $search_key) ."' ";
-			$searchKey .= " or typeAttraction REGEXP '". str_replace(" ", "|", $search_key) ."' ";
+			$searchKey .= " where resname REGEXP '". str_replace(" ", "|", $search_key) ."' ";
+			$searchKey .= " or adress REGEXP '". str_replace(" ", "|", $search_key) ."' ";
 		}
 	}
 
 	//get rows query
-	$query = "SELECT * FROM attractions ".$searchKey." ORDER BY attracID DESC ";
+	$query = "SELECT * FROM restaurant ".$searchKey." ORDER BY resID DESC ";
 	$result = mysqli_query($con, $query);
 
 	//number of rows

@@ -158,9 +158,9 @@ img {vertical-align: middle;}
 	        <li><a class="drop" href="#">ค้นหาสถานที่</a>
 	          <ul>
 	            <li><a href="../pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-	            <li><a href="#">ค้นหาร้านอาหาร</a></li>
-	            <li><a href="#">ค้นหาร้านขายของที่ระลึก</a></li>
-	            <li><a href="#">ค้นหาสถานที่พักผ่อน</a></li>
+	            <li><a href="../search/UsSearch2.php">ค้นหาร้านอาหาร</a></li>
+	            <li><a href="../search/UsSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+	            <li><a href="../search/UsSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 	          </ul>
 	        </li>
 	        <li><a href="../pages/UsGallery.php">Gallery</a></li>
@@ -211,7 +211,8 @@ img {vertical-align: middle;}
         <div class="col-sm-3 col-md-3">
         	<div class="well">
 
-            <a href="#"><img src="product_images/<?php echo $product['image']; ?>"></a>
+						<figure><a href="#"><img src="../img/<?php echo $product['image']; ?>" style="width:320px;height:210px;"></a>
+						</figure>
 						<p>ID: <?php echo $product['attracID']; ?></p>
         		<h2 class="text-info"><?php echo $product['atname']; ?></h2>
         		<p><span class="label label-info">ประเภทของจุดเด่น : <?php echo $product['type_id']; ?></span></p>
@@ -219,7 +220,7 @@ img {vertical-align: middle;}
         		<hr>
         		<h3>จุดเด่น: <?php echo $product['typeAttraction']; ?></h3>
         		<hr>
-              <p><a class="btn btn-default btn-lg" href="../pages/selectAtt1.php?id=' . $product['attracID'] . '"><i class="icon-ok"></i>รายละเอียด</a></p>
+              <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $row["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
         	</div>
         </div>
         <?php } ?>

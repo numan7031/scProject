@@ -156,7 +156,8 @@ img {vertical-align: middle;}
 <?php
     $db=new mysqli('localhost','root','','scdb');
     $db->query("SET NAMES UTF8");
-    $all_row=$db->query("SELECT * FROM attractions");
+    $all_row=$db->query("SELECT * FROM attractions ORDER BY type_id ASC ,attracID ASC");
+
 
 ?>
 <div class="container">
@@ -187,20 +188,22 @@ img {vertical-align: middle;}
                 </table>
           </form>
     </div>
+
     <div class="row">
       <div class="ajax_result">
       <?php if(isset($all_row) && is_object($all_row) && count($all_row)): $i=1;?>
         <?php foreach ($all_row as $key => $product) { ?>
         <div class="col-sm-3 col-md-3">
         	<div class="well">
-            <a href="#"><img src=".img/<?php echo $product['image']; ?>"></a>
+            <figure><a href="#"><img src="../img/<?php echo $product['image']; ?>" style="width:320px;height:210px;"></a>
+            </figure>
         		<h2 class="text-info"><?php echo $product['atname']; ?></h2>
-        		<p><span class="label label-info">ประเภทของจุดเด่น : <?php echo $product['type_id']; ?></span></p>
+        		<p><span class="label label-info">ประเภทจุดเด่น : <?php echo $product['type_id']; ?></span></p>
         		<p>ที่อยู่: <?php echo $product['adress']; ?></p>
         		<hr>
         		<h3>จุดเด่น: <?php echo $product['typeAttraction']; ?></h3>
         		<hr>
-              <p><a class="btn btn-default btn-lg" href="#"><i class="icon-ok"></i>รายละเอียด</a></p>
+              <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $row["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
         	</div>
         </div>
         <?php } ?>

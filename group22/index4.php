@@ -263,11 +263,6 @@ function showSlides(n) {
       <h2 class="heading">สถานที่รีวิว</h2>
       <p>สถานที่ต่างๆที่ถูกรีวิว</p>
     </div>
-    จัดอันดับ:<select name="level">
-<option value="1">น้อย-มาก</option>
-<option value="2">มาก-น้อย</option>
-</select>
-
 <!--//กล่องเรียงสวยนับจากนี้-->
    <?php
     $i = 0;

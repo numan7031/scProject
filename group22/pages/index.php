@@ -1,220 +1,183 @@
-<?php include"../config.php";
-//declaration array varible
-$colour = array('product_color');
-$brand = array();
-$size  = array();
-
-//finding query string value
-if(isset($_REQUEST['colour'])){
-	//query string value to array and removing empty index of array
-	$colour = array_filter(explode("-",$_REQUEST['colour']));
-}
-
-if(isset($_REQUEST['brand'])){
-
-	$brand = array_filter(explode("-",$_REQUEST['brand']));
-}
-
-if(isset($_REQUEST['size'])){
-
-	$size = array_filter(explode("-",$_REQUEST['size']));
-}
-
-?>
+<?php require_once('../confic.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Live Data Search (Ajax, PHP and MySQLi)</title>
 
-    <title>Product filter in php</title>
+    <!-- Bootstrap Core Css -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
 
-    <!-- Bootstrap Core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Font Awesome Css -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+	<!-- Bootstrap Select Css -->
+    <link href="css/bootstrap-select.css" rel="stylesheet" />
 
+    <!-- Custom Css -->
+    <link href="css/app_style.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+	.li-post-group {
+		background: #f5f5f5;
+		padding: 5px 10px;
+		border-bottom: solid 1px #CFCFCF;
+		margin-top: 5px;
+	}
+	.li-post-title {
+		border-left: solid 4px #304d49;
+		background: #a7d4d2;
+		padding: 5px;
+		color: #304d49;
+	}
+	.show-more {
+	    background: #10c1b9;
+	    width: 100%;
+	    text-align: center;
+	    padding: 10px;
+	    border-radius: 5px;
+	    margin: 5px;
+	    color: #fff;
+	    cursor: pointer;
+	    font-size: 20px;
+	    display: none;
+	    margin: 0px;
+    	margin-top: 25px;
+	}
+	.li-post-desc {
+	    line-height: 15px !important;
+	    font-size: 12px;
+	    box-shadow: inset 0px 0px 5px #7d9c9b;
+	    padding: 10px;
+	}
+	.panel-default {
+	    margin-bottom: 100px;
+	}
+	.post-data-list {
+	    max-height: 374px;
+	    overflow-y: auto;
+	}
+	.radio-inline {
+	    font-size: 20px;
+	    color: #c36928;
+	}
+	</style>
 </head>
-
 <body>
+    <div class="all-content-wrapper">
+		<!-- Top Bar -->
+
+		<!-- #END# Top Bar -->
+
+		<section class="container">
+			<div class="form-group custom-input-space has-feedback">
+				<div class="page-heading">
+					<h3 class="post-title">Live Data Search (Ajax, PHP and MySQLi) - Learn Infinity</h3>
+				</div>
+				<div class="page-body clearfix">
+					<div class="row">
+						<div class="col-md-offset-2 col-md-8">
+							<div class="panel panel-default">
+								<div class="panel-heading">Post Details:</div>
+								<div class="panel-body">
 
 
+									<div class="form-group">
+										<label>Search Key:</label> <br/>
+										<div class="radio-inline">
+										  <label><input type="radio" value="single" name="search_type" checked>Single Key</label>
+										</div>
+										<div class="radio-inline">
+										  <label><input type="radio" value="many" name="search_type">Random Key</label>
+										</div>
+									</div>
 
-    <!-- Page Content -->
-    <div class="container" style="padding-top:2%;" >
+									<div class="form-group">
+										<label>Search Key:</label>
+										<input type="text" name="search-key" id="search-key" class="form-control" placeholder="Search Key like 'Laravel, 'PHP', 'Auth', 'auto load', 'CRUD' ect.,">
+									</div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <p class="lead">Product filter</p>
+									<div class="post-data-list">
+									<?php
+									//get rows query
+									$query = mysqli_query($con, "SELECT * FROM attractions ORDER BY attracID DESC");
+									//number of rows
+									$rowCount = mysqli_num_rows($query);
+									if($rowCount > 0){
+										while($row = mysqli_fetch_assoc($query)){
+									?>
+										<div class="li-post-group">
+											<h4 class="li-post-title"><?php echo ucfirst($row["atname"]); ?></h4>
+											<p class="li-post-desc"><?php echo ucfirst($row["typeAttraction"]); ?></p>
+										</div>
+									<?php
+										}
+									}
+									?>
+									</div>
 
-                <div class="list-group">
-				<h3>Colour</h3>
-				<?php
-					$strSQL = "select distinct(product_color) from product where product_status = '1'";
-					$objQuery = mysqli_query($con,$strSQL);
-					$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
-
-
-				?>
-                    <a href="javascript:void(0);" class="list-group-item">
-					<input type="checkbox" class="item_filter colour" value="<?php echo $colour["product_color"]; ?>" <?php if(in_array($colour["product_color"])){ echo"checked"; } ?> >
-					&nbsp;&nbsp; <?php echo $colour["product_color"]; ?></a>
-
-                </div>
-
-
-				<div class="list-group">
-				<h3>Brand</h3>
-				<?php
-					$strSQL = "select distinct(product_brand) from product where product_status = '1'";
-					$objQuery = mysqli_query($con,$strSQL);
-					$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
-
-
-				?>
-                    <a href="javascript:void(0);" class="list-group-item">
-					<input type="checkbox" class="item_filter brand" value="<?php echo $brand['product_brand']; ?>" <?php if(in_array($brand['product_brand'])){ echo"checked"; } ?> >
-					&nbsp;&nbsp; <?php echo $brand['product_brand']; ?></a>
-
-                </div>
-
-				<div class="list-group">
-				<h3>Size</h3>
-				<?php
-					$strSQL = "select distinct(product_size) from product where product_status = '1'";
-					$objQuery = mysqli_query($con,$strSQL);
-					$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+								</div>
+							</div>
+						</div>
 
 
-				?>
-                    <a href="javascript:void(0);" class="list-group-item">
-					<input type="checkbox" class="item_filter size" value="<?php echo $size['product_size']; ?>" <?php if(in_array($size['product_size'])){ echo"checked"; } ?> >
-					&nbsp;&nbsp; <?php echo $size['product_size']; ?></a>
-
-                </div>
-
-
-            </div>
-
-            <div class="col-md-9">
-
-
-                <div class="row">
-
-				  <?php
-				     $strSQL = "select * from product where product_status = '1'";
-                      //filter query start
-					  if(!empty($colour)){
-						  $colordata =implode("','",$colour);
-						  $strSQL  .= " and product_color in('$colordata')";
-					  }
-
-					   if(!empty($brand)){
-						  $branddata =implode("','",$brand);
-						  $strSQL  .= " and product_brand in('$branddata')";
-					  }
-
-					  if(!empty($size)){
-						  $sizedata =implode("','",$size);
-						  $strSQL  .= " and product_size in('$sizedata')";
-					  }
-                    //filter query end
-										$objQuery = mysqli_query($con,$strSQL);
-										$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
-
-
-				  ?>
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="image/<?php echo $product_data['product_image']; ?>" alt="">
-                            <div class="caption">
-
-                                <p><strong><a href="#"><?php echo $product_data['product_name']; ?></a>
-                                </strong></p>
-								 <h4 style="text-align:center;" >$ <?php echo $product_data['product_price']; ?></h4>
-                                <p>Color : <?php echo $product_data['product_color']; ?> &nbsp; &nbsp; &nbsp; &nbsp;  Brand : <?php echo $product_data['product_brand']; ?> </p>
-
-								<p>Size : <?php echo $product_data['product_size']; ?> &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantity : <?php echo $product_data['product_quantity']; ?> </p>
-
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-            </div>
-
-        </div>
-
+					</div>
+				</div>
+			</div>
+		</section>
     </div>
-    <!-- /.container -->
 
-    <div class="container">
+	<!-- Jquery Core Js -->
+    <script src="js/jquery.min.js"></script>
 
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; PHP Cooker 2017</p>
-                </div>
-            </div>
-        </footer>
-
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-	<script>
-	$(function(){
-		$('.item_filter').click(function(){
-			var colour = multiple_values('colour');
-			var brand  = multiple_values('brand');
-			var size   = multiple_values('size');
-
-			var url ="index.php?colour="+colour+"&brand="+brand+"&size="+size;
-			window.location=url;
-		});
-
-	});
-
-
-	function multiple_values(inputclass){
-		var val = new Array();
-		$("."+inputclass+":checked").each(function() {
-		    val.push($(this).val());
-		});
-	return val.join('-');
-}
-
-	</script>
-
-
-    <!-- Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core Js -->
     <script src="js/bootstrap.min.js"></script>
 
-</body>
+    <!-- Bootstrap Select Js -->
+    <script src="js/bootstrap-select.js"></script>
 
+	<script>
+
+	$(document).ready(function(e){
+
+		$(document).on('keyup', '#search-key', function(e){
+			getPostList();
+		});
+		$(document).on('change', 'input[name="search_type"]', function(e){
+			getPostList();
+		});
+
+		var jqxhr = {abort: function () {}};
+
+		function getPostList(){
+			$search_key = $('#search-key').val();
+			$search_type = $("input[name='search_type']:checked").val();
+			//$('.load-post').show();
+			$('.post-data-list').html('');
+			jqxhr.abort();
+			jqxhr = $.ajax({
+				type:'POST',
+				dataType: "json",
+				url:'ajax_search.php',
+				data:{ 'action':'showPost', 'search_key':$search_key , 'search_type':$search_type},
+				success:function(data){
+					$('.load-post').hide();
+					$.each(data, function(key, post){
+						$('.post-data-list').append('<div class="li-post-group">\
+										<h4 class="li-post-title">'+post.atname+'</h4>\
+										<p class="li-post-desc">'+post.typeAttraction+'</p>\
+									</div>');
+				    });
+				}
+			});
+
+		}
+
+	});
+	</script>
+</body>
 </html>

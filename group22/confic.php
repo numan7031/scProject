@@ -1,14 +1,11 @@
 <?php
-   $serverName	  = "localhost";
-   $user = "root";
-   $password = "";
-   $database = "scdb";
-   $db = mysqli_connect($serverName,$user,$password,$database);
-   $db->query("SET NAMES UTF8");
+//db details
+$db_host = 'localhost';
+$db_user = 'root';
+$db_pass = '';
+$db_name = 'scdb';
 
-	if (mysqli_connect_errno())
-	{
-		echo "Database Connect Failed : " . mysqli_connect_error();
-		exit();
-	}
- ?>
+//connect and select db
+$con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+ $con->query("SET NAMES UTF8");
+?>
