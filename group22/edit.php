@@ -7,7 +7,7 @@
 	session_start();
 	require_once("connect.php");
 if (isset($_POST['Submit'])) {
-	$target_path="";
+	$target_path="./img/";
 	$userID = $_POST["iduser"];
 	$username = $_POST["textUsername"];
 	$fname = $_POST["textFirstName"];

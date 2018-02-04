@@ -234,7 +234,7 @@ $_atid = $_SESSION['abc'];
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
-                        <img src="../img/<?php echo $result['image']; ?>" class="img-circle avatar" alt="user profile image">
+                        <img src=".<?php echo $result['image']; ?>" class="img-circle avatar" alt="user profile image">
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
