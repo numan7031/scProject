@@ -1,76 +1,195 @@
 <?php
- $connect = mysqli_connect("localhost", "root", "", "scdb");
- if(isset($_POST["insert"]))
- {
-      $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-      $query = "INSERT INTO restaurant(image) VALUES ('$file')";
-      if(mysqli_query($connect, $query))
-      {
-           echo '<script>alert("Image Inserted into Database")</script>';
+	session_start();
+	require_once("../connect.php");
+
+	if(!isset($_SESSION['userID']))
+	{
+		echo "Please Login!";
+		exit();
+	}
+
+	//*** Update Last Stay in Login System
+	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
+	//$query = mysqli_query($con,$sql);
+
+	//*** Get User Login
+	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
+	$objQuery = mysqli_query($con,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Attractions</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="../css/style1.css">
+
+<script type="text/javascript">
+function ConfirmDelete(id)
+{
+	var y = id;
+  var x = confirm("Are you sure to delete #id "+y+" ?");
+  if (x)
+      return true;
+  else
+    return false;
+}
+</script>
+</head>
+<body id="top">
+  <header role="banner">
+
+
+    <nav class="main-nav">
+      <ul>
+        <!-- inser more links here -->
+				<?php echo $objResult["email"];?>
+        <li><a class="cd-signup" href="../logout.php">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+
+    <div id="logo" class="fl_left">
+      <h1><a href="../index2.php">SUT</a></h1>
+      <p>Attractions in Thailand</p>
+    </div>
+
+		<nav id="mainav" class="fl_right">
+			<ul class="clear">
+				<li class="active"><a href="../index2.php">Home</a></li>
+				<li><a class="drop" href="#">ค้นหาสถานที่</a>
+					<ul>
+						<li><a href="../pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+						<li><a href="../search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
+						<li><a href="../search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+						<li><a href="../search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+					</ul>
+				</li>
+				<li><a class="drop" href="#">Scope</a>
+					<ul>
+				<li><a href="../pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="../pages/insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
+				<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
+				<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
+			</ul>
+				<li><a href="../pages/selectReview.php">Report</a></li>
+				<li><a href="../editRegEmployee.php">Profile</a></li>
+			</ul>
+		</nav>
+
+  </header>
+</div>
+
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+
+
+    <div class="fl_right">
+      <form class="clear" method="post" action="#">
+        <fieldset>
+          <legend>Search:</legend>
+          <input type="search" value="" placeholder="Search Here&hellip;">
+          <button class="fa fa-search" type="submit" title="Search"><em>Search</em></button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper row3">
+<form method="post" enctype="multipart/form-data">
+  <input type="hidden" value="1000000" name="MAX_FILE_SIZE">
+  <input type="file" name="uploadedfile">
+  <input type="text" name="Resname" value="">
+  <input type="submit" name="submit" value="Add Restaurant" width="35px" height="75px">
+</form>
+
+<?php
+if (isset($_POST['submit'])) {
+  $resname = ['Resname'];
+  $target_path="../images/";
+  $target_path=$target_path.basename($_FILES['uploadedfile']['name']);
+  if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+    $conn=new mysqli("localhost", "root", "", "scdb");
+    $sql="Insert into restaurant(`image`) value('$target_path')";
+    if ($conn->query($sql)==TRUE) {
+      echo "<br><br>";
+    }else {
+      echo "Error: ",$sql,$conn->error;
+    }
+    $sql1="Select * from restaurant order by resID ASC limit 1";
+    $result=$conn->query($sql1);
+    if ($result->num_rows>0) {
+      while ($row=$result->fetch_assoc()) {
+
+        $path=$row['image'];
+        echo "<img src='$path' height='280' width='320'";
       }
- }
+    }
+    $conn->close();
+  }
+}
  ?>
- <!DOCTYPE html>
- <html>
-      <head>
-           <title>Webslesson Tutorial | Insert and Display Images From Mysql Database in PHP</title>
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      </head>
-      <body>
-           <br /><br />
-           <div class="container" style="width:500px;">
-                <h3 align="center">Insert and Display Images From Mysql Database in PHP</h3>
-                <br />
-                <form method="post" enctype="multipart/form-data">
-                     <input type="file" name="image" id="image" />
-                     <br />
-                     <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info" />
-                </form>
-                <br />
-                <br />
-                <table class="table table-bordered">
-                     <tr>
-                          <th>Image</th>
-                     </tr>
-                <?php
-                $query = "SELECT * FROM restaurant ORDER BY resID DESC";
-                $result = mysqli_query($connect, $query);
-                while($row = mysqli_fetch_array($result))
-                {
-                     echo '
-                          <tr>
-                               <td>
-                                    <img src="data:../image/jpeg;base64,'.base64_encode($row['image'] ).'" height="200" width="200" class="img-thumnail" />
-                               </td>
-                          </tr>
-                     ';
-                }
-                ?>
-                </table>
-           </div>
-      </body>
- </html>
- <script>
- $(document).ready(function(){
-      $('#insert').click(function(){
-           var image_name = $('#image').val();
-           if(image_name == '')
-           {
-                alert("Please Select Image");
-                return false;
-           }
-           else
-           {
-                var extension = $('#image').val().split('.').pop().toLowerCase();
-                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
-                {
-                     alert('Invalid Image File');
-                     $('#image').val('');
-                     return false;
-                }
-           }
-      });
- });
- </script>
+</div>
+
+<div class="wrapper row4 bgded overlay">
+  <footer id="footer" class="hoc clear">
+
+
+    <div class="one_quarter">
+      <h6 class="title">ที่อยู่:</h6>
+      <ul class="nospace linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          111, ถนน มหาวิทยาลัย ตำบล สุรนารี อำเภอเมืองนครราชสีมา นครราชสีมา 30000
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +(089) 716 8790<br>
+          +(061) 928 3739</li>
+        <li><i class="fa fa-fax"></i> +(000) 000 0000</li>
+        <li><i class="fa fa-envelope-o"></i> group@hotmail.com</li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="title">Facebook</h6>
+      <ul class="nospace linklist">
+        <li><a href="https://www.facebook.com/papatson.singsom">Nong Singsom</a></li>
+        <li><a href="https://www.facebook.com/numan7031">Nu'man Arsengbaramae</a></li>
+        <li><a href="https://www.facebook.com/nmo.wongtripipat">Chanut Wongtripipat</a></li>
+        <li><a href="https://www.facebook.com/wasuddd">Wachirakan Sueabua</a></li>
+        <li><a href="https://www.facebook.com/bb.chananin">Chananin Be</a></li>
+      </ul>
+    </div>
+
+  </footer>
+</div>
+
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear">
+
+    <p class="fl_left"> 204334-SCRIPTING LANGUAGE PROGRAMMING/ 2-2560</p>
+    <p class="fl_right">By Group22</a></p>
+
+  </div>
+</div>
+
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<!-- IE9 Placeholder Support -->
+<script src="../layout/scripts/jquery.placeholder.min.js"></script>
+
+<script  src="../js/index.js"></script>
+</body>
+</html>
+<?
+	mysqli_close($con);
+?>

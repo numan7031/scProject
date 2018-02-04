@@ -18,7 +18,26 @@
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
+<?php
+	//$rs = mysqli_query($conn,$sql);
 
+  $perpage = 6;
+  if (isset($_GET['page'])) {
+  $page = $_GET['page'];
+  } else {
+  $page = 1;
+  }
+
+  $start = ($page - 1) * $perpage;
+
+
+  $sql = "SELECT * FROM souvenir ORDER BY servID ASC LIMIT $start ,$perpage";
+
+	//$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
+	//$rs = mysqli_query($conn,$sql);
+  $query = mysqli_query($con, $sql);
+
+ ?>
 <html>
 <head>
 <title>Attractions</title>
@@ -192,28 +211,45 @@ img {vertical-align: middle;}
 									</div>
 
 									<div class="post-data-list">
-									<?php
-									//get rows query
-                  $sql = "SELECT * FROM souvenir ORDER BY servID DESC";
-									$query = mysqli_query($con, $sql);
-									//number of rows
-									$rowCount = mysqli_num_rows($query);
-									if($rowCount > 0){
-										while($row = mysqli_fetch_assoc($query)){
-									?>
-										<div class="li-post-group">
-											<h4 class="li-post-title"><?php echo ucfirst($row["name"]); ?></h4>
-                        <figure><img src="../img/<?php echo $row['image']; ?>" style="width:320px;height:210px;">
-</figure>
-											<p class="li-post-desc"><?php echo ucfirst($row["adress"]); ?></p>
-                      <p class="li-post-desc"><?php echo ucfirst($row["phone"]); ?></p>
-                      <p class="li-post-desc"><figcaption><a class="btn small" href="restaurant.php?id=<?php echo $row["servID"]; ?>">More</a></figcaption></p>
+										<?php
+										 $i = 0;
+										 $arrayName = array('one_third first','one_third','one_third');//เก็บอาเรย์เรียงจากขวาไปซ้าย
+										 $numOfCols = 3;
+										 $rowCount = 0;
+										 //$bootstrapColWidth = 12 / $numOfCols;
+										 while ($result = mysqli_fetch_assoc($query))
+										 {
+										 ?>
 
-										</div>
-									<?php
-										}
-									}
-									?>
+											 <?php
+
+											 if($rowCount == 0) echo '<ul class="nospace group btmspace-50">';
+											 $rowCount++;
+
+											 ?>
+											 <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
+												 <article class="element">
+													 <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["name"]; ?>">
+														 <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["servID"]; ?>">More</a></figcaption>
+													 </figure>
+													 <div class="excerpt">
+														 <text name="Top1"><strong>รหัสสถานที่: <?php echo $result["servID"];  ?></strong></text>
+														 <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $result["servID"]; ?>"><?php echo $result["name"];?></a></h6>
+														 <p><?php echo $result["phone"];?>&hellip;</p>
+														 <p><?php echo $result["adress"];?>&hellip;</p>
+													 </div>
+												 </article>
+											 </li>
+
+										 <?php
+										 //$rowCount++;
+										 $i++;
+										 if($rowCount== 3) echo '</ul>';
+										 if ($rowCount == 3) $rowCount = 0;
+										 if ($i==3) $i=0;
+
+											}
+										 ?>
 									</div>
 
 								</div>
@@ -226,7 +262,35 @@ img {vertical-align: middle;}
 			</div>
 		</section>
     </div>
+		<?php
+		$sql2 = "SELECT * FROM souvenir ORDER BY servID ASC";
 
+
+		//$sql2 .= " ORDER BY sumcor DESC ,r.revID ASC";
+		$query2 = mysqli_query($con, $sql2);
+		$total_record = mysqli_num_rows($query2);
+		$total_page = ceil($total_record / $perpage);
+
+
+
+		?>
+		<nav>
+		<ul class="pagination">
+		<li>
+		<a href="UsSearch3.php?page=1" aria-label="Previous">
+		<span aria-hidden="true">&laquo;</span>
+		</a>
+		</li>
+		<?php for($i=1;$i<=$total_page;$i++){ ?>
+		<li><a href="UsSearch3.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+		<?php } ?>
+		<li>
+		<a href="UsSearch3.php?page=<?php echo $total_page;?>" aria-label="Next">
+		<span aria-hidden="true">&raquo;</span>
+		</a>
+		</li>
+		</ul>
+		</nav>
 	<!-- Jquery Core Js -->
     <script src="js/jquery.min.js"></script>
 

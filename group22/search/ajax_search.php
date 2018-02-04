@@ -20,7 +20,7 @@ if($actionName == "showPost"){
 	}
 
 	//get rows query
-	$query = "SELECT * FROM restaurant ".$searchKey." ORDER BY resID DESC ";
+	$query = "SELECT * FROM restaurant ".$searchKey." ORDER BY resID ASC ";
 	$result = mysqli_query($con, $query);
 
 	//number of rows
