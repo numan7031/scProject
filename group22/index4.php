@@ -269,13 +269,10 @@ function showSlides(n) {
       ?>
       <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
         <article class="element">
-<<<<<<< HEAD
-          <figure><img src="img/<?php echo $row['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $row["typeAttraction"]; ?>">
-            <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $row["attracID"]; ?>">More</a></figcaption>
-=======
+
           <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["typeAttraction"]; ?>">
             <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>">More</a></figcaption>
->>>>>>> a635a23de3e07ebb4f4c88c9bbe0158f0fa15cf1
+
           </figure>
           <div class="excerpt">
             <text name="Top1"><strong><?php echo $result["sumcor"];  ?>คะแนน</strong></text>
