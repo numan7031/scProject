@@ -255,7 +255,7 @@ $_atid = $_SESSION['abc'];
 
 
     <?php
-$sql2 = "SELECT u.email,u.image,CONCAT(u.fname,' ',u.lname) AS fullname,DATE_FORMAT(datereview,'%d %M %Y') AS dater,TIME_FORMAT(datereview,'%H:%i:%s') AS timer,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
+$sql2 = "SELECT u.email,u.image,r.datereview,CONCAT(u.fname,' ',u.lname) AS fullname,r.reviewdes,r.score FROM review r JOIN users u ON r.userID=u.userID WHERE r.attracID = ".$_SESSION['abc']."";
 $query2 = mysqli_query($con, $sql2);
 $total_record = mysqli_num_rows($query2);
 $total_page = ceil($total_record / $perpage);
