@@ -79,7 +79,7 @@
     <div class="content">
       <div id="gallery">
         <figure>
-รูปภาพ: <input type="file" name="my-image" id="image" accept="image/gif, image/jpeg, image/png" multiple>
+รูปภาพ: <input type="file" name="my-image" id="image" accept="image/jpeg">
 ประเภทสถานที่:<select name="aType">
 <option value="1">สถานที่ท่องเที่ยว</option>
 <option value="2">ร้านอาหาร</option>
