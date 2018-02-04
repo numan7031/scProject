@@ -108,37 +108,36 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อมูลทั้งหมด</header>
+          <header class="heading">ข้อมูลวิว</header>
           <?php
 	// connect to the database
-	$conn=mysqli_connect("localhost", "root", "","RegisterDB");
+	$conn=mysqli_connect("localhost", "root", "","scdb");
 	$conn->query("SET NAMES UTF8");
 	// get results from database
-	$sql="SELECT * FROM Register";
+	$sql="SELECT * FROM review";
 	$rs=$conn->query($sql);
 	// Print Header of Table
 	echo "<table border='1' cellpadding='10' width=80%>"; //open table
 	echo "<tr>
 	<th>ID</th>
-	<th>Username</th>
+	<th>วัน/เวลา ที่รีวิว</th>
 	<th>หัวข้อรีวิว</th>
 	<th>คะแนน</th>
 	<th>หมายเลขสถานที่</th>
-	<th>รายละเอียด</th>
+	<th>ผู้รีวิว</th>
 			</tr>";
 	// loop through results of database query, displaying them in the table
 	while($row = $rs->fetch_assoc()) {
 		// echo out the contents of each row into a table
 		echo "<tr>";
-		echo '<td>' . $row['ID'] . '</td>';
-		echo '<td>' . $row['FirstName'] . '</td>';
-		echo '<td>' . $row['LastName'] . '</td>';
-		echo '<td>' . $row['Age'] . '</td>';
-		echo '<td>' . $row['Gender'] . '</td>';
-    echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
-		echo '<td><a href="editForm.php?id=' . $row['ID'] . '">View</a> ';
-				echo '<td><a href="editForm.php?id=' . $row['ID'] . '">Edit</a> ';
-		echo '<a href="delete.php?id=' . $row['ID'] . '" onclick="return ConfirmDelete(' . $row['ID'] . ');">Delete</a></td>';
+		echo '<td>' . $row['revID'] . '</td>';
+		echo '<td>' . $row['datereview'] . '</td>';
+		echo '<td>' . $row['reviewdes'] . '</td>';
+		echo '<td>' . $row['score'] . '</td>';
+		echo '<td>' . $row['attracID'] . '</td>';
+    echo '<td>' . $row['userID'] . '</td>';
+		echo '<td><a href="editForm.php?id=' . $row['revID'] . '">View</a> ';
+		echo '<a href="delete.php?id=' . $row['revID'] . '" onclick="return ConfirmDelete(' . $row['revID'] . ');">Delete</a></td>';
 		echo "</tr>";
 	}
 	echo "</table>"; // close table
@@ -147,22 +146,7 @@ function ConfirmDelete(id)
 
         </figure>
       </div>
-      <nav class="pagination">
-        <ul>
-          <li><a href="#">&laquo; Previous</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">6</a></li>
-          <li class="current"><strong>7</strong></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">14</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">Next &raquo;</a></li>
-        </ul>
-      </nav>
+
     </div>
     <!-- / main body -->
     <div class="clear"></div>
