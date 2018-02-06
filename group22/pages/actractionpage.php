@@ -371,7 +371,7 @@ $query4 = mysqli_query($con, $sql4);
 </div>
 
 <footer class="container-fluid">
-  <p>Footer Text</p>
+  <p></p>
 </footer>
 
 </body>

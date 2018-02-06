@@ -147,7 +147,7 @@ $_atid = $_SESSION['abc'];
 
       </table>
 
-      <a class="btn small" href="stackmap.php?attlat=<?php echo $result5['lat']; ?>&attlng=<?php echo $result5['lng']; ?>" target="_blank">แนะนำสถานที่ใกล้เคียง</a>
+      <a class="btn small" href="stackmapRes.php?attlat=<?php echo $result5['lat']; ?>&attlng=<?php echo $result5['lng']; ?>" target="_blank">แนะนำสถานที่ใกล้เคียง</a>
       <a class="btn small" href="https://maps.google.com/maps?q=loc:<?php echo $result5['lat']; ?>,<?php echo $result5['lng']; ?>" target="_blank">การเดินทาง</a>
       <?php
       }
