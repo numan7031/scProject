@@ -17,7 +17,7 @@ require 'connect.php';
   $start = ($page - 1) * $perpage;
 
 
-  $sql = "SELECT resname,image,resID,adress FROM `restaurant` WHERE 1 ORDER BY resID ASC  LIMIT $start ,$perpage";
+  $sql = "SELECT * FROM `souvenir` ORDER BY servID ASC  LIMIT $start ,$perpage";
 
 	//$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
 	//$rs = mysqli_query($conn,$sql);
@@ -26,7 +26,7 @@ require 'connect.php';
  ?>
 <html>
 <head>
-<title>ร้านอาหาร</title>
+<title>ร้านขายของที่ระลึก</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -186,8 +186,8 @@ img {vertical-align: middle;}
   <main class="hoc container clear">
 
     <div class="center btmspace-50">
-      <h2 class="heading">ร้านอาหาร</h2>
-      <p>ร้านอาหารใกล้สถานที่ท่องเที่ยว</p>
+      <h2 class="heading">ร้านขายของที่ระลึก</h2>
+      <p>ร้านขายของที่ระลึกใกล้สถานที่ท่องเที่ยว</p>
     </div>
   <!--  จัดอันดับ:<select name="level">
 <option value="1">น้อย-มาก</option>
@@ -214,13 +214,13 @@ img {vertical-align: middle;}
       <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
         <article class="element">
 
-          <figure><img src="<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["resname"]; ?>">
-            <figcaption><a class="btn small" href="pages/restaurantpage.php?id=<?php echo $result["resID"]; ?>">More</a></figcaption>
+          <figure><img src="<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["name"]; ?>">
+            <figcaption><a class="btn small" href="pages/survanirpage.php?id=<?php echo $result["servID"]; ?>">More</a></figcaption>
 
           </figure>
           <div class="excerpt">
             <text name="Top1"><strong>ร้าน</strong></text>
-            <h6 class="heading"><a href="pages/restaurantpage.php?id=<?php echo $result["resID"]; ?>"><?php echo $result["resname"];?></a></h6>
+            <h6 class="heading"><a href="pages/survanirpage.php?id=<?php echo $result["servID"]; ?>"><?php echo $result["name"];?></a></h6>
             <p><?php echo $result["adress"];?>&hellip;</p>
           </div>
         </article>
@@ -243,7 +243,7 @@ img {vertical-align: middle;}
 
 
 <?php
-$sql2 = "SELECT resname,image,resID,adress FROM `restaurant` WHERE 1 ORDER BY resID ASC";
+$sql2 = "SELECT * FROM `souvenir` ORDER BY servID ASC";
 
 //$sql2 .= " ORDER BY sumcor DESC ,r.revID ASC";
 $query2 = mysqli_query($con, $sql2);

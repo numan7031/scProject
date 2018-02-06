@@ -23,7 +23,7 @@ $_atid = $_SESSION['abc'];
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ร้านอาหาร</title>
+  <title>ร้านขายของที่ระลึก</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -120,7 +120,7 @@ $_atid = $_SESSION['abc'];
       <?php
       //$folder_path = '../img/'; //image's folder path
 
-      $sql5 = "SELECT r.resname,r.image,r.description,r.adress,a.atname,r.lat,r.lng,r.phone,a.attracID FROM `restaurant` r JOIN attractions a ON r.attracID = a.attracID  WHERE resID  =  $_atid";
+      $sql5 = "SELECT s.name,s.adress,s.description,s.phone,s.lat,s.lng,s.image,a.atname,a.attracID FROM `souvenir` s JOIN attractions a ON s.attracID = a.attracID WHERE s.servID =  $_atid";
       $query5 = mysqli_query($con, $sql5);
 
       	while($result5 = mysqli_fetch_assoc($query5))
@@ -128,14 +128,14 @@ $_atid = $_SESSION['abc'];
 
       			?>
 
-      <h4><small>ร้านอาหาร&nbsp;&nbsp;<?php echo $result5['resname']; ?></small></h4>
+      <h4><small>ร้านขายของที่ระลึก&nbsp;&nbsp;<?php echo $result5['name']; ?></small></h4>
 
       <table>
         <tr>
           <td colspan="2"><div class="img-resize"><a href=".<?php echo $result5['image']; ?>"><img src=".<?php echo $result5['image']; ?>"/></a></td></div>
         </tr>
           <tr><td><p>ชื่อร้าน</p></td>
-          <td><?php echo $result5['resname']; ?></td></tr>
+          <td><?php echo $result5['name']; ?></td></tr>
           <tr><td>ที่อยู่</td>
             <td><?php echo $result5['adress']; ?></td></tr>
           <tr><td>รายละเอียด</td>
@@ -143,11 +143,11 @@ $_atid = $_SESSION['abc'];
           <tr><td>เบอร์โทร</td>
             <td><?php echo $result5['phone']; ?></td></tr>
           <tr><td>สถานที่ท่องเที่ยวใกล้เคียง</td>
-            <td><a href="actractionpage.php?id=<?php echo $result5["attracID"]; ?>"><?php echo $result5["atname"];?></a></td></tr>
+          <td><a href="actractionpage.php?id=<?php echo $result5["attracID"]; ?>"><?php echo $result5["atname"];?></a></td></tr>
 
       </table>
 
-      <a class="btn small" href="stackmapRes.php?attlat=<?php echo $result5['lat']; ?>&attlng=<?php echo $result5['lng']; ?>" target="_blank">แนะนำสถานที่ใกล้เคียง</a>
+      <a class="btn small" href="stackmapSurvaynir.php?attlat=<?php echo $result5['lat']; ?>&attlng=<?php echo $result5['lng']; ?>" target="_blank">แนะนำสถานที่ใกล้เคียง</a>
       <a class="btn small" href="https://maps.google.com/maps?q=loc:<?php echo $result5['lat']; ?>,<?php echo $result5['lng']; ?>" target="_blank">การเดินทาง</a>
       <?php
       }
