@@ -142,7 +142,7 @@ img {vertical-align: middle;}
         <!-- inser more links here -->
 
 
-				<li><a href="../editRegister.php"><?php echo $objResult["email"];?></a></li>
+				<li><a href="editRegister.php"><?php echo $objResult["email"];?></a></li>
         <li><a class="cd-signup" href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -158,7 +158,7 @@ img {vertical-align: middle;}
 
 	    <nav id="mainav" class="fl_right">
 	      <ul class="clear">
-	        <li class="active"><a href="index.php">Home</a></li>
+	        <li><a href="index.php">Home</a></li>
 	        <li><a class="drop" href="#">ค้นหาสถานที่</a>
 	          <ul>
 	            <li><a href="pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>

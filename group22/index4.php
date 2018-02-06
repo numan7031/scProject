@@ -163,7 +163,7 @@ img {vertical-align: middle;}
 
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="index4.php">Home</a></li>
+        <li><a href="index4.php">Home</a></li>
         <li><a class="drop" href="#">ค้นหาสถานที่</a>
           <ul>
             <li><a href="pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>

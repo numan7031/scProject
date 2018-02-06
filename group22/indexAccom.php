@@ -162,7 +162,7 @@ img {vertical-align: middle;}
 
         ?>
 
-          <li><a href="../editRegister.php"><?php echo $result6['email']; ?></a></li>
+          <li><a href="editRegister.php"><?php echo $result6['email']; ?></a></li>
           <li><a class="cd-signup" href="logout.php">Log out</a></li>
       <?php  }
       }
