@@ -3,7 +3,7 @@
 	require_once("connect.php");
 	if(!isset($_SESSION['userID']))
 	{
-		echo "Please Login!";
+		header("location:index4.php");
 		exit();
 	}
 	//*** Update Last Stay in Login System
@@ -141,7 +141,8 @@ img {vertical-align: middle;}
       <ul>
         <!-- inser more links here -->
 
-        <?php echo $objResult["email"];?>
+
+				<li><a href="../editRegister.php"><?php echo $objResult["email"];?></a></li>
         <li><a class="cd-signup" href="logout.php">Logout</a></li>
       </ul>
     </nav>

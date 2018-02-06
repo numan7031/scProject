@@ -4,7 +4,8 @@
 <?php
 
 require 'connect.php';
-
+session_start();
+ob_start();
 	//$rs = mysqli_query($conn,$sql);
 
   $perpage = 6;
@@ -146,9 +147,29 @@ img {vertical-align: middle;}
     <nav class="main-nav">
       <ul>
         <!-- inser more links here -->
+        <?php
+        if( !isset($_SESSION["userID"]) ){?>
+          <li><a class="cd-signin" href="index3.php">Sign in</a></li>
+  				<li><a class="cd-signup" href="register.php">Sign up</a></li>
+          <?php  }else {
 
-				<li><a class="cd-signin" href="index3.php">Sign in</a></li>
-				<li><a class="cd-signup" href="register.php">Sign up</a></li>
+        $usein = $_SESSION["userID"];
+        $sql6 = "SELECT CONCAT(fname,' ',lname) AS fullname1,email FROM `users` WHERE userID  = $usein";
+        $query6 = mysqli_query($con, $sql6);
+
+          while($result6 = mysqli_fetch_assoc($query6))
+          {
+
+        ?>
+
+          <li><a href="../editRegister.php"><?php echo $result6['email']; ?></a></li>
+          <li><a class="cd-signup" href="logout.php">Log out</a></li>
+      <?php  }
+      }
+
+                    ?>
+
+
       </ul>
     </nav>
   </header>
