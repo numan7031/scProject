@@ -23,7 +23,7 @@ $_atid = $_SESSION['abc'];
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ร้านขายของที่ระลึก</title>
+  <title>ที่พัก</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -120,7 +120,7 @@ $_atid = $_SESSION['abc'];
       <?php
       //$folder_path = '../img/'; //image's folder path
 
-      $sql5 = "SELECT s.name,s.adress,s.description,s.phone,s.lat,s.lng,s.image,a.atname,a.attracID FROM `souvenir` s JOIN attractions a ON s.attracID = a.attracID WHERE s.servID =  $_atid";
+      $sql5 = "SELECT ac.acname,ac.adress,ac.description,ac.phone,ac.lat,ac.lng,ac.image,a.atname,a.attracID FROM `accommodation` ac JOIN attractions a ON ac.attracID = a.attracID WHERE ac.acID =  $_atid";
       $query5 = mysqli_query($con, $sql5);
 
       	while($result5 = mysqli_fetch_assoc($query5))
@@ -128,14 +128,14 @@ $_atid = $_SESSION['abc'];
 
       			?>
 
-      <h4><small>ร้านขายของที่ระลึก&nbsp;&nbsp;<?php echo $result5['name']; ?></small></h4>
+      <h4><small>ที่พัก&nbsp;&nbsp;<?php echo $result5['acname']; ?></small></h4>
 
       <table>
         <tr>
           <td colspan="2"><div class="img-resize"><a href=".<?php echo $result5['image']; ?>"><img src=".<?php echo $result5['image']; ?>"/></a></td></div>
         </tr>
           <tr><td><p>ชื่อร้าน</p></td>
-          <td><?php echo $result5['name']; ?></td></tr>
+          <td><?php echo $result5['acname']; ?></td></tr>
           <tr><td>ที่อยู่</td>
             <td><?php echo $result5['adress']; ?></td></tr>
           <tr><td>รายละเอียด</td>
@@ -147,7 +147,7 @@ $_atid = $_SESSION['abc'];
 
       </table>
 
-      <a class="btn small" href="stackmapSurvaynir.php?attlat=<?php echo $result5['lat']; ?>&attlng=<?php echo $result5['lng']; ?>" target="_blank">แนะนำสถานที่ใกล้เคียง</a>
+      <a class="btn small" href="stackmapAccom.php?attlat=<?php echo $result5['lat']; ?>&attlng=<?php echo $result5['lng']; ?>" target="_blank">แนะนำสถานที่ใกล้เคียง</a>
       <a class="btn small" href="https://maps.google.com/maps?q=loc:<?php echo $result5['lat']; ?>,<?php echo $result5['lng']; ?>" target="_blank">การเดินทาง</a>
       <?php
       }
@@ -168,7 +168,7 @@ $_atid = $_SESSION['abc'];
 <h3><p>Gallery</p></h3>
 <?php
 //$folder_path = '../img/'; //image's folder path
-$sql3 = "SELECT * FROM `souvenirimages` WHERE servID  = $_atid LIMIT 20";
+$sql3 = "SELECT * FROM `accomimages` WHERE acID  = $_atid LIMIT 20";
 $query3 = mysqli_query($con, $sql3);
 
 	while($result3 = mysqli_fetch_assoc($query3))
