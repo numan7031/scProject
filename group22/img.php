@@ -1,0 +1,4 @@
+$sql .="VALUES ";
+$sql .="('".$_POST["typeAttraction"]."','".$_POST["typeID"]."','".$_POST["typewifi"]."','".$_POST["typeThreeG"]."','".$_POST["typeUnseen"]."','".$_POST["typeToilet"]."','".$_POST["typeTourdesk"]."'
+,'".$_POST["typeMedical"]."','".$_POST["typefac"]."','".$_POST["textHistory"]."','".$_POST["textActivity"]."','".$_POST["textfestival"]."','".$_POST["typeSecurity"]."','".$_POST["textVar"]."','".$_POST["textout"]."'
+,'".$_POST["textIn"]."','".$_POST["textAtname"]."','".$_POST["textTravel"]."','".$_POST["textPrice"]."','".$_POST["textLat"]."','".$_POST["textLong"]."','".$_POST["textAdress"]."','".$_POST["textTra"]."') ";

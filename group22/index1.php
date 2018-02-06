@@ -73,13 +73,20 @@ function ConfirmDelete(id)
 				</li>
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
-				<li><a href="pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="pages/AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
 				<li><a href="#">เพิ่มร้านอาหาร</a></li>
 				<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
 				<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
 				<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
-
+			<li><a class="drop" href="#">ข้อมูลสถานที่</a>
+				<ul>
+			<li><a href="pages/AdminInsertAttraction.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+			<li><a href="#">ข้อมูลร้านอาหาร</a></li>
+			<li><a href="#">ข้อมูลร้านขายของที่ระลึก</a></li>
+			<li><a href="#">ข้อมูลสถานที่พักผ่อน</a></li>
+			<li><a href="pages/editstatus.php">กำหนดสิทธิการเข้าใช้</a></li>
+		</ul>
 				<li><a href="pages/selectMember.php">Report</a></li>
 				<li><a href="editRegAdmin.php">Profile</a></li>
 			</ul>
@@ -110,38 +117,49 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อมูลรีวิว</header>
+          <header class="heading">ข้อสมาชิก</header>
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","scdb");
 	$conn->query("SET NAMES UTF8");
 	// get results from database
-	$sql="SELECT * FROM review";
+	$sql="SELECT * FROM users";
 	$rs=$conn->query($sql);
 	// Print Header of Table
 	echo "<table border='1' cellpadding='10' width=80%>"; //open table
 	echo "<tr>
-			<th>หมายเลขรีวิว</th>
-			<th>หัวข้อรีวิว</th>
-			<th>รายละเอียดรีวิว</th>
-			<th>คะแนน</th>
-			<th>หมายเลขผู้รีวิว</th>
-			<th>หมายเลขสถานที่รีวิว</th>
-			</tr>";
+	<center>
+			<th>หมายเลขผู้สมัคร</th>
+			<th>ชื่อผู้สมัคร</th>
+			<th>นามสกุล</th>
+			<th>E-Mail</th>
+			<th>Username</th>
+			<th>Password</th>
+			<th>Status</th>
+			<th>LastUpdate</th>
+			<th>รูปภาพ</th>
+			<th>แก้ไขสถานะ</th>
+			<th>ลบข้อมูล</th>
+	</center>
+	</tr>";
 	// loop through results of database query, displaying them in the table
 	while($row = $rs->fetch_assoc()) {
 		// echo out the contents of each row into a table
 		echo "<tr>";
-		echo '<td>' . $row['revID'] . '</td>';
-		echo '<td>' . $row['topic'] . '</td>';
-		echo '<td>' . $row['reviewdes'] . '</td>';
-		echo '<td>' . $row['score'] . '</td>';
 		echo '<td>' . $row['userID'] . '</td>';
-		echo '<td>' . $row['attracID'] . '</td>';
-    //echo '<td><img src="'. $row['Photo'] .'" height="70" width="70"/></td>';
+		echo '<td>' . $row['fname'] . '</td>';
+		echo '<td>' . $row['lname'] . '</td>';
+		echo '<td>' . $row['email'] . '</td>';
+		echo '<td>' . $row['username'] . '</td>';
+		echo '<td>' . $row['password'] . '</td>';
+		echo '<td>' . $row['status'] . '</td>';
+		echo '<td>' . $row['LastUpdate'] . '</td>';
 
-						echo '<td><a href="editForm.php?id=' . $row['revID'] . '">View</a> ';
-		echo '<a href="delete.php?id=' . $row['revID'] . '" onclick="return ConfirmDelete(' . $row['revID'] . ');">Delete</a></td>';
+  	echo '<td><img src="'. $row['image'] .'" height="100" width="100"/></td>';
+		echo '<nav class="main-nav">';
+		echo '<td><figcaption><a class="btn small" href="../group22/pages/editstatus.php?id=' . $row['userID'] . '">Edit</a></figcaption></td> ';
+		echo '<td><figcaption><a class="btn small" href="delete.php?id=' . $row['userID'] . '" onclick="return ConfirmDelete(' . $row['userID'] . ');">Delete</a></figcaption></td>';
+		echo '</nav>';
 		echo "</tr>";
 	}
 	echo "</table>"; // close table

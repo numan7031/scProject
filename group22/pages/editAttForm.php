@@ -1,22 +1,4 @@
-<?php
-	session_start();
-	require_once("../connect.php");
 
-	if(!isset($_SESSION['userID']))
-	{
-		echo "Please Login!";
-		exit();
-	}
-
-	//*** Update Last Stay in Login System
-	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
-	//$query = mysqli_query($con,$sql);
-
-	//*** Get User Login
-	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
-	$objQuery = mysqli_query($con,$strSQL);
-	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
-?>
 <!DOCTYPE html>
 
 <html>
@@ -62,7 +44,7 @@ function ConfirmDelete(id)
     <nav class="main-nav">
       <ul>
         <!-- inser more links here -->
-				<?php echo $objResult["email"];?>
+
         <li><a class="cd-signup" href="../logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -104,31 +86,9 @@ function ConfirmDelete(id)
 <div class="limiter">
 	<div class="container-login100">
 		<div class="wrap-login100">
-			<?php
-include ("../connect.php");
-
-$db = new mysqli('localhost', 'root', '', 'scdb');
-if (!$db) {
-  exit('Connect Error (' . mysqli_connect_errno() . ') '
-       . mysqli_connect_error());
-}
-?>
-
-    <div class="label">Select Name:</div>
-
-    <select name="names">
-    <option value = "">---Select---</option>
-    <?php
-    $queryusers = "SELECT `restaurant` FROM `attracID` ";
-    $db = mysqli_query($db, $queryusers);
-		while ( $d=mysqli_fetch_assoc($db)) {
-  echo "<option value='{".$d['Name']."}'>".$d['Name']."</option>";
-}
-    ?>
-      </select>
-			<form name="form1" method="post" enctype="multipart/form-data" action="../pages/AdminInsertAtt.php">
+			<form name="form1" method="post" enctype="multipart/form-data" action="../pages/editAtt.php">
 				<span class="login100-form-title">
-					เพิ่มร้านอาหาร
+					เพิ่มสถานที่ท่องเที่ยว
 				</span>
 <div class="container-login100-form-btn">
 	<div class="wrap-input100 validate-input">

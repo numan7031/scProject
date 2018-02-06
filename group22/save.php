@@ -1,14 +1,13 @@
-﻿<html>
+<html>
 <head>
 <title>Lab2</title>
 </head>
 <body>
 	<?php
-	session_start();
-	require_once("connect.php");
+	$conn = mysqli_connect("localhost","root","","scdb");
+	$conn->query("SET NAMES UTF8");
 if (isset($_POST['Submit'])) {
 	$target_path="./img/";
-	$status= $_POST["typeStatus"];
 	$userID = $_POST["iduser"];
 	$username = $_POST["textUsername"];
 	$fname = $_POST["textFirstName"];
@@ -23,16 +22,15 @@ if (isset($_POST['Submit'])) {
                              lname = '$lname',
 														 email = '$email',
 														 password = '$password',
-														 status = '$status',
 														 image = '$target_path'
                          WHERE
                              userID = '$userID'";
-    $update = $con->query($sql);
+    $update = $conn->query($sql);
     if ($update) {
       echo "Update successfully!!";
     } else {
       //echo "ErrorException";
-			echo "Error: " . $sql . "<br>" . $con->error;
+			echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 }

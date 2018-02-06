@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once("connect.php");
+	require_once("../connect.php");
 
 	if(!isset($_SESSION['userID']))
 	{
@@ -16,6 +16,7 @@
 	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
 	$objQuery = mysqli_query($con,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,25 +26,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/util.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
 <!--===============================================================================================-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="css/jquery.bxslider.css">
-<link rel="stylesheet" href="css/style1.css">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="../css/jquery.bxslider.css">
+<link rel="stylesheet" href="../css/style1.css">
 <style>
 * {box-sizing: border-box}
 body {font-family: Verdana, sans-serif; margin:0}
@@ -153,7 +154,7 @@ img {vertical-align: middle;}
         <!-- inser more links here -->
 
         <?php echo $objResult["email"];?>
-        <li><a class="cd-signup" href="logout.php">Logout</a></li>
+        <li><a class="cd-signup" href="../logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -162,29 +163,39 @@ img {vertical-align: middle;}
 	  <header id="header" class="hoc clear">
 
 	    <div id="logo" class="fl_left">
-	      <h1><a href="index1.php">SUT</a></h1>
+	      <h1><a href="../index1.php">SUT</a></h1>
 	      <p>Attractions in Thailand</p>
 	    </div>
 
 			<nav id="mainav" class="fl_right">
 				<ul class="clear">
-					<li class="active"><a href="index1.php">Home</a></li>
+					<li class="active"><a href="../index1.php">Home</a></li>
 					<li><a class="drop" href="#">ค้นหาสถานที่</a>
 						<ul>
-							<li><a href="pages/adminSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-							<li><a href="pages/adminSearch2.php">ค้นหาร้านอาหาร</a></li>
-							<li><a href="pages/adminSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-							<li><a href="pages/adminSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+							<li><a href="../pages/adSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+							<li><a href="../search/AdSearch2.php">ค้นหาร้านอาหาร</a></li>
+							<li><a href="../search/AdSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+							<li><a href="../search/AdSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 						</ul>
 					</li>
 					<li><a class="drop" href="#">Scope</a>
 						<ul>
-					<li><a href="pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="../pages/AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="#">เพิ่มร้านอาหาร</a></li>
+					<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
+					<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
 					<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 				</ul>
-
-					<li><a href="pages/selectMember.php">Report</a></li>
-					<li><a href="editRegAdmin.php">Profile</a></li>
+				<li><a class="drop" href="#">ข้อมูลสถานที่</a>
+					<ul>
+				<li><a href="../pages/Attraction.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+				<li><a href="#">ข้อมูลร้านอาหาร</a></li>
+				<li><a href="#">ข้อมูลร้านขายของที่ระลึก</a></li>
+				<li><a href="#">ข้อมูลสถานที่พักผ่อน</a></li>
+				<li><a href="../pages/editstatus.php">กำหนดสิทธิการเข้าใช้</a></li>
+			</ul>
+					<li><a href="../pages/selectMember.php">Report</a></li>
+					<li><a href="../editRegAdmin.php">Profile</a></li>
 				</ul>
 			</nav>
 
@@ -194,12 +205,29 @@ img {vertical-align: middle;}
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
+				<?php
+				$conn = mysqli_connect("localhost","root","","scdb");
+				$conn->query("SET NAMES UTF8");
 
-				<form name="form1" class="login100-form validate-form" enctype="multipart/form-data" method="post" action="edit.php">
+				if (!$conn) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
+
+		        $id = $_REQUEST['id'];
+
+				$sql = "SELECT * FROM users WHERE userID=" . $id;
+				$result = mysqli_query($conn, $sql);
+
+				if (mysqli_num_rows($result) > 0) {
+		            $row = mysqli_fetch_assoc($result)
+
+		    ?>
+				<form name="form1" class="login100-form validate-form" enctype="multipart/form-data" method="post" action="../edit.php">
+
 					<span class="login100-form-title">
 						MY PROFILE
 					</span>
-						<input type="hidden" name="iduser" value="<?php echo $objResult["userID"];?>">
+						<input type="hidden" name="iduser" value="<?php echo $row["userID"];?>">
 
 					<div class="wrap-input100 validate-input">
 						<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
@@ -207,28 +235,28 @@ img {vertical-align: middle;}
 					</div>
 					<div class="wrap-input100 validate-input">
 					<select id="typeStatus" name="typeStatus" class="input100" value="<?php echo $row["status"];?>">
-								<option value="user">USER</option>
-								<option value="employee">EMPLOYEE</option>
-								<option value="admin">ADMIN</option>
+			          <option value="user">USER</option>
+			          <option value="employee">EMPLOYEE</option>
+			          <option value="admin">ADMIN</option>
 								<span class="focus-input100"></span>
 					</select>
 							</div>
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="textUsername" id="textUsername" placeholder="Username" value="<?php echo $objResult["username"];?>">
+						<input class="input100" type="text" name="textUsername" id="textUsername" placeholder="Username" value="<?php echo $row["username"];?>">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div>
-						<input class="input100" type="text" name="textFirstName" id="textFirstName" placeholder="FirstName" value="<?php echo $objResult["fname"];?>">
+						<input class="input100" type="text" name="textFirstName" id="textFirstName" placeholder="FirstName" value="<?php echo $row["fname"];?>">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="textLastName" id="textLastName" placeholder="LastName" value="<?php echo $objResult["lname"];?>">
+						<input class="input100" type="text" name="textLastName" id="textLastName" placeholder="LastName" value="<?php echo $row["lname"];?>">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="txtUsername" id="txtUsername" placeholder="Email" value="<?php echo $objResult["email"];?>">
+						<input class="input100" type="text" name="txtUsername" id="txtUsername" placeholder="Email" value="<?php echo $row["email"];?>">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -236,7 +264,7 @@ img {vertical-align: middle;}
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="txtPassword" id="txtPassword" placeholder="Password" value="<?php echo $objResult["password"];?>">
+						<input class="input100" type="password" name="txtPassword" id="txtPassword" placeholder="Password" value="<?php echo $row["password"];?>">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -248,7 +276,7 @@ img {vertical-align: middle;}
 					</div>
 				</form>
 				<div class="login100-pic js-tilt" data-tilt>
-				<img src="<?php echo $objResult["image"];?>">
+				<img src=".<?php echo $row["image"];?>">
 			</div>
 			</div>
 		</div>
@@ -271,6 +299,8 @@ img {vertical-align: middle;}
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+
 
 	<div class="wrapper row4 bgded overlay">
 	  <footer id="footer" class="hoc clear">
@@ -330,6 +360,10 @@ img {vertical-align: middle;}
 	<script src="js/functions.js"></script>
 	<script type="text/javascript">$('.portfolio').flipLightBox()</script>
 	  <script  src="js/index.js"></script>
+		<?php
+		        }
+			mysqli_close($conn);
+		?>
 	</body>
 	</html>
 	<?

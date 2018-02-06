@@ -191,7 +191,8 @@ img {vertical-align: middle;}
 		<div class="container-login100">
 			<div class="wrap-login100">
 
-				<form name="form1" class="login100-form validate-form" enctype="multipart/form-data" method="post" action="edit.php">
+				<form name="form1" class="login100-form validate-form" enctype="multipart/form-data" method="post" action="save.php">
+
 					<span class="login100-form-title">
 						MY PROFILE
 					</span>

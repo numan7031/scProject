@@ -9,48 +9,48 @@
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 }
-if (($_POST["typeAttraction"] <> "") &&($_POST["typeID"] <> "") &&($_POST["txtWifi"] <> "") &&($_POST["txtThreeG"] <> "") &&($_POST["txtUnseen"] <> "") &&($_POST["txtToilet"] <> "")
-&&($_POST["txtTourdesk"] <> "") &&($_POST["txtMedical"] <> "") &&($_POST["txtFac"] <> "") &&($_POST["txtHistory"] <> "") &&($_POST["txtActivities"] <> "") &&($_POST["txtFestival"] <> "")
-&&($_POST["txtSecurity"] <> "") &&($_POST["txtVar"] <> "") &&($_POST["txtOut"] <> "") &&($_POST["txtIn"] <> "")
-&&($_POST["textAtname"] <> "") && ($_POST["textTravel"] <> "") && ($_POST["textPrice"] <> "") &&($_POST["textLat"] <> "") && ($_POST["textLong"] <> "") && ($_POST["textAdress"] <> ""))
-        {
+if (isset($_POST['Submit'])) {
+					$target_path="../img_att/";
 					$typeAttraction = $_POST["typeAttraction"];
-					$type_id = $_POST["typeID"];
-					$wifi = implode(',', $_POST["txtWifi"]);
-          $threeGfourG = implode(',', $_POST["txtThreeG"]);
-          $unseen = implode(',', $_POST["txtUnseen"]);
-          $toilet = implode(',', $_POST["txtToilet"]);
-					$tourdesk = implode(',', $_POST["txtTourdesk"]);
-					$Medical = implode(',', $_POST["txtMedical"]);
-					$facilitiesfordisabled = implode(',', $_POST["txtFac"]);
-					$history = implode(',', $_POST["txtHistory"]);
-					$activities = implode(',', $_POST["txtActivities"]);
-					$festival = implode(',', $_POST["txtFestival"]);
-					$security = implode(',', $_POST["txtSecurity"]);
-					$variousnature = implode(',', $_POST["txtVar"]);
-					$replaceout = implode(',', $_POST["txtOut"]);
-					$replacein = implode(',', $_POST["txtIn"]);
-					$atname = $_POST["textAtname"];
-					$traveladvice = $_POST["textTravel"];
-					$price = $_POST["textPrice"];
-					$lat = $_POST["textLat"];
-					$lng = $_POST["textLong"];
-					$adress = $_POST["textAdress"];
-					$target_path=$_POST['uploadedfile'];
-
- }
-$sql = "INSERT INTO attractions (typeAttraction,type_id,wifi,threeGfourG,unseen,toilet,tourdesk,Medical,facilitiesfordisabled,history,activities,festival,security,variousnature,replaceout,replacein,atname,traveladvice,price,lat,lng,adress,image)";
+					$typeID = $_POST["typeID"];
+					$typeWifi = $_POST["typewifi"];
+					$typeThreeG = $_POST["typeThreeG"];
+					$typeToilet = $_POST["typeToilet"];
+					$typeTourdesk = $_POST["typeTourdesk"];
+					$typeMedical = $_POST["typeMedical"];
+					$typeSecurity = $_POST["typeSecurity"];
+					$typeFac = $_POST["typefac"];
+					$typeUnseen = $_POST["typeUnseen"];
+					$typeName = $_POST["textAtname"];
+					$typeHistory = $_POST["textHistory"];
+					$typeAdress = $_POST["textAdress"];
+					$typeLat = $_POST["textLat"];
+					$typeLong = $_POST["textLong"];
+					$typeTravel = $_POST["textTravel"];
+					$typeAdvice = $_POST["textTra"];
+					$typePrice = $_POST["textPrice"];
+					$typeActivity = $_POST["textActivity"];
+					$typefestival = $_POST["textfestival"];
+					$typeVar = $_POST["textVar"];
+					$typeIn = $_POST["textIn"];
+					$typeOut = $_POST["textout"];
+					$target_path=$target_path.basename($_FILES['upload']['name']);
+					if(move_uploaded_file($_FILES['upload']['tmp_name'], $target_path)){
+$sql = "INSERT INTO attractions (`atname`, `adress`, `traveladvice`, `price`, `lat`, `lng`, `activities`, `toilet`, `threeGfourG`, `unseen`, `security`, `facilitiesfordisabled`, `advicefordisabled`, `wifi`, `history`, `tourdesk`, `festival`, `variousnature`, `replacein`, `replaceout`, `Medical`, `type_id`, `typeAttraction`, `image`)";
 $sql .="VALUES ";
-$sql .="('".$_POST["typeAttraction"]."','".$_POST["typeID"]."','".$_POST["txtWifi"]."','".$_POST["txtThreeG"]."','".$_POST["txtUnseen"]."','".$_POST["txtToilet"]."','".$_POST["txtTourdesk"]."'
-,'".$_POST["txtMedical"]."','".$_POST["txtFac"]."','".$_POST["txtHistory"]."','".$_POST["txtActivities"]."','".$_POST["txtFestival"]."','".$_POST["txtSecurity"]."','".$_POST["txtVar"]."','".$_POST["txtOut"]."'
-,'".$_POST["txtIn"]."','".$_POST["textAtname"]."','".$_POST["textTravel"]."','".$_POST["textPrice"]."','".$_POST["textLat"]."','".$_POST["textLong"]."','".$_POST["textAdress"]."','".$_POST["uploadedfile"]."') ";
+$sql .="('".$_POST["textAtname"]."','".$_POST["textAdress"]."','".$_POST["textTravel"]."','".$_POST["textPrice"]."','".$_POST["textLat"]."'
+,'".$_POST["textLong"]."','".$_POST["textActivity"]."','".$_POST["typeToilet"]."','".$_POST["typeThreeG"]."','".$_POST["typeUnseen"]."'
+,'".$_POST["typeSecurity"]."','".$_POST["typefac"]."','".$_POST["textTra"]."','".$_POST["typewifi"]."','".$_POST["textHistory"]."'
+,'".$_POST["typeTourdesk"]."','".$_POST["textfestival"]."','".$_POST["textVar"]."','".$_POST["textIn"]."','".$_POST["textout"]."'
+,'".$_POST["typeMedical"]."','".$_POST["typeID"]."','".$_POST["typeAttraction"]."','".$_FILES["upload"]["name"]."') ";
 
 if ($con->query($sql) === TRUE) {
     echo "Insertion successfully!!";
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }
-
+ }
+}
 $con->close();
 ?>
 <form>

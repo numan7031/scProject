@@ -1,4 +1,22 @@
+<?php
+	session_start();
+	require_once("../connect.php");
 
+	if(!isset($_SESSION['userID']))
+	{
+		echo "Please Login!";
+		exit();
+	}
+
+	//*** Update Last Stay in Login System
+	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
+	//$query = mysqli_query($con,$sql);
+
+	//*** Get User Login
+	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
+	$objQuery = mysqli_query($con,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 
 <html>
@@ -44,7 +62,7 @@ function ConfirmDelete(id)
     <nav class="main-nav">
       <ul>
         <!-- inser more links here -->
-
+				<?php echo $objResult["email"];?>
         <li><a class="cd-signup" href="../logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -86,7 +104,7 @@ function ConfirmDelete(id)
 <div class="limiter">
 	<div class="container-login100">
 		<div class="wrap-login100">
-			<form name="form1" method="post" action="../pages/AdminInsertAtt.php">
+			<form name="form1" method="post" enctype="multipart/form-data" action="../pages/AdminInsertAtt.php">
 				<span class="login100-form-title">
 					เพิ่มสถานที่ท่องเที่ยว
 				</span>
@@ -133,62 +151,103 @@ function ConfirmDelete(id)
 		<div><br></div>
 		<table border='1' cellpadding='10' width=80%>
 		<tr>
-		<th><input value="Wifi" name="txtWifi[]" id="txtWifi" type="checkbox"> Wifi</th>
-		<th><input value="3G-4G" name="txtThreeG[]" id="txtThreeG" type="checkbox"> 3G-4G</th>
-		<th><input value="Unseen Thailand" name="txtUnseen[]" id="txtUnseen" type="checkbox"> Unseen Thailand</th><tr>
+		<th><select id="typewifi" name="typewifi" class="input100">
+					<option value="มีบริการ">มี Wifi</option>
+					<option value="ไม่มีบริการ">ไม่มี Wifi</option>
+				</select>
+		</th>
+		<th><select id="typeThreeG" name="typeThreeG" class="input100">
+					<option value="มีบริการ">มี 3G-4G</option>
+					<option value="ไม่มีบริการ">ไม่มี 3G-4G</option>
+				</select>
+		</th>
+		<th><select id="typeToilet" name="typeToilet" class="input100">
+					<option value="มีบริการ">มีบริการห้องสุขา</option>
+					<option value="ไม่มีบริการ">ไม่มีบริการห้องสุขา</option>
+				</select>
+		</th></tr>
 		<tr>
-		<th><input value="บริการห้องสุขา" name="txtToilet[]" id="txtToilet" type="checkbox"> บริการห้องสุขา</th>
-		<th><input value="บริการนำเที่ยว" name="txtTourdesk[]" id="txtTourdesk" type="checkbox"> บริการนำเที่ยว</th>
-		<th><input value="หน่วยบริการแพทย์" name="txtMedical[]" id="txtMedical" type="checkbox"> หน่วยบริการแพทย์</th></tr>
-		<tr>
-		<th><input value="สิ่งอำนวยความสะดวก" name="txtFac[]" id="txtFac" type="checkbox"> สิ่งอำนวยความสะดวก</th>
-		<th><input value="เรื่องเล่า/ประวัต" name="txtHistory[]" id="txtHistory" type="checkbox"> เรื่องเล่า/ประวัต</th>
-		<th><input value="กิจกรรมให้ร่วมสนุก" name="txtActivities[]" id="txtActivities" type="checkbox"> กิจกรรมให้ร่วมสนุก</th></tr>
-		<tr>
-		<th><input value="ช่วงเทศกาล" name="txtFestival" id="txtFestival[]" type="checkbox"> ช่วงเทศกาล</th>
-		<th><input value="หน่วยบริการรักษาความปลอดภัย" name="txtSecurity[]" id="txtSecurity" type="checkbox"> หน่วยบริการรักษาความปลอดภัย</th>
-		<th><input value="สถานที่ท่องเที่ยวที่มีหลายบรรยากาศ" name="txtVar[]" id="txtVar" type="checkbox"> สถานที่ท่องเที่ยวที่มีหลายบรรยากาศ</th></tr>
-		<tr>
-		<th><input value="สถานที่ท่องเที่ยวทดแทนต่างประเทศ" name="txtOut[]" id="txtOut" type="checkbox"> สถานที่ท่องเที่ยวทดแทนต่างประเทศ</th>
-		<th><input value="สถานที่ท่องเที่ยวทดแทนในประเทศ" name="txtIn[]" id="txtIn" type="checkbox"> สถานที่ท่องเที่ยวทดแทนในประเทศ</th>
+			<th><select id="typeTourdesk" name="typeTourdesk" class="input100">
+						<option value="มีบริการ">มีบริการนำเที่ยว</option>
+						<option value="ไม่มีบริการ">ไม่มีบริการนำเที่ยว</option>
+					</select>
+			</th>
+			<th><select id="typeMedical" name="typeMedical" class="input100">
+						<option value="มีบริการ">มีหน่วยบริการแพทย์</option>
+						<option value="ไม่มีบริการ">ไม่มีหน่วยบริการแพทย์</option>
+					</select>
+			</th>
+			<th><select id="typeSecurity" name="typeSecurity" class="input100">
+						<option value="มีบริการ">มีหน่วยรักษาความปลอดภัย</option>
+						<option value="ไม่มีบริการ">ไม่มีหน่วยรักษาความปลอดภัย</option>
+					</select>
+			</th></tr>
+			<tr>
+				<th><select id="typefac" name="typefac" class="input100">
+							<option value="มีบริการ">มีสิ่งอำนวยความสะดวก</option>
+							<option value="ไม่มีบริการ">ไม่มีสิ่งอำนวยความสะดวก</option>
+						</select>
+			</th>
+			<th><select id="typeUnseen" name="typeUnseen" class="input100">
+						<option value="เป็น">เป็น Unseen Thailand</option>
+						<option value="ไม่เป็น">ไม่เป็น Unseen Thailand</option>
+					</select>
+		</th>
 		<th></th></tr>
-		</table>
-
+	</table>
 	</div>
 </div>
-
-				<div class="wrap-input100 validate-input">
-					<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
-					<input type="file" name="uploadedfile" id="uploadedfile">
-				</div>
+<div class="wrap-input100 validate-input">
+	<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
+	<input type="file" name="upload" id="upload">
+</div>
 				<div class="wrap-input100 validate-input">
 					<input class="input100" type="text" name="textAtname" id="textAtname" placeholder="ชื่อสถานที่ท่องเที่ยว">
 					<span class="focus-input100"></span>
 				</div>
-
-				<div>
-					<input class="input100" type="text" name="textTravel" id="textTravel" placeholder="คำแนะนำ">
-					<span class="focus-input100"></span>
-				</div>
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="number" name="textPrice" id="textPrice" placeholder="ค่าใช้จ่าย">
-					<span class="focus-input100"></span>
-				</div>
-				<div class="wrap-input100 validate-input">
-					<input class="input100" type="number" name="textLat" id="textLat" placeholder="Latitude">
-					<span class="focus-input100"></span>
-
-					<input class="input100" type="number" name="textLong" id="textLong" placeholder="Longitude">
-					<span class="focus-input100"></span>
-				</div>
-
+				<textarea class="input100" id="textHistory" name="textHistory" placeholder="ประวัติความเป็นมา/เรื่องเล่า"></textarea>
+				<span class="focus-input100"></span>
+			</div>
 				<div class="wrap-input100 validate-input">
 				<textarea class="input100" id="textAdress" name="textAdress" placeholder="...ที่อยู่..."></textarea>
 				<span class="focus-input100"></span>
-			</div>
+				</div>
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="textLat" id="textLat" placeholder="Latitude">
+					<span class="focus-input100"></span>
 
+					<input class="input100" type="text" name="textLong" id="textLong" placeholder="Longitude">
+					<span class="focus-input100"></span>
+				</div>
+				<div>
+					<textarea class="input100" id="textTravel" name="textTravel" placeholder="คำแนะนำ"></textarea>
+					<span class="focus-input100"></span>
+					<textarea class="input100" id="textTra" name="textTra" placeholder="คำแนะนำสำหรับผู้พิการ เด็ก สตรีมีครรต์"></textarea>
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="text" name="textPrice" id="textPrice" placeholder="ค่าใช้จ่าย">
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100 validate-input">
+				<textarea class="input100" id="textActivity" name="textActivity" placeholder="กิจกรรม"></textarea>
+				<span class="focus-input100"></span>
+			</div>
+			<div class="wrap-input100 validate-input">
+				<input class="input100" type="text" name="textfestival" id="textfestival" placeholder="ช่วงเทศกาล">
+				<span class="focus-input100"></span>
+			</div>
+			<div>
+				<textarea class="input100" id="textVar" name="textVar" placeholder="สถานที่หลากหลายบรรยากาศ"></textarea>
+				<span class="focus-input100"></span>
+				<textarea class="input100" id="textIn" name="textIn" placeholder="ทดแทนในประเทศ"></textarea>
+				<span class="focus-input100"></span>
+				<textarea class="input100" id="textout" name="textout" placeholder="ทดแทนในต่างประเทศ"></textarea>
+				<span class="focus-input100"></span>
+			</div>
 				<div class="container-login100-form-btn">
-					<input class="login100-form-btn" type="submit" name="Submit" value="Insert">
+					<input class="login100-form-btn" type="submit" name="Submit" value="เพิ่มสถานที่ท่องเที่ยว">
 				</div>
 			</form>
 		</div>

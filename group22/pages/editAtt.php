@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
 <title>Lab2</title>
 </head>
@@ -8,7 +8,6 @@
 	require_once("connect.php");
 if (isset($_POST['Submit'])) {
 	$target_path="./img/";
-	$status= $_POST["typeStatus"];
 	$userID = $_POST["iduser"];
 	$username = $_POST["textUsername"];
 	$fname = $_POST["textFirstName"];
@@ -23,7 +22,6 @@ if (isset($_POST['Submit'])) {
                              lname = '$lname',
 														 email = '$email',
 														 password = '$password',
-														 status = '$status',
 														 image = '$target_path'
                          WHERE
                              userID = '$userID'";
