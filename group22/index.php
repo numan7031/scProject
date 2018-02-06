@@ -1,17 +1,14 @@
 <?php
 	session_start();
 	require_once("connect.php");
-
 	if(!isset($_SESSION['userID']))
 	{
 		echo "Please Login!";
 		exit();
 	}
-
 	//*** Update Last Stay in Login System
 	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
 	//$query = mysqli_query($con,$sql);
-
 	//*** Get User Login
 	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
 	$objQuery = mysqli_query($con,$strSQL);
@@ -20,52 +17,21 @@
 <!DOCTYPE html>
 
 <?php
-
-$sql = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID";
+require 'connect.php';
 	//$rs = mysqli_query($conn,$sql);
-
-  $rs=$con->query($sql);
-
-	$num_rows = mysqli_num_rows($rs);
-
-	$per_page = 6;   // Per Page
-	$page  = 1;
-
-	if(isset($_GET["Page"]))
-	{
-		$page = $_GET["Page"];
-	}
-
-	$prev_page = $page-1;
-	$next_page = $page+1;
-
-	$row_start = (($per_page*$page)-$per_page);
-	if($num_rows<=$per_page)
-	{
-		$num_pages =1;
-	}
-	else if(($num_rows % $per_page)==0)
-	{
-		$num_pages =($num_rows/$per_page) ;
-	}
-	else
-	{
-		$num_pages =($num_rows/$per_page)+1;
-		$num_pages = (int)$num_pages;
-	}
-	$row_end = $per_page * $page;
-	if($row_end > $num_rows)
-	{
-		$row_end = $num_rows;
-	}
-
-
-	$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $row_start ,$row_end ";
+  $perpage = 6;
+  if (isset($_GET['page'])) {
+  $page = $_GET['page'];
+  } else {
+  $page = 1;
+  }
+  $start = ($page - 1) * $perpage;
+  $sql = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID  ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
+	//$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
 	//$rs = mysqli_query($conn,$sql);
-  $rs=$con->query($sql);
-
+  $query = mysqli_query($con, $sql);
  ?>
-<html>
+ <html>
 <head>
 <title>Attractions</title>
 <meta charset="utf-8">
@@ -78,14 +44,18 @@ $sql = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumc
 body {font-family: Verdana, sans-serif; margin:0}
 .mySlides {display: none}
 img {vertical-align: middle;}
-
 /* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+.slideshow > div {
+    position: absolute;
+    max-width: 100%;
+    width: 100%;
+    height: 240px;
+    max-height: 100%;
 }
-
+.slideshow > div > img {
+    height: 100%;
+    width: 100%;
+}
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
@@ -100,18 +70,15 @@ img {vertical-align: middle;}
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
-
 /* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
-
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
-
 /* Caption text */
 .text {
   color: #f2f2f2;
@@ -122,7 +89,6 @@ img {vertical-align: middle;}
   width: 100%;
   text-align: center;
 }
-
 /* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
@@ -131,7 +97,6 @@ img {vertical-align: middle;}
   position: absolute;
   top: 0;
 }
-
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
@@ -143,11 +108,9 @@ img {vertical-align: middle;}
   display: inline-block;
   transition: background-color 0.6s ease;
 }
-
 .active, .dot:hover {
   background-color: #717171;
 }
-
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
@@ -155,17 +118,14 @@ img {vertical-align: middle;}
   animation-name: fade;
   animation-duration: 1.5s;
 }
-
 @-webkit-keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
 }
-
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
 }
-
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
@@ -217,17 +177,17 @@ img {vertical-align: middle;}
 <div class="slideshow-container">
 
 <div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
+  <div class="numbertext"></div>
   <img src="img/gg.jpg" style="width:100%">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
+  <div class="numbertext"></div>
   <img src="img/dd.jpg" style="width:100%">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
+  <div class="numbertext"></div>
   <img src="img/ds.jpg" style="width:100%">
 </div>
 
@@ -246,15 +206,12 @@ img {vertical-align: middle;}
 <script>
 var slideIndex = 1;
 showSlides(slideIndex);
-
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
-
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
-
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
@@ -280,74 +237,72 @@ function showSlides(n) {
       <p>สถานที่ต่างๆที่ถูกรีวิว</p>
     </div>
 <!--//กล่องเรียงสวยนับจากนี้-->
-   <?php
-    $i = 0;
-    $arrayName = array('one_third first','one_third','one_third');//เก็บอาเรย์เรียงจากขวาไปซ้าย
-    $numOfCols = 3;
-    $rowCount = 0;
-    //$bootstrapColWidth = 12 / $numOfCols;
-    while($row=$rs->fetch_assoc())
-    {
-    ?>
+<?php
+ $i = 0;
+ $arrayName = array('one_third first','one_third','one_third');//เก็บอาเรย์เรียงจากขวาไปซ้าย
+ $numOfCols = 3;
+ $rowCount = 0;
+ //$bootstrapColWidth = 12 / $numOfCols;
+ while ($result = mysqli_fetch_assoc($query))
+ {
+ ?>
 
-      <?php
+	 <?php
+	 if($rowCount == 0) echo '<ul class="nospace group btmspace-50">';
+	 $rowCount++;
+	 ?>
+	 <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
+		 <article class="element">
 
-      if($rowCount == 0) echo '<ul class="nospace group btmspace-50">';
-      $rowCount++;
+			 <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["typeAttraction"]; ?>">
+				 <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>">More</a></figcaption>
 
-      ?>
-      <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
-        <article class="element">
-          <figure><img src="img/<?php echo $row['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $row["typeAttraction"]; ?>">
-            <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $row["attracID"]; ?>">More</a></figcaption>
-          </figure>
-          <div class="excerpt">
-            <text name="Top1"><strong>คะแนน<?php echo $row["sumcor"];  ?></strong></text>
-            <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $row["attracID"]; ?>"><?php echo $row["atname"];?></a></h6>
-            <p><?php echo $row["typeAttraction"];?>&hellip;</p>
-          </div>
-        </article>
-      </li>
+			 </figure>
+			 <div class="excerpt">
+				 <text name="Top1"><strong><?php echo $result["sumcor"];  ?>คะแนน</strong></text>
+				 <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>"><?php echo $result["atname"];?></a></h6>
+				 <p><?php echo $result["typeAttraction"];?>&hellip;</p>
+			 </div>
+		 </article>
+	 </li>
 
-    <?php
-    //$rowCount++;
-    $i++;
-    if($rowCount== 3) echo '</ul>';
-    if ($rowCount == 3) $rowCount = 0;
-    if ($i==3) $i=0;
-
-     }
-    ?>
+ <?php
+ //$rowCount++;
+ $i++;
+ if($rowCount== 3) echo '</ul>';
+ if ($rowCount == 3) $rowCount = 0;
+ if ($i==3) $i=0;
+	}
+ ?>
 <!--//กล่องเรียงสวยถึงตรงนี้-->
 
     <div class="clear"></div>
   </main>
 </div>
-
-
-Total <?php echo $num_rows;?> Record : <?php echo $num_pages;?> Page :
 <?php
-if($prev_page)
-{
-	echo " <a href='$_SERVER[SCRIPT_NAME]?Page=$prev_page'><< Back</a> ";
-}
-
-for($i=1; $i<=$num_pages; $i++){
-	if($i != $page)
-	{
-		echo "[ <a href='$_SERVER[SCRIPT_NAME]?Page=$i'>$i</a> ]";
-	}
-	else
-	{
-		echo "<b> $i </b>";
-	}
-}
-if($page!=$num_pages)
-{
-	echo " <a href ='$_SERVER[SCRIPT_NAME]?Page=$next_page'>Next>></a> ";
-}
-$conn = null;
+$sql2 = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID ORDER BY sumcor DESC ,r.revID ASC";
+//$sql2 .= " ORDER BY sumcor DESC ,r.revID ASC";
+$query2 = mysqli_query($con, $sql2);
+$total_record = mysqli_num_rows($query2);
+$total_page = ceil($total_record / $perpage);
 ?>
+<nav>
+<ul class="pagination">
+<li>
+<a href="index.php?page=1" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span>
+</a>
+</li>
+<?php for($i=1;$i<=$total_page;$i++){ ?>
+<li><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+<?php } ?>
+<li>
+<a href="index.php?page=<?php echo $total_page;?>" aria-label="Next">
+<span aria-hidden="true">&raquo;</span>
+</a>
+</li>
+</ul>
+</nav>
 
 <div class="wrapper row4 bgded overlay">
   <footer id="footer" class="hoc clear">
