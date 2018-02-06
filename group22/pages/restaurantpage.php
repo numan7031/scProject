@@ -38,6 +38,20 @@ $_atid = $_SESSION['abc'];
 
   <link rel="stylesheet" type="text/css" href="css/attpage.css"><!--เฉพาะหน้า actractionpage-->
 
+  <link rel="stylesheet" type="text/css" href="css/comment_box.css"><!--กล่อง คอมเม้น-->
+  <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css"><!--กล่อง คอมเม้น-->
+
+  <link rel="stylesheet" type="text/css" href="css/comments2.css"><!--ตัวแสดงคอมเม้น-->
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"><!--ตัวแสดงคอมเม้น-->
+
+
+  <script src="js/imgbox.js"></script><!--กล่องรูปภาพ-->
+  <link rel="stylesheet" type="text/css" href="css/imgbox.css"><!--กล่องรูปภาพ-->
+  <link rel="stylesheet" type="text/css" href="css/imgbox2.css"><!--กล่องรูปภาพ-->
+  <link rel="stylesheet" type="text/css" href="css/imgbox3.css"><!--กล่องรูปภาพ-->
+
+  <link rel="stylesheet" type="text/css" href="css/imgresize.css"><!--กล่องรูปภาพ-->
+
 
   <style>
   table {
@@ -114,7 +128,7 @@ $_atid = $_SESSION['abc'];
 
       			?>
 
-      <h4><small>ร้านอาหาร</small></h4>
+      <h4><small>ร้านอาหาร&nbsp;&nbsp;<?php echo $result5['resname']; ?></small></h4>
 
       <table>
         <tr>
@@ -154,7 +168,7 @@ $_atid = $_SESSION['abc'];
 <h3><p>Gallery</p></h3>
 <?php
 //$folder_path = '../img/'; //image's folder path
-$sql3 = "SELECT * FROM `resimages` WHERE resID  = $_atid LIMIT 9";
+$sql3 = "SELECT * FROM `resimages` WHERE resID  = $_atid LIMIT 20";
 $query3 = mysqli_query($con, $sql3);
 
 	while($result3 = mysqli_fetch_assoc($query3))
@@ -172,7 +186,7 @@ $query3 = mysqli_query($con, $sql3);
 </div>
 
 <footer class="container-fluid">
-  <p>Footer Text</p>
+  <p></p>
 </footer>
 
 </body>
