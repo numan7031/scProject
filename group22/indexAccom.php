@@ -4,7 +4,8 @@
 <?php
 
 require 'connect.php';
-
+session_start();
+ob_start();
 	//$rs = mysqli_query($conn,$sql);
 
   $perpage = 6;
@@ -17,7 +18,7 @@ require 'connect.php';
   $start = ($page - 1) * $perpage;
 
 
-  $sql = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID  ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
+  $sql = "SELECT * FROM `accommodation` ORDER BY acID ASC LIMIT $start ,$perpage";
 
 	//$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
 	//$rs = mysqli_query($conn,$sql);
@@ -26,7 +27,7 @@ require 'connect.php';
  ?>
 <html>
 <head>
-<title>Attractions</title>
+<title>ที่พัก</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -146,9 +147,27 @@ img {vertical-align: middle;}
     <nav class="main-nav">
       <ul>
         <!-- inser more links here -->
+        <?php
+        if( !isset($_SESSION["userID"]) ){?>
+          <li><a class="cd-signin" href="index3.php">Sign in</a></li>
+          <li><a class="cd-signup" href="register.php">Sign up</a></li>
+          <?php  }else {
 
-				<li><a class="cd-signin" href="index3.php">Sign in</a></li>
-				<li><a class="cd-signup" href="register.php">Sign up</a></li>
+        $usein = $_SESSION["userID"];
+        $sql6 = "SELECT CONCAT(fname,' ',lname) AS fullname1,email FROM `users` WHERE userID  = $usein";
+        $query6 = mysqli_query($con, $sql6);
+
+          while($result6 = mysqli_fetch_assoc($query6))
+          {
+
+        ?>
+
+          <li><a href="editRegister.php"><?php echo $result6['email']; ?></a></li>
+          <li><a class="cd-signup" href="logout.php">Log out</a></li>
+      <?php  }
+      }
+
+                    ?>
       </ul>
     </nav>
   </header>
@@ -180,70 +199,14 @@ img {vertical-align: middle;}
   </header>
 </div>
 
-<div class="slideshow-container">
 
-<div class="mySlides fade">
-  <div class="numbertext"></div>
-  <img src="img/gg.jpg" style="width:100%">
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext"></div>
-  <img src="img/dd.jpg" style="width:100%">
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext"></div>
-  <img src="img/ds.jpg" style="width:100%">
-</div>
-
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-</div>
-<br>
-
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-</div>
-
-<script>
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
-</script>
 
 <div class="wrapper row3">
   <main class="hoc container clear">
 
     <div class="center btmspace-50">
-      <h2 class="heading">สถานที่รีวิว</h2>
-      <p>สถานที่ต่างๆที่ถูกรีวิว</p>
+      <h2 class="heading">ที่พัก</h2>
+      <p>ที่พักใกล้สถานที่ท่องเที่ยว</p>
     </div>
   <!--  จัดอันดับ:<select name="level">
 <option value="1">น้อย-มาก</option>
@@ -270,14 +233,14 @@ function showSlides(n) {
       <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
         <article class="element">
 
-          <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["typeAttraction"]; ?>">
-            <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>">More</a></figcaption>
+          <figure><img src="<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["acname"]; ?>">
+            <figcaption><a class="btn small" href="pages/accompage.php?id=<?php echo $result["acID"]; ?>">More</a></figcaption>
 
           </figure>
           <div class="excerpt">
-            <text name="Top1"><strong><?php echo $result["sumcor"];  ?>คะแนน</strong></text>
-            <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>"><?php echo $result["atname"];?></a></h6>
-            <p><?php echo $result["typeAttraction"];?>&hellip;</p>
+            <text name="Top1"><strong>ที่พัก</strong></text>
+            <h6 class="heading"><a href="pages/accompage.php?id=<?php echo $result["acID"]; ?>"><?php echo $result["acname"];?></a></h6>
+            <p><?php echo $result["adress"];?>&hellip;</p>
           </div>
         </article>
       </li>
@@ -299,7 +262,7 @@ function showSlides(n) {
 
 
 <?php
-$sql2 = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID ORDER BY sumcor DESC ,r.revID ASC";
+$sql2 = "SELECT * FROM `accommodation` ORDER BY acID ASC ";
 
 //$sql2 .= " ORDER BY sumcor DESC ,r.revID ASC";
 $query2 = mysqli_query($con, $sql2);
@@ -312,15 +275,15 @@ $total_page = ceil($total_record / $perpage);
 <nav>
 <ul class="pagination">
 <li>
-<a href="index4.php?page=1" aria-label="Previous">
+<a href="indexAccom.php?page=1" aria-label="Previous">
 <span aria-hidden="true">&laquo;</span>
 </a>
 </li>
 <?php for($i=1;$i<=$total_page;$i++){ ?>
-<li><a href="index4.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+<li><a href="indexAccom.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 <?php } ?>
 <li>
-<a href="index4.php?page=<?php echo $total_page;?>" aria-label="Next">
+<a href="indexAccom.php?page=<?php echo $total_page;?>" aria-label="Next">
 <span aria-hidden="true">&raquo;</span>
 </a>
 </li>

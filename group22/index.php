@@ -1,17 +1,14 @@
 <?php
 	session_start();
 	require_once("connect.php");
-
 	if(!isset($_SESSION['userID']))
 	{
-		echo "Please Login!";
+		header("location:index4.php");
 		exit();
 	}
-
 	//*** Update Last Stay in Login System
 	//$sql = "UPDATE users SET LastUpdate = NOW() WHERE UserID = '".$_SESSION["UserID"]."' ";
 	//$query = mysqli_query($con,$sql);
-
 	//*** Get User Login
 	$strSQL = "SELECT * FROM users WHERE userID = '".$_SESSION['userID']."' ";
 	$objQuery = mysqli_query($con,$strSQL);
@@ -20,27 +17,19 @@
 <!DOCTYPE html>
 
 <?php
-
 require 'connect.php';
-
 	//$rs = mysqli_query($conn,$sql);
-
   $perpage = 6;
   if (isset($_GET['page'])) {
   $page = $_GET['page'];
   } else {
   $page = 1;
   }
-
   $start = ($page - 1) * $perpage;
-
-
   $sql = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID  ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
-
 	//$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
 	//$rs = mysqli_query($conn,$sql);
   $query = mysqli_query($con, $sql);
-
  ?>
  <html>
 <head>
@@ -55,7 +44,6 @@ require 'connect.php';
 body {font-family: Verdana, sans-serif; margin:0}
 .mySlides {display: none}
 img {vertical-align: middle;}
-
 /* Slideshow container */
 .slideshow > div {
     position: absolute;
@@ -64,12 +52,10 @@ img {vertical-align: middle;}
     height: 240px;
     max-height: 100%;
 }
-
 .slideshow > div > img {
     height: 100%;
     width: 100%;
 }
-
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
@@ -84,18 +70,15 @@ img {vertical-align: middle;}
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
-
 /* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
-
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
-
 /* Caption text */
 .text {
   color: #f2f2f2;
@@ -106,7 +89,6 @@ img {vertical-align: middle;}
   width: 100%;
   text-align: center;
 }
-
 /* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
@@ -115,7 +97,6 @@ img {vertical-align: middle;}
   position: absolute;
   top: 0;
 }
-
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
@@ -127,11 +108,9 @@ img {vertical-align: middle;}
   display: inline-block;
   transition: background-color 0.6s ease;
 }
-
 .active, .dot:hover {
   background-color: #717171;
 }
-
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
@@ -139,17 +118,14 @@ img {vertical-align: middle;}
   animation-name: fade;
   animation-duration: 1.5s;
 }
-
 @-webkit-keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
 }
-
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
 }
-
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
@@ -165,7 +141,8 @@ img {vertical-align: middle;}
       <ul>
         <!-- inser more links here -->
 
-        <?php echo $objResult["email"];?>
+
+				<li><a href="editRegister.php"><?php echo $objResult["email"];?></a></li>
         <li><a class="cd-signup" href="logout.php">Logout</a></li>
       </ul>
     </nav>
@@ -181,7 +158,7 @@ img {vertical-align: middle;}
 
 	    <nav id="mainav" class="fl_right">
 	      <ul class="clear">
-	        <li class="active"><a href="index.php">Home</a></li>
+	        <li><a href="index.php">Home</a></li>
 	        <li><a class="drop" href="#">ค้นหาสถานที่</a>
 	          <ul>
 	            <li><a href="pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
@@ -230,15 +207,12 @@ img {vertical-align: middle;}
 <script>
 var slideIndex = 1;
 showSlides(slideIndex);
-
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
-
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
-
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
@@ -275,10 +249,8 @@ function showSlides(n) {
  ?>
 
 	 <?php
-
 	 if($rowCount == 0) echo '<ul class="nospace group btmspace-50">';
 	 $rowCount++;
-
 	 ?>
 	 <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
 		 <article class="element">
@@ -301,7 +273,6 @@ function showSlides(n) {
  if($rowCount== 3) echo '</ul>';
  if ($rowCount == 3) $rowCount = 0;
  if ($i==3) $i=0;
-
 	}
  ?>
 <!--//กล่องเรียงสวยถึงตรงนี้-->
@@ -311,14 +282,10 @@ function showSlides(n) {
 </div>
 <?php
 $sql2 = "SELECT a.atname,a.typeAttraction,a.image,a.attracID,sum(r.score) as sumcor FROM review r JOIN attractions a ON r.attracID = a.attracID GROUP BY attracID ORDER BY sumcor DESC ,r.revID ASC";
-
 //$sql2 .= " ORDER BY sumcor DESC ,r.revID ASC";
 $query2 = mysqli_query($con, $sql2);
 $total_record = mysqli_num_rows($query2);
 $total_page = ceil($total_record / $perpage);
-
-
-
 ?>
 <nav>
 <ul class="pagination">
