@@ -294,7 +294,7 @@ $query3 = mysqli_query($con, $sql3);
 	while($result3 = mysqli_fetch_assoc($query3))
 	{
 			?>
-            <a href="../img/<?php echo $result3['imageURL']; ?>"><img src="../img/<?php echo $result3['imageURL']; ?>"  height="180" /></a>
+            <a href=".<?php echo $result3['imageURL']; ?>"><img src=".<?php echo $result3['imageURL']; ?>"  height="180" /></a>
             <?php
 	}
 
