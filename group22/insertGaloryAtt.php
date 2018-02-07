@@ -19,5 +19,5 @@ if(isset($_POST['submit'])) {
         }
     }
 }
-
+header("location:pages/html/insertGalaryAtt.html");
 ?>
