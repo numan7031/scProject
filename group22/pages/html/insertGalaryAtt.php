@@ -26,9 +26,10 @@ require '../../connect.php';
   }
   </script>
 </head>
-<h2>เพิ่มรูปภาพสถานที่ท่องเที่ยว</h2>
-<body>
 
+<body>
+<h2>เพิ่มรูปภาพสถานที่ท่องเที่ยว</h2>
+<br>
   <form action="../../insertGaloryAtt.php" method="post" enctype="multipart/form-data">
           <input name="upload[]" type="file" multiple="multiple" />
           <input type="text" name="att" placeholder="รหัสร้าน"/>
