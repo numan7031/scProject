@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once("../connect.php");
+	require_once("connect.php");
 
 	if(!isset($_SESSION['userID']))
 	{
@@ -24,24 +24,24 @@
 <title>Attractions</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="../css/style1.css">
+<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="css/style1.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
+<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="../css/util.css">
-<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script type="text/javascript">
 function ConfirmDelete(id)
@@ -63,7 +63,7 @@ function ConfirmDelete(id)
       <ul>
         <!-- inser more links here -->
 				<?php echo $objResult["email"];?>
-        <li><a class="cd-signup" href="../logout.php">Logout</a></li>
+        <li><a class="cd-signup" href="logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -72,29 +72,29 @@ function ConfirmDelete(id)
   <header id="header" class="hoc clear">
 
     <div id="logo" class="fl_left">
-      <h1><a href="../index1.php">SUT</a></h1>
+      <h1><a href="index1.php">SUT</a></h1>
       <p>Attractions in Thailand</p>
     </div>
 
 		<nav id="mainav" class="fl_right">
 			<ul class="clear">
-				<li class="active"><a href="../index1.php">Home</a></li>
+				<li class="active"><a href="index1.php">Home</a></li>
 				<li><a class="drop" href="#">ค้นหาสถานที่</a>
 					<ul>
-						<li><a href="../pages/adminSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-						<li><a href="../pages/adminSearch2.php">ค้นหาร้านอาหาร</a></li>
-						<li><a href="../pages/adminSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-						<li><a href="../pages/adminSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+						<li><a href="pages/adminSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+						<li><a href="pages/adminSearch2.php">ค้นหาร้านอาหาร</a></li>
+						<li><a href="pages/adminSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+						<li><a href="pages/adminSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 					</ul>
 				</li>
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
-				<li><a href="../pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				<li><a href="../pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
+				<li><a href="pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
 
-				<li><a href="../pages/selectMember.php">Report</a></li>
-				<li><a href="../editRegAdmin.php">Profile</a></li>
+				<li><a href="pages/selectMember.php">Report</a></li>
+				<li><a href="editRegAdmin.php">Profile</a></li>
 			</ul>
 		</nav>
 
@@ -104,7 +104,7 @@ function ConfirmDelete(id)
 <div class="limiter">
 	<div class="container-login100">
 		<div class="wrap-login100">
-			<form name="form1" method="post" enctype="multipart/form-data" action="../pages/AdminInsertAtt.php">
+			<form name="form1" method="post" enctype="multipart/form-data" action="AdminInsertAtt.php">
 				<span class="login100-form-title">
 					เพิ่มสถานที่ท่องเที่ยว
 				</span>
@@ -214,10 +214,10 @@ function ConfirmDelete(id)
 				<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="textLat" id="textLat" placeholder="Latitude">
+					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude">
 					<span class="focus-input100"></span>
 
-					<input class="input100" type="text" name="textLong" id="textLong" placeholder="Longitude">
+					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude">
 					<span class="focus-input100"></span>
 				</div>
 				<div>
@@ -294,28 +294,31 @@ function ConfirmDelete(id)
 
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
 <!-- IE9 Placeholder Support -->
-<script src="../layout/scripts/jquery.placeholder.min.js"></script>
+<script src="layout/scripts/jquery.placeholder.min.js"></script>
 
-<script  src="../js/index.js"></script>
+<script  src="js/index.js"></script>
 <!--===============================================================================================-->
-	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../vendor/bootstrap/js/popper.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../vendor/select2/select2.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../vendor/tilt/tilt.jquery.min.js"></script>
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
 	<script >
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="../js/main.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
+<?
+	mysqli_close($con);
+?>

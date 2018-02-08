@@ -5,12 +5,12 @@
 <body>
 	<?php
 	session_start();
-	require_once("../connect.php");
+	require_once("connect.php");
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 }
 if (isset($_POST['Submit'])) {
-					$target_path="../img_att/";
+					$target_path="./img_att/";
 					$typeAttraction = $_POST["typeAttraction"];
 					$typeID = $_POST["typeID"];
 					$typeWifi = $_POST["typewifi"];
@@ -42,7 +42,7 @@ $sql .="('".$_POST["textAtname"]."','".$_POST["textAdress"]."','".$_POST["textTr
 ,'".$_POST["textLong"]."','".$_POST["textActivity"]."','".$_POST["typeToilet"]."','".$_POST["typeThreeG"]."','".$_POST["typeUnseen"]."'
 ,'".$_POST["typeSecurity"]."','".$_POST["typefac"]."','".$_POST["textTra"]."','".$_POST["typewifi"]."','".$_POST["textHistory"]."'
 ,'".$_POST["typeTourdesk"]."','".$_POST["textfestival"]."','".$_POST["textVar"]."','".$_POST["textIn"]."','".$_POST["textout"]."'
-,'".$_POST["typeMedical"]."','".$_POST["typeID"]."','".$_POST["typeAttraction"]."','".$_FILES["upload"]["name"]."') ";
+,'".$_POST["typeMedical"]."','".$_POST["typeID"]."','".$_POST["typeAttraction"]."','".$target_path."') ";
 
 if ($con->query($sql) === TRUE) {
     echo "Insertion successfully!!";

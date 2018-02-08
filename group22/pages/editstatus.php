@@ -214,6 +214,7 @@ img {vertical-align: middle;}
 				}
 
 		        $id = $_REQUEST['id'];
+						
 
 				$sql = "SELECT * FROM users WHERE userID=" . $id;
 				$result = mysqli_query($conn, $sql);
