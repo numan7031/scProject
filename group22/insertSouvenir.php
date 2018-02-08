@@ -104,36 +104,16 @@ function ConfirmDelete(id)
 <div class="limiter">
 	<div class="container-login100">
 		<div class="wrap-login100">
-			<?php
-			$conn = mysqli_connect("localhost","root","","scdb");
-			$conn->query("SET NAMES UTF8");
 
-			if (!$conn) {
-				die("Connection failed: " . mysqli_connect_error());
-			}
-
-					$id = $_REQUEST['id'];
-
-
-			$sql = "SELECT * FROM restaurant WHERE resID=" . $id;
-			$result = mysqli_query($conn, $sql);
-
-			if (mysqli_num_rows($result) > 0) {
-							$row = mysqli_fetch_assoc($result)
-
-			?>
-			<form name="form1" method="post" enctype="multipart/form-data" action="editRes.php">
+			<form name="form1" method="post" enctype="multipart/form-data" action="AdminInsertSou.php">
 				<span class="login100-form-title">
-					เพิ่มร้านอาหาร
+					เพิ่มร้านขายของที่ระลึก
 				</span>
 <div class="container-login100-form-btn">
 	<div class="wrap-input100 validate-input">
 		<div class="wrap-input100 validate-input">
-			<input class="input100" type="hidden" name="resID" id="resID" value="<?php echo $row["resID"];?>">
+			<input class="input100" type="hidden" name="servID" id="servID">
 			<span class="focus-input100"></span>
-		</div>
-		<div class="login100-pic js-tilt" data-tilt>
-		<img src="<?php echo $row["image"];?>">
 		</div>
 		<div class="wrap-input100 validate-input">
 			<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
@@ -142,38 +122,34 @@ function ConfirmDelete(id)
 		<div>
 			รหัสสถานที่ใกล้เคียง:
 			<div class="wrap-input100 validate-input">
-				<input class="input100" type="text" name="attID" id="attID" placeholder="รหัสสถานที่ท่องเที่ยว" value="<?php echo $row["attracID"];?>">
+				<input class="input100" type="text" name="attID" id="attID" placeholder="รหัสสถานที่ท่องเที่ยว">
 				<span class="focus-input100"></span>
 			</div>
 	</div>
 </div>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="textresname" id="textresname" placeholder="ชื่อร้านอาหาร" value="<?php echo $row["resname"];?>">
+					<input class="input100" type="text" name="textname" id="textname" placeholder="ชื่อร้านขายของที่ระลึก">
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textadress" name="textadress" placeholder="...ที่อยู่..." value="<?php echo $row["adress"];?>"></textarea>
+				<textarea class="input100" id="textadress" name="textadress" placeholder="...ที่อยู่..."></textarea>
 				<span class="focus-input100"></span>
 			</div>
 			<div class="wrap-input100 validate-input">
-				<input class="input100" type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" name="textphone" id="textphone" placeholder="xxx-xxx-xxxx" value="<?php echo $row["phone"];?>">
+				<input class="input100" type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" name="textphone" id="textphone" placeholder="xxx-xxx-xxxx">
 				<span class="focus-input100"></span>
 			</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textDescription" name="textDescription" placeholder="รายละเอียด" value="<?php echo $row["description"];?>"></textarea>
-				<span class="focus-input100"></span>
-				</div>
-				<div class="wrap-input100 validate-input">
-					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude" value="<?php echo $row["lat"];?>">
+					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude">
 					<span class="focus-input100"></span>
 
-					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude" value="<?php echo $row["lng"];?>">
+					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="container-login100-form-btn">
-					<input class="login100-form-btn" type="submit" name="Submit" value="เพิ่มร้านอาหาร">
+					<input class="login100-form-btn" type="submit" name="Submit" value="เพิ่มร้านขายของที่ระลึก">
 				</div>
 			</form>
 		</div>
@@ -243,12 +219,5 @@ function ConfirmDelete(id)
 	</script>
 <!--===============================================================================================-->
 	<script src="../js/main.js"></script>
-	<?php
-					}
-		mysqli_close($conn);
-	?>
 </body>
 </html>
-<?
-	mysqli_close($con);
-?>

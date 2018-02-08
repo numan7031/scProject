@@ -115,21 +115,21 @@ function ConfirmDelete(id)
 					$id = $_REQUEST['id'];
 
 
-			$sql = "SELECT * FROM restaurant WHERE resID=" . $id;
+			$sql = "SELECT * FROM souvenir WHERE servID=" . $id;
 			$result = mysqli_query($conn, $sql);
 
 			if (mysqli_num_rows($result) > 0) {
 							$row = mysqli_fetch_assoc($result)
 
 			?>
-			<form name="form1" method="post" enctype="multipart/form-data" action="editRes.php">
+			<form name="form1" method="post" enctype="multipart/form-data" action="editSou.php">
 				<span class="login100-form-title">
 					เพิ่มร้านอาหาร
 				</span>
 <div class="container-login100-form-btn">
 	<div class="wrap-input100 validate-input">
 		<div class="wrap-input100 validate-input">
-			<input class="input100" type="hidden" name="resID" id="resID" value="<?php echo $row["resID"];?>">
+			<input class="input100" type="hidden" name="servID" id="servID" value="<?php echo $row["servID"];?>">
 			<span class="focus-input100"></span>
 		</div>
 		<div class="login100-pic js-tilt" data-tilt>
@@ -149,7 +149,7 @@ function ConfirmDelete(id)
 </div>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="textresname" id="textresname" placeholder="ชื่อร้านอาหาร" value="<?php echo $row["resname"];?>">
+					<input class="input100" type="text" name="textname" id="textname" placeholder="ชื่อร้านอาหาร" value="<?php echo $row["name"];?>">
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
@@ -160,10 +160,7 @@ function ConfirmDelete(id)
 				<input class="input100" type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" name="textphone" id="textphone" placeholder="xxx-xxx-xxxx" value="<?php echo $row["phone"];?>">
 				<span class="focus-input100"></span>
 			</div>
-				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textDescription" name="textDescription" placeholder="รายละเอียด" value="<?php echo $row["description"];?>"></textarea>
-				<span class="focus-input100"></span>
-				</div>
+
 				<div class="wrap-input100 validate-input">
 					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude" value="<?php echo $row["lat"];?>">
 					<span class="focus-input100"></span>
@@ -173,7 +170,7 @@ function ConfirmDelete(id)
 				</div>
 
 				<div class="container-login100-form-btn">
-					<input class="login100-form-btn" type="submit" name="Submit" value="เพิ่มร้านอาหาร">
+					<input class="login100-form-btn" type="submit" name="Submit" value="เพิ่มร้านอาหารขายของที่ระลึก">
 				</div>
 			</form>
 		</div>
