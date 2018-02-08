@@ -7,7 +7,7 @@
 	session_start();
 	require_once("connect.php");
 if (isset($_POST['Submit'])) {
-	$target_path="./img_res/";
+	$target_path="./img_accom/";
 	$attID = $_POST["attID"];
 	$acID = $_POST["acID"];
 	$textacname = $_POST["textacname"];
