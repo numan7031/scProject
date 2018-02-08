@@ -29,9 +29,9 @@ require '../../connect.php';
 </head>
 
 <body>
-<h2>เพิ่มรูปภาพสถานที่ท่องเที่ยว</h2>
+<h2>เพิ่มรูปภาพสถานที่ร้านอาหาร</h2>
 <br>
-  <form action="../../insertGaloryAtt.php" method="post" enctype="multipart/form-data">
+  <form action="../../insertGaloryRes.php" method="post" enctype="multipart/form-data">
           <input name="upload[]" type="file" multiple="multiple" />
           <input type="text" name="att" placeholder="รหัสร้าน"/>
           <input type="submit" name="submit" value="UPLOAD" />
@@ -45,12 +45,12 @@ require '../../connect.php';
 //this is were images displayed
 
 
-            $sql3 = "SELECT * FROM `attracimages` WHERE 1";
+            $sql3 = "SELECT * FROM `resimages` WHERE 1";
             $query3 = mysqli_query($con, $sql3);
 
            while($result3 = mysqli_fetch_assoc($query3)){
                     ?>
-                  <a href="../../deleteGaloryAtt.php?delete=<?php echo $result3['imageID']?>" onclick = "return ConfirmDelete()"><img src="../.<?php echo $result3['imageURL']?>" id="AEDbutton"></a>
+                  <a href="../../deleteGaloryRes.php?delete=<?php echo $result3['imageID']?>" onclick = "return ConfirmDelete()"><img src="../.<?php echo $result3['imageURL']?>" id="AEDbutton"></a>
             <?php   }
 
 
