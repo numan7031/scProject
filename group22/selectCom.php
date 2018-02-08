@@ -140,6 +140,7 @@ function ConfirmDelete(id)
 			<th>รูปภาพ</th>
 			<th>แก้ไขสถานะ</th>
 			<th>ลบข้อมูล</th>
+			<th>เพิ่มลบรูปภาพในแกลลอรี่</th>
 	</center>
 	</tr>";
 	// loop through results of database query, displaying them in the table
@@ -150,7 +151,7 @@ function ConfirmDelete(id)
 		echo '<td>' . $row['acname'] . '</td>';
 		echo '<td>' . $row['adress'] . '</td>';
 		echo '<td>' . $row['lat'] . '</td>';
-		echo '<td>' . $row['lang'] . '</td>';
+		echo '<td>' . $row['lng'] . '</td>';
 		echo '<td>' . $row['phone'] . '</td>';
 		echo '<td>' . $row['description'] . '</td>';
 		echo '<td>' . $row['attracID'] . '</td>';
@@ -158,6 +159,7 @@ function ConfirmDelete(id)
 		echo '<nav class="main-nav">';
 		echo '<td><figcaption><a class="btn small" href="editComForm.php?id=' . $row['acID'] . '">Edit</a></figcaption></td> ';
 		echo '<td><figcaption><a class="btn small" href="delete.php?id=' . $row['acID'] . '" onclick="return ConfirmDelete(' . $row['acID'] . ');">Delete</a></figcaption></td>';
+		echo '<td><figcaption><a class="btn small" href="pages/html/insertGalaryAcc.php?resid=' . $row['acID'] . '" target="_blank">แกลอรี่</a></figcaption></td>';
 		echo '</nav>';
 		echo "</tr>";
 	}

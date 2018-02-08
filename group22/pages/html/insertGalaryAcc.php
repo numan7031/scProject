@@ -11,7 +11,7 @@ if (isset($resid)) {
   $_SESSION['resgal']=$resid;
 }
 if(!isset($_SESSION['resgal'])){
-  header("location:../../selectRes.php");
+  header("location:../../selectAtt.php");
 }
 
 $_resgalid = $_SESSION['resgal'];
@@ -43,9 +43,9 @@ $_resgalid = $_SESSION['resgal'];
 </head>
 
 <body>
-<h2>เพิ่มรูปภาพสถานที่ร้านอาหาร</h2>
+<h2>เพิ่มรูปภาพสถานทีพัก</h2>
 <br>
-  <form action="../../insertGaloryRes.php" method="post" enctype="multipart/form-data">
+  <form action="../../insertGaloryAcc.php" method="post" enctype="multipart/form-data">
           <input name="upload[]" type="file" multiple="multiple" />
           <input type="text" name="att" placeholder="รหัสร้าน" value="<?php echo $_resgalid ?>" readonly/>
           <input type="submit" name="submit" value="UPLOAD" />
@@ -59,12 +59,12 @@ $_resgalid = $_SESSION['resgal'];
 //this is were images displayed
 
 
-            $sql3 = "SELECT * FROM `resimages` WHERE resID = $_resgalid";
+            $sql3 = "SELECT * FROM `accomimages` WHERE acID = $_resgalid";
             $query3 = mysqli_query($con, $sql3);
 
            while($result3 = mysqli_fetch_assoc($query3)){
                     ?>
-                  <a href="../../deleteGaloryRes.php?delete=<?php echo $result3['imageID']?>" onclick = "return ConfirmDelete()"><img src="../.<?php echo $result3['imageURL']?>" id="AEDbutton"></a>
+                  <a href="../../deleteGaloryAcc.php?delete=<?php echo $result3['imageID']?>" onclick = "return ConfirmDelete()"><img src="../.<?php echo $result3['imageURL']?>" id="AEDbutton"></a>
             <?php   }
 
 
