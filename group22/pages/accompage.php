@@ -134,7 +134,7 @@ $_atid = $_SESSION['abc'];
         <tr>
           <td colspan="2"><div class="img-resize"><a href=".<?php echo $result5['image']; ?>"><img src=".<?php echo $result5['image']; ?>"/></a></td></div>
         </tr>
-          <tr><td><p>ชื่อร้าน</p></td>
+          <tr><td><p>ชื่อที่พัก</p></td>
           <td><?php echo $result5['acname']; ?></td></tr>
           <tr><td>ที่อยู่</td>
             <td><?php echo $result5['adress']; ?></td></tr>
