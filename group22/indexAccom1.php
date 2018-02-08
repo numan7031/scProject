@@ -176,31 +176,30 @@ img {vertical-align: middle;}
   <header id="header" class="hoc clear">
 
     <div id="logo" class="fl_left">
-      <h1><a href="index4.php">SUT</a></h1>
+      <h1><a href="index.php">SUT</a></h1>
       <p>Attractions in Thailand</p>
     </div>
 
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li><a href="index4.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a class="drop" href="#">ค้นหาสถานที่</a>
           <ul>
-            <li><a href="pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-            <li><a href="search/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
-            <li><a href="search/publicSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-            <li><a href="search/publicSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+            <li><a href="../pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+            <li><a href="../search/UsSearch2.php">ค้นหาร้านอาหาร</a></li>
+            <li><a href="../search/UsSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+            <li><a href="../search/UsSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
           </ul>
-          <li><a class="drop" href="#">ข้อมูลสถานที่</a>
-            <ul>
-
-              <li><a href="indexRes.php">ร้านอาหาร</a></li>
-              <li><a href="indexSurv.php">ร้านขายของที่ระลึก</a></li>
-              <li><a href="indexAccom.php">สถานที่พักผ่อน</a></li>
-            </ul>
-          </li>
         </li>
-  
-        <li><a href="pages/aboutAs.php">About Me</a></li>
+        <li><a class="drop" href="#">ข้อมูลสถานที่</a>
+         <ul>
+
+           <li><a href="indexRes1.php">ร้านอาหาร</a></li>
+           <li><a href="indexSurv1.php">ร้านขายของที่ระลึก</a></li>
+           <li><a href="indexAccom1.php">สถานที่พักผ่อน</a></li>
+         </ul>
+       </li>
+        <li><a href="editRegister.php">Profile</a></li>
       </ul>
     </nav>
 

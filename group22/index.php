@@ -167,7 +167,14 @@ img {vertical-align: middle;}
 	            <li><a href="search/UsSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 	          </ul>
 	        </li>
-	        <li><a href="pages/UsGallery.php">Gallery</a></li>
+					<li><a class="drop" href="#">ข้อมูลสถานที่</a>
+	 				 <ul>
+
+	 					 <li><a href="indexRes1.php">ร้านอาหาร</a></li>
+	 					 <li><a href="indexSurv1.php">ร้านขายของที่ระลึก</a></li>
+	 					 <li><a href="indexAccom1.php">สถานที่พักผ่อน</a></li>
+	 				 </ul>
+	 			 </li>
 					<li><a href="editRegister.php">Profile</a></li>
 	      </ul>
 	    </nav>

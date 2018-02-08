@@ -156,16 +156,24 @@
 
         <nav id="mainav" class="fl_right">
           <ul class="clear">
-            <li class="active"><a href="../index4.php">Home</a></li>
+            <li><a href="../index4.php">Home</a></li>
             <li><a class="drop" href="#">ค้นหาสถานที่</a>
               <ul>
                 <li><a href="../pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-                <li><a href="../pages/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
-                <li><a href="../pages/publicSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-                <li><a href="../pages/publicSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+                <li><a href="../search/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
+                <li><a href="../search/publicSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+                <li><a href="../search/publicSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
               </ul>
+              <li><a class="drop" href="#">ข้อมูลสถานที่</a>
+                <ul>
+
+                  <li><a href="../indexRes.php">ร้านอาหาร</a></li>
+                  <li><a href="../indexSurv.php">ร้านขายของที่ระลึก</a></li>
+                  <li><a href="../indexAccom.php">สถานที่พักผ่อน</a></li>
+                </ul>
+              </li>
             </li>
-            <li><a href="../pages/gallery1.php">Gallery</a></li>
+            
             <li><a href="../pages/aboutAs.php">About Me</a></li>
           </ul>
         </nav>
@@ -176,7 +184,7 @@
 					<div class="row">
 						<div class="col-md-offset-2 col-md-8">
 							<div class="panel panel-default">
-								<div class="panel-heading">ค้นหาร้านขายของที่ระลึก</div>
+								<div class="panel-heading">ค้นหาโรงแรม/ที่พัก</div>
 								<div class="panel-body">
 
 
@@ -213,11 +221,11 @@
 											 <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
 												 <article class="element">
 													 <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["acname"]; ?>">
-														 <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["acID"]; ?>">More</a></figcaption>
+														 <figcaption><a class="btn small" href="../pages/accompage.php?id=<?php echo $result["acID"]; ?>">More</a></figcaption>
 													 </figure>
 													 <div class="excerpt">
 														 <text name="Top1"><strong>รหัสสถานที่: <?php echo $result["acID"];  ?></strong></text>
-														 <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $result["acID"]; ?>"><?php echo $result["acname"];?></a></h6>
+														 <h6 class="heading"><a href="../pages/accompage.php?id=<?php echo $result["acID"]; ?>"><?php echo $result["acname"];?></a></h6>
 														 <p><?php echo $result["phone"];?>&hellip;</p>
 														 <p><?php echo $result["adress"];?>&hellip;</p>
 													 </div>
@@ -316,7 +324,7 @@
 </figure>\
 										<p class="li-post-desc">'+post.adress+'</p>\
                     <p class="li-post-desc">'+post.phone+'</p>\
-                    <figcaption><a class="btn small" href="restaurant.php?id='+post.acID+'">More</a></figcaption>\
+                    <figcaption><a class="btn small" href="../pages/accompage.php?id='+post.acID+'">More</a></figcaption>\
 									</div>');
 				    });
 				}

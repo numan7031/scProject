@@ -1,12 +1,12 @@
 <?php
 require_once('../connect.php');
 
-$actionName = $_POST["action"];
+$actionName = $_REQUEST["action"];
 if($actionName == "showPost"){
 
 	$resultData = [];
-	$search_key = $_POST["search_key"];
-	$search_type = $_POST["search_type"];
+	$search_key = $_REQUEST["search_key"];
+	$search_type = $_REQUEST["search_type"];
 
 	$searchKey = '';
 	if(!empty($search_key)){

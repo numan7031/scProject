@@ -55,8 +55,8 @@ function ConfirmDelete(id)
 <div class="wrapper row1">
   <header id="header" class="hoc clear">
 
-    <div id="logo" class="fl_left">
-      <h1><a href="index2.php">SUT</a></h1>
+		<div id="logo" class="fl_left">
+      <h1><a href="index1.php">SUT</a></h1>
       <p>Attractions in Thailand</p>
     </div>
 
@@ -73,12 +73,20 @@ function ConfirmDelete(id)
 				</li>
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
-				<li><a href="pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				<li><a href="#">เพิ่มร้านอาหาร</a></li>
-				<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
-				<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
+				<li><a href="AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
+				<li><a href="insertSouvenir.php">เพิ่มร้านขายของที่ระลึก</a></li>
+				<li><a href="insertCom.php">เพิ่มสถานที่พักผ่อน</a></li>
 			</ul>
-				<li><a href="pages/selectReview.php">Report</a></li>
+			<li><a class="drop" href="#">ข้อมูลสถานที่</a>
+				<ul>
+			<li><a href="selectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+			<li><a href="selectRes.php">ข้อมูลร้านอาหาร</a></li>
+			<li><a href="selectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+			<li><a href="selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
+
+		</ul>
+				<li><a href="#">Report</a></li>
 				<li><a href="editRegEmployee.php">Profile</a></li>
 			</ul>
 		</nav>

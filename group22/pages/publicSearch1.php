@@ -136,16 +136,24 @@ img {vertical-align: middle;}
 
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="../index4.php">Home</a></li>
+        <li><a href="../index4.php">Home</a></li>
         <li><a class="drop" href="#">ค้นหาสถานที่</a>
           <ul>
             <li><a href="../pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-            <li><a href="../pages/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
-            <li><a href="../pages/publicSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-            <li><a href="../pages/publicSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+            <li><a href="../search/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
+            <li><a href="../search/publicSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+            <li><a href="../search/publicSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
           </ul>
+          <li><a class="drop" href="#">ข้อมูลสถานที่</a>
+            <ul>
+
+              <li><a href="../indexRes.php">ร้านอาหาร</a></li>
+              <li><a href="../indexSurv.php">ร้านขายของที่ระลึก</a></li>
+              <li><a href="../indexAccom.php">สถานที่พักผ่อน</a></li>
+            </ul>
+          </li>
         </li>
-        <li><a href="../pages/gallery1.php">Gallery</a></li>
+        
         <li><a href="../pages/aboutAs.php">About Me</a></li>
       </ul>
     </nav>
@@ -195,7 +203,7 @@ img {vertical-align: middle;}
         <?php foreach ($all_row as $key => $product) { ?>
         <div class="col-sm-3 col-md-3">
         	<div class="well">
-            <figure><a href="#"><img src="../img/<?php echo $product['image']; ?>" style="width:320px;height:210px;"></a>
+            <figure><a href="actractionpage.php?id=<?php echo $product["attracID"]; ?>"><img src="../img/<?php echo $product['image']; ?>" style="width:320px;height:210px;"></a>
             </figure>
         		<h2 class="text-info"><?php echo $product['atname']; ?></h2>
         		<p><span class="label label-info">ประเภทจุดเด่น : <?php echo $product['type_id']; ?></span></p>
@@ -203,7 +211,7 @@ img {vertical-align: middle;}
         		<hr>
         		<h3>จุดเด่น: <?php echo $product['typeAttraction']; ?></h3>
         		<hr>
-              <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $row["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
+              <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $product["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
         	</div>
         </div>
         <?php } ?>

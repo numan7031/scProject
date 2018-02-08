@@ -19,7 +19,7 @@
     		<hr>
     		<h3>จุดเด่น: <?php echo $product['typeAttraction']; ?></h3>
     		<hr>
-          <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $row["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
+          <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $product["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
     	</div>
     </div>
    <?php } ?>

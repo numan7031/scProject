@@ -18,7 +18,7 @@ ob_start();
   $start = ($page - 1) * $perpage;
 
 
-  $sql = "SELECT * FROM `accommodation` ORDER BY acID ASC LIMIT $start ,$perpage";
+  $sql = "SELECT resname,image,resID,adress FROM `restaurant` WHERE 1 ORDER BY resID ASC  LIMIT $start ,$perpage";
 
 	//$sql .= " ORDER BY sumcor DESC ,r.revID ASC LIMIT $start ,$perpage";
 	//$rs = mysqli_query($conn,$sql);
@@ -27,7 +27,7 @@ ob_start();
  ?>
 <html>
 <head>
-<title>ที่พัก</title>
+<title>ร้านอาหาร</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -150,7 +150,7 @@ img {vertical-align: middle;}
         <?php
         if( !isset($_SESSION["userID"]) ){?>
           <li><a class="cd-signin" href="index3.php">Sign in</a></li>
-          <li><a class="cd-signup" href="register.php">Sign up</a></li>
+  				<li><a class="cd-signup" href="register.php">Sign up</a></li>
           <?php  }else {
 
         $usein = $_SESSION["userID"];
@@ -168,6 +168,8 @@ img {vertical-align: middle;}
       }
 
                     ?>
+
+
       </ul>
     </nav>
   </header>
@@ -176,31 +178,30 @@ img {vertical-align: middle;}
   <header id="header" class="hoc clear">
 
     <div id="logo" class="fl_left">
-      <h1><a href="index4.php">SUT</a></h1>
+      <h1><a href="index.php">SUT</a></h1>
       <p>Attractions in Thailand</p>
     </div>
 
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li><a href="index4.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a class="drop" href="#">ค้นหาสถานที่</a>
           <ul>
-            <li><a href="pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-            <li><a href="search/publicSearch2.php">ค้นหาร้านอาหาร</a></li>
-            <li><a href="search/publicSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-            <li><a href="search/publicSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+            <li><a href="../pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+            <li><a href="../search/UsSearch2.php">ค้นหาร้านอาหาร</a></li>
+            <li><a href="../search/UsSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+            <li><a href="../search/UsSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
           </ul>
-          <li><a class="drop" href="#">ข้อมูลสถานที่</a>
-            <ul>
-
-              <li><a href="indexRes.php">ร้านอาหาร</a></li>
-              <li><a href="indexSurv.php">ร้านขายของที่ระลึก</a></li>
-              <li><a href="indexAccom.php">สถานที่พักผ่อน</a></li>
-            </ul>
-          </li>
         </li>
-  
-        <li><a href="pages/aboutAs.php">About Me</a></li>
+        <li><a class="drop" href="#">ข้อมูลสถานที่</a>
+         <ul>
+
+           <li><a href="indexRes1.php">ร้านอาหาร</a></li>
+           <li><a href="indexSurv1.php">ร้านขายของที่ระลึก</a></li>
+           <li><a href="indexAccom1.php">สถานที่พักผ่อน</a></li>
+         </ul>
+       </li>
+        <li><a href="editRegister.php">Profile</a></li>
       </ul>
     </nav>
 
@@ -213,8 +214,8 @@ img {vertical-align: middle;}
   <main class="hoc container clear">
 
     <div class="center btmspace-50">
-      <h2 class="heading">ที่พัก</h2>
-      <p>ที่พักใกล้สถานที่ท่องเที่ยว</p>
+      <h2 class="heading">ร้านอาหาร</h2>
+      <p>ร้านอาหารใกล้สถานที่ท่องเที่ยว</p>
     </div>
   <!--  จัดอันดับ:<select name="level">
 <option value="1">น้อย-มาก</option>
@@ -241,13 +242,13 @@ img {vertical-align: middle;}
       <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
         <article class="element">
 
-          <figure><img src="<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["acname"]; ?>">
-            <figcaption><a class="btn small" href="pages/accompage.php?id=<?php echo $result["acID"]; ?>">More</a></figcaption>
+          <figure><img src="<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["resname"]; ?>">
+            <figcaption><a class="btn small" href="pages/restaurantpage.php?id=<?php echo $result["resID"]; ?>">More</a></figcaption>
 
           </figure>
           <div class="excerpt">
-            <text name="Top1"><strong>ที่พัก</strong></text>
-            <h6 class="heading"><a href="pages/accompage.php?id=<?php echo $result["acID"]; ?>"><?php echo $result["acname"];?></a></h6>
+            <text name="Top1"><strong>ร้าน</strong></text>
+            <h6 class="heading"><a href="pages/restaurantpage.php?id=<?php echo $result["resID"]; ?>"><?php echo $result["resname"];?></a></h6>
             <p><?php echo $result["adress"];?>&hellip;</p>
           </div>
         </article>
@@ -270,7 +271,7 @@ img {vertical-align: middle;}
 
 
 <?php
-$sql2 = "SELECT * FROM `accommodation` ORDER BY acID ASC ";
+$sql2 = "SELECT resname,image,resID,adress FROM `restaurant` WHERE 1 ORDER BY resID ASC";
 
 //$sql2 .= " ORDER BY sumcor DESC ,r.revID ASC";
 $query2 = mysqli_query($con, $sql2);
@@ -283,15 +284,15 @@ $total_page = ceil($total_record / $perpage);
 <nav>
 <ul class="pagination">
 <li>
-<a href="indexAccom.php?page=1" aria-label="Previous">
+<a href="indexRes.php?page=1" aria-label="Previous">
 <span aria-hidden="true">&laquo;</span>
 </a>
 </li>
 <?php for($i=1;$i<=$total_page;$i++){ ?>
-<li><a href="indexAccom.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+<li><a href="indexRes.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 <?php } ?>
 <li>
-<a href="indexAccom.php?page=<?php echo $total_page;?>" aria-label="Next">
+<a href="indexRes.php?page=<?php echo $total_page;?>" aria-label="Next">
 <span aria-hidden="true">&raquo;</span>
 </a>
 </li>

@@ -77,7 +77,7 @@ function ConfirmDelete(id)
 				<li><a href="insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
 				<li><a href="insertSouvenir.php">เพิ่มร้านขายของที่ระลึก</a></li>
 				<li><a href="insertCom.php">เพิ่มสถานที่พักผ่อน</a></li>
-				<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
+				<li><a href="index1.php">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
 			<li><a class="drop" href="#">ข้อมูลสถานที่</a>
 				<ul>
@@ -85,9 +85,9 @@ function ConfirmDelete(id)
 			<li><a href="selectRes.php">ข้อมูลร้านอาหาร</a></li>
 			<li><a href="selectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
 			<li><a href="selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
-			<li><a href="pages/editstatus.php">กำหนดสิทธิการเข้าใช้</a></li>
+
 		</ul>
-				<li><a href="pages/selectMember.php">Report</a></li>
+				<li><a href="#">Report</a></li>
 				<li><a href="editRegAdmin.php">Profile</a></li>
 			</ul>
 		</nav>

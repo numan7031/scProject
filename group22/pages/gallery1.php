@@ -234,7 +234,7 @@ img {vertical-align: middle;}
 		<div id="wrap">
 			<header>
 				<div class="inner relative">
-					<a class="logo" href="../index4.php"><img src="../img/Capture.jpg" alt="fresh design web"></a>
+					<a class="logo" href="../index4.php"></a>
 					<a id="menu-toggle" class="button dark" href="#"><i class="icon-reorder"></i></a>
 					<nav id="navigation">
 						<ul id="main-menu">
@@ -249,6 +249,14 @@ img {vertical-align: middle;}
       						<li><a href="../pages/publicSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
       						<li><a href="../pages/publicSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 								</ul>
+                <li><a class="drop" href="#">ข้อมูลสถานที่</a>
+                  <ul>
+
+                    <li><a href="../indexRes.php">ร้านอาหาร</a></li>
+                    <li><a href="../indexSurv.php">ร้านขายของที่ระลึก</a></li>
+                    <li><a href="../indexAccom.php">สถานที่พักผ่อน</a></li>
+                  </ul>
+                </li>
 							</li>
 							<li><a href="../pages/gallery1.php">Gallery</a></li>
 							<li><a href="../pages/aboutAs.php">About Me</a></li>

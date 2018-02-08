@@ -253,7 +253,7 @@ img {vertical-align: middle;}
 		<div id="wrap">
 			<header>
 				<div class="inner relative">
-					<a class="logo" href="../index.php"><img src="../img/Capture.jpg" alt="fresh design web"></a>
+					<a class="logo" href="../index.php"></a>
 					<a id="menu-toggle" class="button dark" href="#"><i class="icon-reorder"></i></a>
 					<nav id="navigation">
 						<ul id="main-menu">

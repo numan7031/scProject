@@ -171,21 +171,28 @@ img {vertical-align: middle;}
 	      <p>Attractions in Thailand</p>
 	    </div>
 
-	    <nav id="mainav" class="fl_right">
-	      <ul class="clear">
-	        <li class="active"><a href="../index.php">Home</a></li>
-	        <li><a class="drop" href="#">ค้นหาสถานที่</a>
-	          <ul>
-	            <li><a href="../pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-	            <li><a href="../search/UsSearch2.php">ค้นหาร้านอาหาร</a></li>
-	            <li><a href="../search/UsSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-	            <li><a href="../search/UsSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
-	          </ul>
-	        </li>
-	        <li><a href="../pages/UsGallery.php">Gallery</a></li>
-					<li><a href="../editRegister.php">Profile</a></li>
-	      </ul>
-	    </nav>
+			<nav id="mainav" class="fl_right">
+ 			 <ul class="clear">
+ 				 <li><a href="../index.php">Home</a></li>
+ 				 <li><a class="drop" href="#">ค้นหาสถานที่</a>
+ 					 <ul>
+ 						 <li><a href="../pages/UserSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+ 						 <li><a href="../search/UsSearch2.php">ค้นหาร้านอาหาร</a></li>
+ 						 <li><a href="../search/UsSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+ 						 <li><a href="../search/UsSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+ 					 </ul>
+ 				 </li>
+ 				 <li><a class="drop" href="#">ข้อมูลสถานที่</a>
+ 					<ul>
+
+ 						<li><a href="../indexRes1.php">ร้านอาหาร</a></li>
+ 						<li><a href="../indexSurv1.php">ร้านขายของที่ระลึก</a></li>
+ 						<li><a href="../indexAccom1.php">สถานที่พักผ่อน</a></li>
+ 					</ul>
+ 				</li>
+ 				 <li><a href="../editRegister.php">Profile</a></li>
+ 			 </ul>
+ 		 </nav>
 
 	  </header>
 	</div>
