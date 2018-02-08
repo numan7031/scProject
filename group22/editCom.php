@@ -20,7 +20,7 @@ if (isset($_POST['Submit'])) {
 	$target_path=$target_path.basename($_FILES['upload']['name']);
 	if(move_uploaded_file($_FILES['upload']['tmp_name'], $target_path)){
 
-    $sql = "UPDATE restaurant SET acsname = '$textacname',
+    $sql = "UPDATE accommodation SET acname = '$textacname',
                              adress = '$textadress',
 														 lat = '$textLat',
 														 lang = '$textLong',

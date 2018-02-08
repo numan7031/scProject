@@ -117,7 +117,7 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อมูลร้านขายของที่ระลึก</header>
+          <header class="heading">ข้อมูลสถานที่พัก</header>
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","scdb");
@@ -156,7 +156,7 @@ function ConfirmDelete(id)
 		echo '<td>' . $row['attracID'] . '</td>';
   	echo '<td><img src="'.$row['image'] .'" height="100" width="100"/></td>';
 		echo '<nav class="main-nav">';
-		echo '<td><figcaption><a class="btn small" href="editSouForm.php?id=' . $row['acID'] . '">Edit</a></figcaption></td> ';
+		echo '<td><figcaption><a class="btn small" href="editComForm.php?id=' . $row['acID'] . '">Edit</a></figcaption></td> ';
 		echo '<td><figcaption><a class="btn small" href="delete.php?id=' . $row['acID'] . '" onclick="return ConfirmDelete(' . $row['acID'] . ');">Delete</a></figcaption></td>';
 		echo '</nav>';
 		echo "</tr>";
