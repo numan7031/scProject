@@ -74,17 +74,17 @@ function ConfirmDelete(id)
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
 				<li><a href="AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				<li><a href="insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
-				<li><a href="insertSouvenir.php">เพิ่มร้านขายของที่ระลึก</a></li>
-				<li><a href="insertCom.php">เพิ่มสถานที่พักผ่อน</a></li>
+				<li><a href="#">เพิ่มร้านอาหาร</a></li>
+				<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
+				<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
 				<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
 			<li><a class="drop" href="#">ข้อมูลสถานที่</a>
 				<ul>
 			<li><a href="selectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
 			<li><a href="selectRes.php">ข้อมูลร้านอาหาร</a></li>
-			<li><a href="selectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
-			<li><a href="selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
+			<li><a href="#">ข้อมูลร้านขายของที่ระลึก</a></li>
+			<li><a href="#">ข้อมูลสถานที่พักผ่อน</a></li>
 			<li><a href="pages/editstatus.php">กำหนดสิทธิการเข้าใช้</a></li>
 		</ul>
 				<li><a href="pages/selectMember.php">Report</a></li>
@@ -117,26 +117,26 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อสมาชิก</header>
+          <header class="heading">ข้อมูลร้านขายของที่ระลึก</header>
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","scdb");
 	$conn->query("SET NAMES UTF8");
 	// get results from database
-	$sql="SELECT * FROM users";
+	$sql="SELECT * FROM accommodation";
 	$rs=$conn->query($sql);
 	// Print Header of Table
 	echo "<table border='1' cellpadding='10' width=80%>"; //open table
 	echo "<tr>
 	<center>
-			<th>หมายเลขผู้สมัคร</th>
-			<th>ชื่อผู้สมัคร</th>
-			<th>นามสกุล</th>
-			<th>E-Mail</th>
-			<th>Username</th>
-			<th>Password</th>
-			<th>Status</th>
-			<th>LastUpdate</th>
+			<th>รหัสร้านขายของที่ระลึก</th>
+			<th>ชื่อร้ชื่อร้านขายของที่ระลึก</th>
+			<th>ที่อยู่</th>
+			<th>Latitude</th>
+			<th>Longitude</th>
+			<th>เบอร์ติดต่อ</th>
+			<th>รายละเอียด</th>
+			<th>รหัสสถานที่ใกล้เคียง</th>
 			<th>รูปภาพ</th>
 			<th>แก้ไขสถานะ</th>
 			<th>ลบข้อมูล</th>
@@ -146,19 +146,18 @@ function ConfirmDelete(id)
 	while($row = $rs->fetch_assoc()) {
 		// echo out the contents of each row into a table
 		echo "<tr>";
-		echo '<td>' . $row['userID'] . '</td>';
-		echo '<td>' . $row['fname'] . '</td>';
-		echo '<td>' . $row['lname'] . '</td>';
-		echo '<td>' . $row['email'] . '</td>';
-		echo '<td>' . $row['username'] . '</td>';
-		echo '<td>' . $row['password'] . '</td>';
-		echo '<td>' . $row['status'] . '</td>';
-		echo '<td>' . $row['LastUpdate'] . '</td>';
-
-  	echo '<td><img src="'. $row['image'] .'" height="100" width="100"/></td>';
+		echo '<td>' . $row['acID'] . '</td>';
+		echo '<td>' . $row['acname'] . '</td>';
+		echo '<td>' . $row['adress'] . '</td>';
+		echo '<td>' . $row['lat'] . '</td>';
+		echo '<td>' . $row['lang'] . '</td>';
+		echo '<td>' . $row['phone'] . '</td>';
+		echo '<td>' . $row['description'] . '</td>';
+		echo '<td>' . $row['attracID'] . '</td>';
+  	echo '<td><img src="'.$row['image'] .'" height="100" width="100"/></td>';
 		echo '<nav class="main-nav">';
-		echo '<td><figcaption><a class="btn small" href="../group22/pages/editstatus.php?id=' . $row['userID'] . '">Edit</a></figcaption></td> ';
-		echo '<td><figcaption><a class="btn small" href="delete.php?id=' . $row['userID'] . '" onclick="return ConfirmDelete(' . $row['userID'] . ');">Delete</a></figcaption></td>';
+		echo '<td><figcaption><a class="btn small" href="editSouForm.php?id=' . $row['acID'] . '">Edit</a></figcaption></td> ';
+		echo '<td><figcaption><a class="btn small" href="delete.php?id=' . $row['acID'] . '" onclick="return ConfirmDelete(' . $row['acID'] . ');">Delete</a></figcaption></td>';
 		echo '</nav>';
 		echo "</tr>";
 	}
@@ -168,22 +167,7 @@ function ConfirmDelete(id)
 
         </figure>
       </div>
-      <nav class="pagination">
-        <ul>
-          <li><a href="#">&laquo; Previous</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">6</a></li>
-          <li class="current"><strong>7</strong></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">14</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">Next &raquo;</a></li>
-        </ul>
-      </nav>
+
     </div>
     <!-- / main body -->
     <div class="clear"></div>
