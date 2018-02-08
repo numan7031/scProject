@@ -11,7 +11,7 @@ if (isset($resid)) {
   $_SESSION['resgal']=$resid;
 }
 if(!isset($_SESSION['resgal'])){
-  header("location:../../selectAtt.php");
+  header("location:../../selectAcc.php");
 }
 
 $_resgalid = $_SESSION['resgal'];
