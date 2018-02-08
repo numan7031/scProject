@@ -1,6 +1,20 @@
 <?php
 require '../../connect.php';
+session_start();
+ob_start();
 
+if( isset($_REQUEST['resid']) ){
+  $resid = $_REQUEST['resid'];
+}
+
+if (isset($resid)) {
+  $_SESSION['resgal']=$resid;
+}
+if(!isset($_SESSION['resgal'])){
+  header("location:../../selectAtt.php");
+}
+
+$_resgalid = $_SESSION['resgal'];
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +47,7 @@ require '../../connect.php';
 <br>
   <form action="../../insertGaloryRes.php" method="post" enctype="multipart/form-data">
           <input name="upload[]" type="file" multiple="multiple" />
-          <input type="text" name="att" placeholder="รหัสร้าน"/>
+          <input type="text" name="att" placeholder="รหัสร้าน" value="<?php echo $_resgalid ?>" readonly/>
           <input type="submit" name="submit" value="UPLOAD" />
       </form>
       <br>
@@ -45,7 +59,7 @@ require '../../connect.php';
 //this is were images displayed
 
 
-            $sql3 = "SELECT * FROM `resimages` WHERE 1";
+            $sql3 = "SELECT * FROM `resimages` WHERE resID = $_resgalid";
             $query3 = mysqli_query($con, $sql3);
 
            while($result3 = mysqli_fetch_assoc($query3)){

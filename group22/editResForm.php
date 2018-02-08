@@ -126,6 +126,7 @@ function ConfirmDelete(id)
 				<span class="login100-form-title">
 					เพิ่มร้านอาหาร
 				</span>
+
 <div class="container-login100-form-btn">
 	<div class="wrap-input100 validate-input">
 		<div class="wrap-input100 validate-input">
@@ -138,6 +139,7 @@ function ConfirmDelete(id)
 		<div class="wrap-input100 validate-input">
 			<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
 			<input type="file" name="upload" id="upload">
+			
 		</div>
 		<div>
 			รหัสสถานที่ใกล้เคียง:

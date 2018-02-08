@@ -139,6 +139,7 @@ function ConfirmDelete(id)
 			<th>รูปภาพ</th>
 			<th>แก้ไขสถานะ</th>
 			<th>ลบข้อมูล</th>
+			<th>เพิ่มลบรูปภาพในแกลลอรี่</th>
 	</center>
 	</tr>";
 	// loop through results of database query, displaying them in the table
@@ -157,6 +158,7 @@ function ConfirmDelete(id)
 		echo '<nav class="main-nav">';
 		echo '<td><figcaption><a class="btn small" href="editAttForm.php?id=' . $row['attracID'] . '">Edit</a></figcaption></td> ';
 		echo '<td><figcaption><a class="btn small" href="delete.php?id=' . $row['attracID'] . '" onclick="return ConfirmDelete(' . $row['attracID'] . ');">Delete</a></figcaption></td>';
+		echo '<td><figcaption><a class="btn small" href="pages/html/insertGalaryAtt.php?resid=' . $row['attracID'] . '" target="_blank">แกลอรี่</a></figcaption></td>';
 		echo '</nav>';
 		echo "</tr>";
 	}
