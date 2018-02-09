@@ -89,38 +89,39 @@
   <header id="header" class="hoc clear">
 
     <div id="logo" class="fl_left">
-      <h1><a href="index1.php">SUT</a></h1>
+      <h1><a href="../../index1.php">SUT</a></h1>
       <p>Report and Charts</p>
     </div>
 
 		<nav id="mainav" class="fl_right">
 			<ul class="clear">
-				<li class="active"><a href="index1.php">Home</a></li>
+				<li class="active"><a href="../../index1.php">Home</a></li>
 				<li><a class="drop" href="#">ค้นหาสถานที่</a>
 					<ul>
-						<li><a href="pages/adSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-						<li><a href="search/AdSearch2.php">ค้นหาร้านอาหาร</a></li>
-						<li><a href="search/AdSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-						<li><a href="search/AdSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+						<li><a href="../../pages/adSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+						<li><a href="../../search/AdSearch2.php">ค้นหาร้านอาหาร</a></li>
+						<li><a href="../../search/AdSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+						<li><a href="../../search/AdSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 					</ul>
 				</li>
 				<li><a class="drop" href="#">Scope</a>
 					<ul>
-				<li><a href="AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				<li><a href="insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
-				<li><a href="insertSouvenir.php">เพิ่มร้านขายของที่ระลึก</a></li>
-				<li><a href="insertCom.php">เพิ่มสถานที่พักผ่อน</a></li>
-				<li><a href="index1.php">กำหนดสิทธิการเข้าใช้</a></li>
+				<li><a href="../../AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+				<li><a href="../../insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
+				<li><a href="../../insertSouvenir.php">เพิ่มร้านขายของที่ระลึก</a></li>
+				<li><a href="../../insertCom.php">เพิ่มสถานที่พักผ่อน</a></li>
+				<li><a href="../../index1.php">กำหนดสิทธิการเข้าใช้</a></li>
 			</ul>
 			<li><a class="drop" href="#">ข้อมูลสถานที่</a>
 				<ul>
-			<li><a href="selectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
-			<li><a href="selectRes.php">ข้อมูลร้านอาหาร</a></li>
-			<li><a href="selectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
-			<li><a href="selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
+			<li><a href="../../selectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+			<li><a href="../../selectRes.php">ข้อมูลร้านอาหาร</a></li>
+			<li><a href="../../selectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+			<li><a href="../../selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
 
 		</ul>
-				<li><a href="editRegAdmin.php">Profile</a></li>
+		<li><a href="../../pages/html/ChartAdmin.php">Report</a></li>
+				<li><a href="../../editRegAdmin.php">Profile</a></li>
 			</ul>
 		</nav>
 

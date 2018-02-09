@@ -156,7 +156,7 @@ function ConfirmDelete(id)
 		echo '<td>' . $row['attracID'] . '</td>';
   	echo '<td><img src="'.$row['image'] .'" height="100" width="100"/></td>';
 		echo '<nav class="main-nav">';
-		echo '<td><figcaption><a class="btn small" href="editResForm.php?id=' . $row['resID'] . '">Edit</a></figcaption></td> ';
+		echo '<td><figcaption><a class="btn small" href="EmpEditResForm.php?id=' . $row['resID'] . '">Edit</a></figcaption></td> ';
 		echo '<td><figcaption><a class="btn small" href="EmpDeletedRes.php?id=' . $row['resID'] . '" onclick="return ConfirmDelete(' . $row['resID'] . ');">Delete</a></figcaption></td>';
 		echo '<td><figcaption><a class="btn small" href="pages/html/insertGalaryRes.php?resid=' . $row['resID'] . '" target="_blank">แกลอรี่</a></figcaption></td>';
 		echo '</nav>';

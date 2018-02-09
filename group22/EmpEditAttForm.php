@@ -68,60 +68,89 @@ function ConfirmDelete(id)
     </nav>
   </header>
 
-<div class="wrapper row1">
-  <header id="header" class="hoc clear">
+	<div class="wrapper row1">
+	  <header id="header" class="hoc clear">
 
-    <div id="logo" class="fl_left">
-      <h1><a href="index1.php">SUT</a></h1>
-      <p>Attractions in Thailand</p>
-    </div>
+			<div id="logo" class="fl_left">
+	      <h1><a href="index2.php">SUT</a></h1>
+	      <p>Attractions in Thailand</p>
+	    </div>
 
-		<nav id="mainav" class="fl_right">
-			<ul class="clear">
-				<li class="active"><a href="index1.php">Home</a></li>
-				<li><a class="drop" href="#">ค้นหาสถานที่</a>
+			<nav id="mainav" class="fl_right">
+				<ul class="clear">
+					<li class="active"><a href="index2.php">Home</a></li>
+					<li><a class="drop" href="#">ค้นหาสถานที่</a>
+						<ul>
+							<li><a href="pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+							<li><a href="search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
+							<li><a href="search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+							<li><a href="search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+						</ul>
+					</li>
+					<li><a class="drop" href="#">Scope</a>
+						<ul>
+					<li><a href="InsertAttraction1.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="insertrestaurant1.php">เพิ่มร้านอาหาร</a></li>
+					<li><a href="insertSouvenir1.php">เพิ่มร้านขายของที่ระลึก</a></li>
+					<li><a href="insertCom1.php">เพิ่มสถานที่พักผ่อน</a></li>
+				</ul>
+				<li><a class="drop" href="#">ข้อมูลสถานที่</a>
 					<ul>
-						<li><a href="pages/adSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-						<li><a href="search/AdSearch2.php">ค้นหาร้านอาหาร</a></li>
-						<li><a href="search/AdSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-						<li><a href="search/AdSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
-					</ul>
-				</li>
-				<li><a class="drop" href="#">Scope</a>
-					<ul>
-				<li><a href="AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				<li><a href="insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
-				<li><a href="insertSouvenir.php">เพิ่มร้านขายของที่ระลึก</a></li>
-				<li><a href="insertCom.php">เพิ่มสถานที่พักผ่อน</a></li>
-				<li><a href="index1.php">กำหนดสิทธิการเข้าใช้</a></li>
-			</ul>
-			<li><a class="drop" href="#">ข้อมูลสถานที่</a>
-				<ul>
-			<li><a href="selectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
-			<li><a href="selectRes.php">ข้อมูลร้านอาหาร</a></li>
-			<li><a href="selectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
-			<li><a href="selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
+				<li><a href="EmpSelectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+				<li><a href="EmpSelectRes.php">ข้อมูลร้านอาหาร</a></li>
+				<li><a href="EmpSelectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+				<li><a href="EmpSelectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
 
-		</ul>
-				<li><a href="pages/html/ChartAdmin.php">Report</a></li>
-				<li><a href="editRegAdmin.php">Profile</a></li>
 			</ul>
-		</nav>
-  </header>
-</div>
+					<li><a href="#">Report</a></li>
+					<li><a href="editRegEmployee.php">Profile</a></li>
+				</ul>
+			</nav>
+
+	  </header>
+	</div>
 
 <div class="limiter">
 	<div class="container-login100">
 		<div class="wrap-login100">
-			<form name="form1" method="post" enctype="multipart/form-data" action="AdminInsertAtt.php">
+			<?php
+			$conn = mysqli_connect("localhost","root","","scdb");
+			$conn->query("SET NAMES UTF8");
+
+			if (!$conn) {
+				die("Connection failed: " . mysqli_connect_error());
+			}
+
+					$id = $_REQUEST['id'];
+
+
+			$sql = "SELECT * FROM attractions WHERE attracID=" . $id;
+			$result = mysqli_query($conn, $sql);
+
+			if (mysqli_num_rows($result) > 0) {
+							$row = mysqli_fetch_assoc($result)
+
+			?>
+			<form name="form1" method="post" enctype="multipart/form-data" action="editAtt.php">
 				<span class="login100-form-title">
 					เพิ่มสถานที่ท่องเที่ยว
 				</span>
+				<div class="wrap-input100 validate-input">
+					<input class="input100" type="hidden" name="attracID" id="attracID" value="<?php echo $row["attracID"];?>">
+					<span class="focus-input100"></span>
+				</div>
+				<div class="login100-pic js-tilt" data-tilt>
+				<img src="<?php echo $row["image"];?>">
+				</div>
+				<div class="wrap-input100 validate-input">
+					<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
+					<input type="file" name="upload" id="upload">
+				</div>
 <div class="container-login100-form-btn">
 	<div class="wrap-input100 validate-input">
 		<div>
 			จุดเด่นของสถานที่:
-			<select id="typeAttraction" name="typeAttraction" class="input100">
+			<select id="typeAttraction" name="typeAttraction" class="input100" value="<?php echo $row["typeAttraction"];?>">
 	          <option value="Wifi">Wifi</option>
 	          <option value="3G-4G">3G-4G</option>
 	          <option value="Unseen Thailand">Unseen Thailand</option>
@@ -139,7 +168,7 @@ function ConfirmDelete(id)
 	        </select>
 			<span class="focus-input100"></span>
 			ประเภทของจุดเด่น:
-			<select id="typeID" name="typeID" class="input100">
+			<select id="typeID" name="typeID" class="input100" value="<?php echo $row["type_id"];?>">
 	          <option value="1">Wifi</option>
 	          <option value="2">3G-4G</option>
 	          <option value="3">Unseen Thailand</option>
@@ -160,44 +189,44 @@ function ConfirmDelete(id)
 		<div><br></div>
 		<table border='1' cellpadding='10' width=80%>
 		<tr>
-		<th><select id="typewifi" name="typewifi" class="input100">
+		<th><select id="typewifi" name="typewifi" class="input100" value="<?php echo $row["wifi"];?>">
 					<option value="มีบริการ">มี Wifi</option>
 					<option value="ไม่มีบริการ">ไม่มี Wifi</option>
 				</select>
 		</th>
-		<th><select id="typeThreeG" name="typeThreeG" class="input100">
+		<th><select id="typeThreeG" name="typeThreeG" class="input100" value="<?php echo $row["threeGfourG"];?>">
 					<option value="มีบริการ">มี 3G-4G</option>
 					<option value="ไม่มีบริการ">ไม่มี 3G-4G</option>
 				</select>
 		</th>
-		<th><select id="typeToilet" name="typeToilet" class="input100">
+		<th><select id="typeToilet" name="typeToilet" class="input100" value="<?php echo $row["toilet"];?>">
 					<option value="มีบริการ">มีบริการห้องสุขา</option>
 					<option value="ไม่มีบริการ">ไม่มีบริการห้องสุขา</option>
 				</select>
 		</th></tr>
 		<tr>
-			<th><select id="typeTourdesk" name="typeTourdesk" class="input100">
+			<th><select id="typeTourdesk" name="typeTourdesk" class="input100" value="<?php echo $row["tourdesk"];?>">
 						<option value="มีบริการ">มีบริการนำเที่ยว</option>
 						<option value="ไม่มีบริการ">ไม่มีบริการนำเที่ยว</option>
 					</select>
 			</th>
-			<th><select id="typeMedical" name="typeMedical" class="input100">
+			<th><select id="typeMedical" name="typeMedical" class="input100" value="<?php echo $row["Medical"];?>">
 						<option value="มีบริการ">มีหน่วยบริการแพทย์</option>
 						<option value="ไม่มีบริการ">ไม่มีหน่วยบริการแพทย์</option>
 					</select>
 			</th>
-			<th><select id="typeSecurity" name="typeSecurity" class="input100">
+			<th><select id="typeSecurity" name="typeSecurity" class="input100" value="<?php echo $row["security"];?>">
 						<option value="มีบริการ">มีหน่วยรักษาความปลอดภัย</option>
 						<option value="ไม่มีบริการ">ไม่มีหน่วยรักษาความปลอดภัย</option>
 					</select>
 			</th></tr>
 			<tr>
-				<th><select id="typefac" name="typefac" class="input100">
+				<th><select id="typefac" name="typefac" class="input100" value="<?php echo $row["facilitiesfordisabled"];?>">
 							<option value="มีบริการ">มีสิ่งอำนวยความสะดวก</option>
 							<option value="ไม่มีบริการ">ไม่มีสิ่งอำนวยความสะดวก</option>
 						</select>
 			</th>
-			<th><select id="typeUnseen" name="typeUnseen" class="input100">
+			<th><select id="typeUnseen" name="typeUnseen" class="input100" value="<?php echo $row["unseen"];?>">
 						<option value="เป็น">เป็น Unseen Thailand</option>
 						<option value="ไม่เป็น">ไม่เป็น Unseen Thailand</option>
 					</select>
@@ -206,53 +235,50 @@ function ConfirmDelete(id)
 	</table>
 	</div>
 </div>
-<div class="wrap-input100 validate-input">
-	<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
-	<input type="file" name="upload" id="upload">
-</div>
+
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="textAtname" id="textAtname" placeholder="ชื่อสถานที่ท่องเที่ยว">
+					<input class="input100" type="text" name="textAtname" id="textAtname" placeholder="ชื่อสถานที่ท่องเที่ยว" value="<?php echo $row["atname"];?>">
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textHistory" name="textHistory" placeholder="ประวัติความเป็นมา/เรื่องเล่า"></textarea>
+				<textarea class="input100" id="history" name="history" placeholder="ประวัติความเป็นมา/เรื่องเล่า" value="" cols="40" rows="3" ><?php echo $row["history"]; ?></textarea>
 				<span class="focus-input100"></span>
 			</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textAdress" name="textAdress" placeholder="...ที่อยู่..."></textarea>
+				<textarea class="input100" id="adress" name="adress" value="" cols="40" rows="3" placeholder="...ที่อยู่..." ><?php echo $row["adress"]; ?></textarea>
 				<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude">
+					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude" value="<?php echo $row["lat"];?>">
 					<span class="focus-input100"></span>
 
-					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude">
+					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude" value="<?php echo $row["lng"];?>">
 					<span class="focus-input100"></span>
 				</div>
 				<div>
-					<textarea class="input100" id="textTravel" name="textTravel" placeholder="คำแนะนำ"></textarea>
+					<textarea class="input100" id="traveladvice" name="traveladvice" placeholder="คำแนะนำ" value="" cols="40" rows="3" ><?php echo $row["traveladvice"]; ?></textarea>
 					<span class="focus-input100"></span>
-					<textarea class="input100" id="textTra" name="textTra" placeholder="คำแนะนำสำหรับผู้พิการ เด็ก สตรีมีครรต์"></textarea>
-					<span class="focus-input100"></span>
-				</div>
-				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="textPrice" id="textPrice" placeholder="ค่าใช้จ่าย">
+					<textarea class="input100" id="advicefordisabled" name="advicefordisabled" placeholder="คำแนะนำสำหรับผู้พิการ เด็ก สตรีมีครรต์" value="" cols="40" rows="3" ><?php echo $row["advicefordisabled"]; ?></textarea>
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textActivity" name="textActivity" placeholder="กิจกรรม"></textarea>
+					<input class="input100" type="text" name="textPrice" id="textPrice" placeholder="ค่าใช้จ่าย" value="<?php echo $row["price"];?>">
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100 validate-input">
+				<textarea class="input100" id="activities" name="activities" placeholder="กิจกรรม" value="" cols="40" rows="3" ><?php echo $row["activities"]; ?></textarea>
 				<span class="focus-input100"></span>
 			</div>
 			<div class="wrap-input100 validate-input">
-				<input class="input100" type="text" name="textfestival" id="textfestival" placeholder="ช่วงเทศกาล">
+				<input class="input100" type="text" name="textfestival" id="textfestival" placeholder="ช่วงเทศกาล" value="<?php echo $row["festival"];?>">
 				<span class="focus-input100"></span>
 			</div>
 			<div>
-				<textarea class="input100" id="textVar" name="textVar" placeholder="สถานที่หลากหลายบรรยากาศ"></textarea>
+				<textarea class="input100" id="variousnature" name="variousnature" placeholder="สถานที่หลากหลายบรรยากาศ" value="" cols="40" rows="3" ><?php echo $row["variousnature"]; ?></textarea>
 				<span class="focus-input100"></span>
-				<textarea class="input100" id="textIn" name="textIn" placeholder="ทดแทนในประเทศ"></textarea>
+				<textarea class="input100" id="replacein" name="replacein" placeholder="ทดแทนในประเทศ" value="" cols="40" rows="3" ><?php echo $row["replacein"]; ?></textarea>
 				<span class="focus-input100"></span>
-				<textarea class="input100" id="textout" name="textout" placeholder="ทดแทนในต่างประเทศ"></textarea>
+				<textarea class="input100" id="replaceout" name="replaceout" placeholder="ทดแทนในต่างประเทศ" value="" cols="40" rows="3" ><?php echo $row["replaceout"]; ?></textarea>
 				<span class="focus-input100"></span>
 			</div>
 				<div class="container-login100-form-btn">
@@ -326,6 +352,10 @@ function ConfirmDelete(id)
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<?php
+					}
+		mysqli_close($conn);
+	?>
 </body>
 </html>
 <?
