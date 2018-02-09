@@ -117,7 +117,7 @@ function ConfirmDelete(id)
     <div class="content">
       <div id="gallery">
         <figure>
-          <header class="heading">ข้อสถานที่ท่องเที่ยว</header>
+          <header class="heading">ข้อมูลร้านอาหาร</header>
           <?php
 	// connect to the database
 	$conn=mysqli_connect("localhost", "root", "","scdb");

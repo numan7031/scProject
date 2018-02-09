@@ -9,27 +9,27 @@
 if (isset($_POST['Submit'])) {
 	$target_path="./img_res/";
 	$attID = $_POST["attID"];
-	$resID = $_POST["resID"];
 	$textresname = $_POST["textresname"];
-	$textadress = $_POST["textadress"];
+	$description = $_POST["description"];
+	$adress = $_POST["adress"];
+	$textLong = $_POST["textLong"];
 	$textphone = $_POST["textphone"];
-	$textDescription = $_POST["textDescription"];
 	$textLat = $_POST["textLat"];
 	$textLong = $_POST["textLong"];
-
+	$resID = $_POST["resID"];
 	$target_path=$target_path.basename($_FILES['upload']['name']);
 	if(move_uploaded_file($_FILES['upload']['tmp_name'], $target_path)){
 
     $sql = "UPDATE restaurant SET resname = '$textresname',
-                             adress = '$textadress',
-														 lat = '$textLat',
-														 lng = '$textLong',
+                             lat = '$textLat',
+                             lng = '$textLong',
+														 description = '$description',
+														 adress = '$adress',
 														 phone = '$textphone',
-														 description = '$textDescription',
-														 attracID = '$attID',
-														 image = '$target_path'
+														 image = '$target_path',
+														 attracID = '$attID'
                          WHERE
-                             	resID = '$resID'";
+                             resID = '$resID'";
     $update = $con->query($sql);
     if ($update) {
       echo "Update successfully!!";
@@ -42,7 +42,7 @@ if (isset($_POST['Submit'])) {
 
  ?>
  <form>
- 	<p><a href="selectRes.php">กลับไปยังหน้าข้อมูลสถานที่ท่องเที่ยว</a></p>
+ 	<p><a href="selectAtt.php">กลับไปยังหน้าข้อมูลสถานที่ท่องเที่ยว</a></p>
  </form>
 </body>
 </html>

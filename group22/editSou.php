@@ -11,7 +11,7 @@ if (isset($_POST['Submit'])) {
 	$attID = $_POST["attID"];
 	$servID = $_POST["servID"];
 	$textname = $_POST["textname"];
-	$textadress = $_POST["textadress"];
+	$adress = $_POST["adress"];
 	$textphone = $_POST["textphone"];
 	$textLat = $_POST["textLat"];
 	$textLong = $_POST["textLong"];
@@ -20,7 +20,7 @@ if (isset($_POST['Submit'])) {
 	if(move_uploaded_file($_FILES['upload']['tmp_name'], $target_path)){
 
     $sql = "UPDATE souvenir SET name = '$textname',
-                             adress = '$textadress',
+                             adress = '$adress',
 														 lat = '$textLat',
 														 lng = '$textLong',
 														 phone = '$textphone',

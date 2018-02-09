@@ -232,11 +232,11 @@ function ConfirmDelete(id)
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textHistory" name="textHistory" placeholder="ประวัติความเป็นมา/เรื่องเล่า" value="<?php echo $row["history"];?>"></textarea>
+				<textarea class="input100" id="history" name="history" placeholder="ประวัติความเป็นมา/เรื่องเล่า" value="" cols="40" rows="3" ><?php echo $row["history"]; ?></textarea>
 				<span class="focus-input100"></span>
 			</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textAdress" name="textAdress" placeholder="...ที่อยู่..." value="<?php echo $row["adress"];?>"></textarea>
+				<textarea class="input100" id="adress" name="adress" value="" cols="40" rows="3" placeholder="...ที่อยู่..." ><?php echo $row["adress"]; ?></textarea>
 				<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
@@ -247,9 +247,9 @@ function ConfirmDelete(id)
 					<span class="focus-input100"></span>
 				</div>
 				<div>
-					<textarea class="input100" id="textTravel" name="textTravel" placeholder="คำแนะนำ" value="<?php echo $row["traveladvice"];?>"></textarea>
+					<textarea class="input100" id="traveladvice" name="traveladvice" placeholder="คำแนะนำ" value="" cols="40" rows="3" ><?php echo $row["traveladvice"]; ?></textarea>
 					<span class="focus-input100"></span>
-					<textarea class="input100" id="textTra" name="textTra" placeholder="คำแนะนำสำหรับผู้พิการ เด็ก สตรีมีครรต์" value="<?php echo $row["advicefordisabled"];?>"></textarea>
+					<textarea class="input100" id="advicefordisabled" name="advicefordisabled" placeholder="คำแนะนำสำหรับผู้พิการ เด็ก สตรีมีครรต์" value="" cols="40" rows="3" ><?php echo $row["advicefordisabled"]; ?></textarea>
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
@@ -257,7 +257,7 @@ function ConfirmDelete(id)
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textActivity" name="textActivity" placeholder="กิจกรรม" value="<?php echo $row["activities"];?>"></textarea>
+				<textarea class="input100" id="activities" name="activities" placeholder="กิจกรรม" value="" cols="40" rows="3" ><?php echo $row["activities"]; ?></textarea>
 				<span class="focus-input100"></span>
 			</div>
 			<div class="wrap-input100 validate-input">
@@ -265,11 +265,11 @@ function ConfirmDelete(id)
 				<span class="focus-input100"></span>
 			</div>
 			<div>
-				<textarea class="input100" id="textVar" name="textVar" placeholder="สถานที่หลากหลายบรรยากาศ" value="<?php echo $row["variousnature"];?>"></textarea>
+				<textarea class="input100" id="variousnature" name="variousnature" placeholder="สถานที่หลากหลายบรรยากาศ" value="" cols="40" rows="3" ><?php echo $row["variousnature"]; ?></textarea>
 				<span class="focus-input100"></span>
-				<textarea class="input100" id="textIn" name="textIn" placeholder="ทดแทนในประเทศ" value="<?php echo $row["replacein"];?>"></textarea>
+				<textarea class="input100" id="replacein" name="replacein" placeholder="ทดแทนในประเทศ" value="" cols="40" rows="3" ><?php echo $row["replacein"]; ?></textarea>
 				<span class="focus-input100"></span>
-				<textarea class="input100" id="textout" name="textout" placeholder="ทดแทนในต่างประเทศ" value="<?php echo $row["replaceout"];?>"></textarea>
+				<textarea class="input100" id="replaceout" name="replaceout" placeholder="ทดแทนในต่างประเทศ" value="" cols="40" rows="3" ><?php echo $row["replaceout"]; ?></textarea>
 				<span class="focus-input100"></span>
 			</div>
 				<div class="container-login100-form-btn">

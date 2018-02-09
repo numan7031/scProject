@@ -153,7 +153,7 @@ function ConfirmDelete(id)
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textadress" name="textadress" placeholder="...ที่อยู่..." value="<?php echo $row["adress"];?>"></textarea>
+				<textarea class="input100" id="adress" name="adress" value="" cols="40" rows="3" placeholder="...ที่อยู่..." ><?php echo $row["adress"]; ?></textarea>
 				<span class="focus-input100"></span>
 			</div>
 			<div class="wrap-input100 validate-input">

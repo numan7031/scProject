@@ -11,9 +11,9 @@ if (isset($_POST['Submit'])) {
 	$attID = $_POST["attID"];
 	$acID = $_POST["acID"];
 	$textacname = $_POST["textacname"];
-	$textadress = $_POST["textadress"];
+	$adress = $_POST["adress"];
 	$textphone = $_POST["textphone"];
-	$textDescription = $_POST["textDescription"];
+	$description = $_POST["description"];
 	$textLat = $_POST["textLat"];
 	$textLong = $_POST["textLong"];
 
@@ -21,11 +21,11 @@ if (isset($_POST['Submit'])) {
 	if(move_uploaded_file($_FILES['upload']['tmp_name'], $target_path)){
 
     $sql = "UPDATE accommodation SET acname = '$textacname',
-                             adress = '$textadress',
+                             adress = '$adress',
 														 lat = '$textLat',
 														 lng = '$textLong',
 														 phone = '$textphone',
-														 description = '$textDescription',
+														 description = '$description',
 														 attracID = '$attID',
 														 image = '$target_path'
                          WHERE
