@@ -163,39 +163,47 @@
         </nav>
       </header>
 
-    <div class="wrapper row1">
-      <header id="header" class="hoc clear">
+			<div class="wrapper row1">
+			  <header id="header" class="hoc clear">
 
-        <div id="logo" class="fl_left">
-          <h1><a href="../index2.php">SUT</a></h1>
-          <p>Attractions in Thailand</p>
-        </div>
+					<div id="logo" class="fl_left">
+			      <h1><a href="../index2.php">SUT</a></h1>
+			      <p>Attractions in Thailand</p>
+			    </div>
 
-    		<nav id="mainav" class="fl_right">
-    			<ul class="clear">
-    				<li class="active"><a href="../index2.php">Home</a></li>
-    				<li><a class="drop" href="#">ค้นหาสถานที่</a>
-    					<ul>
-    						<li><a href="../pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-    						<li><a href="../search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
-    						<li><a href="../search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-    						<li><a href="../search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
-    					</ul>
-    				</li>
-    				<li><a class="drop" href="#">Scope</a>
-    					<ul>
-    				<li><a href="../pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-    				<li><a href="#">เพิ่มร้านอาหาร</a></li>
-    				<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
-    				<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
-    			</ul>
-    				<li><a href="../pages/selectReview.php">Report</a></li>
-    				<li><a href="../editRegEmployee.php">Profile</a></li>
-    			</ul>
-    		</nav>
+					<nav id="mainav" class="fl_right">
+						<ul class="clear">
+							<li class="active"><a href="../index2.php">Home</a></li>
+							<li><a class="drop" href="#">ค้นหาสถานที่</a>
+								<ul>
+									<li><a href="../pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+									<li><a href="../search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
+									<li><a href="../search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+									<li><a href="../search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+								</ul>
+							</li>
+							<li><a class="drop" href="#">Scope</a>
+								<ul>
+							<li><a href="../InsertAttraction1.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+							<li><a href="../insertrestaurant1.php">เพิ่มร้านอาหาร</a></li>
+							<li><a href="../insertSouvenir1.php">เพิ่มร้านขายของที่ระลึก</a></li>
+							<li><a href="../insertCom1.php">เพิ่มสถานที่พักผ่อน</a></li>
+						</ul>
+						<li><a class="drop" href="#">ข้อมูลสถานที่</a>
+							<ul>
+						<li><a href="../EmpSelectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+						<li><a href="../EmpSelectRes.php">ข้อมูลร้านอาหาร</a></li>
+						<li><a href="../EmpSelectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+						<li><a href="../EmpSelectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
 
-      </header>
-    </div>
+					</ul>
+							<li><a href="#">Report</a></li>
+							<li><a href="../editRegEmployee.php">Profile</a></li>
+						</ul>
+					</nav>
+
+			  </header>
+			</div>
 				<div class="page-body clearfix">
 					<div class="row">
 						<div class="col-md-offset-2 col-md-8">
@@ -237,11 +245,11 @@
 											 <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
 												 <article class="element">
 													 <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["resname"]; ?>">
-														 <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["resID"]; ?>">More</a></figcaption>
+														 <figcaption><a class="btn small" href="../pages/restaurantpage.php?id=<?php echo $result["resID"]; ?>">More</a></figcaption>
 													 </figure>
 													 <div class="excerpt">
 														 <text name="Top1"><strong>รหัสสถานที่: <?php echo $result["resID"];  ?></strong></text>
-														 <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $result["resID"]; ?>"><?php echo $result["resname"];?></a></h6>
+														 <h6 class="heading"><a href="../pages/restaurantpage.php?id=<?php echo $result["resID"]; ?>"><?php echo $result["resname"];?></a></h6>
 														 <p><?php echo $result["phone"];?>&hellip;</p>
 														 <p><?php echo $result["adress"];?>&hellip;</p>
 													 </div>
@@ -343,7 +351,7 @@
 </figure>\
 										<p class="li-post-desc">'+post.adress+'</p>\
                     <p class="li-post-desc">'+post.phone+'</p>\
-                    <figcaption><a class="btn small" href="restaurant.php?id='+post.resID+'">More</a></figcaption>\
+                    <figcaption><a class="btn small" href="../pages/restaurantpage.php?id='+post.resID+'">More</a></figcaption>\
 									</div>');
 				    });
 				}

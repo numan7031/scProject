@@ -158,17 +158,28 @@ img {vertical-align: middle;}
 					<li><a class="drop" href="#">ค้นหาสถานที่</a>
 						<ul>
 							<li><a href="../pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-							<li><a href="../pages/empSearch2.php">ค้นหาร้านอาหาร</a></li>
-							<li><a href="../pages/empSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-							<li><a href="../pages/empSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+							<li><a href="../search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
+							<li><a href="../search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+							<li><a href="../search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
 						</ul>
 					</li>
 					<li><a class="drop" href="#">Scope</a>
 						<ul>
-					<li><a href="../pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="../InsertAttraction1.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="../insertrestaurant1.php">เพิ่มร้านอาหาร</a></li>
+					<li><a href="../insertSouvenir1.php">เพิ่มร้านขายของที่ระลึก</a></li>
+					<li><a href="../insertCom1.php">เพิ่มสถานที่พักผ่อน</a></li>
 				</ul>
-					<li><a href="../pages/selectReview.php">Report</a></li>
+				<li><a class="drop" href="#">ข้อมูลสถานที่</a>
+					<ul>
+				<li><a href="../EmpSelectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+				<li><a href="../EmpSelectRes.php">ข้อมูลร้านอาหาร</a></li>
+				<li><a href="../EmpSelectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+				<li><a href="../EmpSelectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
 
+			</ul>
+					<li><a href="#">Report</a></li>
+					<li><a href="../editRegEmployee.php">Profile</a></li>
 				</ul>
 			</nav>
 
@@ -214,8 +225,9 @@ img {vertical-align: middle;}
         <?php foreach ($all_row as $key => $product) { ?>
         <div class="col-sm-3 col-md-3">
         	<div class="well">
+						<figure><a href="actractionpage.php?id=<?php echo $product["attracID"]; ?>"><img src="../img/<?php echo $product['image']; ?>" style="width:320px;height:210px;"></a>
+						</figure>
 
-            <a href="#"><img src="product_images/<?php echo $product['image']; ?>"></a>
 						<p>ID: <?php echo $product['attracID']; ?></p>
         		<h2 class="text-info"><?php echo $product['atname']; ?></h2>
         		<p><span class="label label-info">ประเภทของจุดเด่น : <?php echo $product['type_id']; ?></span></p>
@@ -223,7 +235,7 @@ img {vertical-align: middle;}
         		<hr>
         		<h3>จุดเด่น: <?php echo $product['typeAttraction']; ?></h3>
         		<hr>
-              <p><a class="btn btn-default btn-lg" href="../pages/selectAtt1.php?id=' . $product['attracID'] . '"><i class="icon-ok"></i>รายละเอียด</a></p>
+              <figcaption><a class="btn small" href="actractionpage.php?id=<?php echo $product["attracID"]; ?>">ดูรายละเอียด</a></figcaption>
         	</div>
         </div>
         <?php } ?>

@@ -246,11 +246,11 @@
 											 <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
 												 <article class="element">
 													 <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["name"]; ?>">
-														 <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["servID"]; ?>">More</a></figcaption>
+														 <figcaption><a class="btn small" href="../pages/survanirpage.php?id=<?php echo $result["servID"]; ?>">More</a></figcaption>
 													 </figure>
 													 <div class="excerpt">
 														 <text name="Top1"><strong>รหัสสถานที่: <?php echo $result["servID"];  ?></strong></text>
-														 <h6 class="heading"><a href="pages/actractionpage.php?id=<?php echo $result["servID"]; ?>"><?php echo $result["name"];?></a></h6>
+														 <h6 class="heading"><a href="../pages/survanirpage.php?id=<?php echo $result["servID"]; ?>"><?php echo $result["name"];?></a></h6>
 														 <p><?php echo $result["phone"];?>&hellip;</p>
 														 <p><?php echo $result["adress"];?>&hellip;</p>
 													 </div>
@@ -349,7 +349,7 @@
 </figure>\
 										<p class="li-post-desc">'+post.adress+'</p>\
                     <p class="li-post-desc">'+post.phone+'</p>\
-                    <figcaption><a class="btn small" href="restaurant.php?id='+post.servID+'">More</a></figcaption>\
+                    <figcaption><a class="btn small" href="../pages/survanirpage.php?id='+post.servID+'">More</a></figcaption>\
 									</div>');
 				    });
 				}
