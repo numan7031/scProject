@@ -68,72 +68,61 @@ function ConfirmDelete(id)
     </nav>
   </header>
 
-<div class="wrapper row1">
-  <header id="header" class="hoc clear">
+	<div class="wrapper row1">
+	  <header id="header" class="hoc clear">
 
-    <div id="logo" class="fl_left">
-      <h1><a href="index1.php">SUT</a></h1>
-      <p>Attractions in Thailand</p>
-    </div>
+			<div id="logo" class="fl_left">
+	      <h1><a href="index2.php">SUT</a></h1>
+	      <p>Attractions in Thailand</p>
+	    </div>
 
-		<nav id="mainav" class="fl_right">
-			<ul class="clear">
-				<li class="active"><a href="index1.php">Home</a></li>
-				<li><a class="drop" href="#">ค้นหาสถานที่</a>
+			<nav id="mainav" class="fl_right">
+				<ul class="clear">
+					<li class="active"><a href="index2.php">Home</a></li>
+					<li><a class="drop" href="#">ค้นหาสถานที่</a>
+						<ul>
+							<li><a href="pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+							<li><a href="search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
+							<li><a href="search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+							<li><a href="search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+						</ul>
+					</li>
+					<li><a class="drop" href="#">Scope</a>
+						<ul>
+					<li><a href="InsertAttraction1.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="insertrestaurant1.php">เพิ่มร้านอาหาร</a></li>
+					<li><a href="insertSouvenir1.php">เพิ่มร้านขายของที่ระลึก</a></li>
+					<li><a href="insertCom1.php">เพิ่มสถานที่พักผ่อน</a></li>
+				</ul>
+				<li><a class="drop" href="#">ข้อมูลสถานที่</a>
 					<ul>
-						<li><a href="pages/adminSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-						<li><a href="pages/adminSearch2.php">ค้นหาร้านอาหาร</a></li>
-						<li><a href="pages/adminSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
-						<li><a href="pages/adminSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
-					</ul>
-				</li>
-				<li><a class="drop" href="#">Scope</a>
-					<ul>
-				<li><a href="pages/insertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-				<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
-			</ul>
+				<li><a href="EmpSelectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+				<li><a href="EmpSelectRes.php">ข้อมูลร้านอาหาร</a></li>
+				<li><a href="EmpSelectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+				<li><a href="EmpSelectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
 
-				<li><a href="pages/selectMember.php">Report</a></li>
-				<li><a href="editRegAdmin.php">Profile</a></li>
 			</ul>
-		</nav>
+					<li><a href="#">Report</a></li>
+					<li><a href="editRegEmployee.php">Profile</a></li>
+				</ul>
+			</nav>
 
-  </header>
-</div>
+	  </header>
+	</div>
 
 <div class="limiter">
 	<div class="container-login100">
 		<div class="wrap-login100">
-			<?php
-			$conn = mysqli_connect("localhost","root","","scdb");
-			$conn->query("SET NAMES UTF8");
 
-			if (!$conn) {
-				die("Connection failed: " . mysqli_connect_error());
-			}
-
-					$id = $_REQUEST['id'];
-
-
-			$sql = "SELECT * FROM accommodation WHERE acID=" . $id;
-			$result = mysqli_query($conn, $sql);
-
-			if (mysqli_num_rows($result) > 0) {
-							$row = mysqli_fetch_assoc($result)
-
-			?>
-			<form name="form1" method="post" enctype="multipart/form-data" action="editCom.php">
+			<form name="form1" method="post" enctype="multipart/form-data" action="AdminInsertSou.php">
 				<span class="login100-form-title">
-					เพิ่มร้านอาหาร
+					เพิ่มร้านขายของที่ระลึก
 				</span>
 <div class="container-login100-form-btn">
 	<div class="wrap-input100 validate-input">
 		<div class="wrap-input100 validate-input">
-			<input class="input100" type="hidden" name="acID" id="acID" value="<?php echo $row["acID"];?>">
+			<input class="input100" type="hidden" name="servID" id="servID">
 			<span class="focus-input100"></span>
-		</div>
-		<div class="login100-pic js-tilt" data-tilt>
-		<img src="<?php echo $row["image"];?>">
 		</div>
 		<div class="wrap-input100 validate-input">
 			<input type="hidden" value="1000000" name="MAX_FILE_SIZE">
@@ -142,38 +131,34 @@ function ConfirmDelete(id)
 		<div>
 			รหัสสถานที่ใกล้เคียง:
 			<div class="wrap-input100 validate-input">
-				<input class="input100" type="text" name="attID" id="attID" placeholder="รหัสสถานที่ท่องเที่ยว" value="<?php echo $row["attracID"];?>">
+				<input class="input100" type="text" name="attID" id="attID" placeholder="รหัสสถานที่ท่องเที่ยว">
 				<span class="focus-input100"></span>
 			</div>
 	</div>
 </div>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="textacname" id="textacname" placeholder="ชื่อร้านอาหาร" value="<?php echo $row["acname"];?>">
+					<input class="input100" type="text" name="textname" id="textname" placeholder="ชื่อร้านขายของที่ระลึก">
 					<span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textadress" name="textadress" placeholder="...ที่อยู่..." value="<?php echo $row["adress"];?>"></textarea>
+				<textarea class="input100" id="textadress" name="textadress" placeholder="...ที่อยู่..."></textarea>
 				<span class="focus-input100"></span>
 			</div>
 			<div class="wrap-input100 validate-input">
-				<input class="input100" type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" name="textphone" id="textphone" placeholder="xxx-xxx-xxxx" value="<?php echo $row["phone"];?>">
+				<input class="input100" type="tel" pattern="\d{3}[\-]\d{3}[\-]\d{4}" name="textphone" id="textphone" placeholder="xxx-xxx-xxxx">
 				<span class="focus-input100"></span>
 			</div>
 				<div class="wrap-input100 validate-input">
-				<textarea class="input100" id="textDescription" name="textDescription" placeholder="รายละเอียด" value="<?php echo $row["description"];?>"></textarea>
-				<span class="focus-input100"></span>
-				</div>
-				<div class="wrap-input100 validate-input">
-					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude" value="<?php echo $row["lat"];?>">
+					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude">
 					<span class="focus-input100"></span>
 
-					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude" value="<?php echo $row["lng"];?>">
+					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="container-login100-form-btn">
-					<input class="login100-form-btn" type="submit" name="Submit" value="เพิ่มสถานที่พัก">
+					<input class="login100-form-btn" type="submit" name="Submit" value="เพิ่มร้านขายของที่ระลึก">
 				</div>
 			</form>
 		</div>
@@ -243,12 +228,5 @@ function ConfirmDelete(id)
 	</script>
 <!--===============================================================================================-->
 	<script src="../js/main.js"></script>
-	<?php
-					}
-		mysqli_close($conn);
-	?>
 </body>
 </html>
-<?
-	mysqli_close($con);
-?>

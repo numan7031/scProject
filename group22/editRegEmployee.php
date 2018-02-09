@@ -159,33 +159,47 @@ img {vertical-align: middle;}
     </nav>
   </header>
 
-<div class="wrapper row1">
-  <header id="header" class="hoc clear">
+	<div class="wrapper row1">
+	  <header id="header" class="hoc clear">
 
-    <div id="logo" class="fl_left">
-      <h1><a href="index.php">SUT</a></h1>
-      <p>Attractions in Thailand</p>
-    </div>
+			<div id="logo" class="fl_left">
+	      <h1><a href="index2.php">SUT</a></h1>
+	      <p>Attractions in Thailand</p>
+	    </div>
 
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li class="active"><a href="index.php">Home</a></li>
-        <li><a class="drop" href="#">ค้นหาสถานที่</a>
-          <ul>
-            <li><a href="pages/view.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
-            <li><a href="pages/view1.php">ค้นหาร้านอาหาร</a></li>
-            <li><a href="pages/view2.php">ค้นหาร้านขายของที่ระลึก</a></li>
-            <li><a href="pages/view3.php">ค้นหาสถานที่พักผ่อน</a></li>
-          </ul>
-        </li>
-        <li><a href="pages/gallery.php">Gallery</a></li>
-        <li><a href="pages/aboutAs.php">About Me</a></li>
-				<li><a href="editRegister.php">Profile</a></li>
-      </ul>
-    </nav>
+			<nav id="mainav" class="fl_right">
+				<ul class="clear">
+					<li class="active"><a href="index2.php">Home</a></li>
+					<li><a class="drop" href="#">ค้นหาสถานที่</a>
+						<ul>
+							<li><a href="pages/searchEmp1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>
+							<li><a href="search/EmpSearch2.php">ค้นหาร้านอาหาร</a></li>
+							<li><a href="search/EmpSearch3.php">ค้นหาร้านขายของที่ระลึก</a></li>
+							<li><a href="search/EmpSearch4.php">ค้นหาสถานที่พักผ่อน</a></li>
+						</ul>
+					</li>
+					<li><a class="drop" href="#">Scope</a>
+						<ul>
+					<li><a href="InsertAttraction1.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="insertrestaurant1.php">เพิ่มร้านอาหาร</a></li>
+					<li><a href="insertSouvenir1.php">เพิ่มร้านขายของที่ระลึก</a></li>
+					<li><a href="insertCom1.php">เพิ่มสถานที่พักผ่อน</a></li>
+				</ul>
+				<li><a class="drop" href="#">ข้อมูลสถานที่</a>
+					<ul>
+				<li><a href="EmpSelectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+				<li><a href="EmpSelectRes.php">ข้อมูลร้านอาหาร</a></li>
+				<li><a href="EmpSelectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+				<li><a href="EmpSelectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
 
-  </header>
-</div>
+			</ul>
+					<li><a href="#">Report</a></li>
+					<li><a href="editRegEmployee.php">Profile</a></li>
+				</ul>
+			</nav>
+
+	  </header>
+	</div>
 
 <div class="limiter">
 	<div class="container-login100">

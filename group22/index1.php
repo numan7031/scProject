@@ -158,7 +158,7 @@ function ConfirmDelete(id)
   	echo '<td><img src="'. $row['image'] .'" height="100" width="100"/></td>';
 		echo '<nav class="main-nav">';
 		echo '<td><figcaption><a class="btn small" href="../group22/pages/editstatus.php?id=' . $row['userID'] . '">Edit</a></figcaption></td> ';
-		echo '<td><figcaption><a class="btn small" href="delete.php?id=' . $row['userID'] . '" onclick="return ConfirmDelete(' . $row['userID'] . ');">Delete</a></figcaption></td>';
+		echo '<td><figcaption><a class="btn small" href="AmdeleteUser.php?id=' . $row['userID'] . '" onclick="return ConfirmDelete(' . $row['userID'] . ');">Delete</a></figcaption></td>';
 		echo '</nav>';
 		echo "</tr>";
 	}

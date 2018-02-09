@@ -23,7 +23,7 @@ if (isset($_POST['Submit'])) {
     $sql = "UPDATE accommodation SET acname = '$textacname',
                              adress = '$textadress',
 														 lat = '$textLat',
-														 lang = '$textLong',
+														 lng = '$textLong',
 														 phone = '$textphone',
 														 description = '$textDescription',
 														 attracID = '$attID',

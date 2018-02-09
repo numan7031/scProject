@@ -160,12 +160,12 @@ img {vertical-align: middle;}
   </header>
 
 	<div class="wrapper row1">
-	  <header id="header" class="hoc clear">
+		<header id="header" class="hoc clear">
 
-	    <div id="logo" class="fl_left">
-	      <h1><a href="../index1.php">SUT</a></h1>
-	      <p>Attractions in Thailand</p>
-	    </div>
+			<div id="logo" class="fl_left">
+				<h1><a href="../index1.php">SUT</a></h1>
+				<p>Attractions in Thailand</p>
+			</div>
 
 			<nav id="mainav" class="fl_right">
 				<ul class="clear">
@@ -180,26 +180,26 @@ img {vertical-align: middle;}
 					</li>
 					<li><a class="drop" href="#">Scope</a>
 						<ul>
-					<li><a href="../pages/AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
-					<li><a href="#">เพิ่มร้านอาหาร</a></li>
-					<li><a href="#">เพิ่มร้านขายของที่ระลึก</a></li>
-					<li><a href="#">เพิ่มสถานที่พักผ่อน</a></li>
-					<li><a href="pages/editRegister.html">กำหนดสิทธิการเข้าใช้</a></li>
+					<li><a href="../AdminInsertAttraction.php">เพิ่มสถานที่ท่องเที่ยว</a></li>
+					<li><a href="../insertrestaurant.php">เพิ่มร้านอาหาร</a></li>
+					<li><a href="../insertSouvenir.php">เพิ่มร้านขายของที่ระลึก</a></li>
+					<li><a href="../insertCom.php">เพิ่มสถานที่พักผ่อน</a></li>
+					<li><a href="../index1.php">กำหนดสิทธิการเข้าใช้</a></li>
 				</ul>
 				<li><a class="drop" href="#">ข้อมูลสถานที่</a>
 					<ul>
-				<li><a href="../pages/Attraction.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
-				<li><a href="#">ข้อมูลร้านอาหาร</a></li>
-				<li><a href="#">ข้อมูลร้านขายของที่ระลึก</a></li>
-				<li><a href="#">ข้อมูลสถานที่พักผ่อน</a></li>
-				<li><a href="../pages/editstatus.php">กำหนดสิทธิการเข้าใช้</a></li>
+				<li><a href="../selectAtt.php">ข้อมูลสถานที่ท่องเที่ยว</a></li>
+				<li><a href="../selectRes.php">ข้อมูลร้านอาหาร</a></li>
+				<li><a href="../selectSou.php">ข้อมูลร้านขายของที่ระลึก</a></li>
+				<li><a href="../selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
+
 			</ul>
-					<li><a href="../pages/selectMember.php">Report</a></li>
+					<li><a href="#">Report</a></li>
 					<li><a href="../editRegAdmin.php">Profile</a></li>
 				</ul>
 			</nav>
 
-	  </header>
+		</header>
 	</div>
 
 	<div class="limiter">
@@ -214,7 +214,7 @@ img {vertical-align: middle;}
 				}
 
 		        $id = $_REQUEST['id'];
-						
+
 
 				$sql = "SELECT * FROM users WHERE userID=" . $id;
 				$result = mysqli_query($conn, $sql);
