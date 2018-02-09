@@ -20,7 +20,7 @@ if (isset($_POST['Submit'])) {
 					$textLong = $_POST["textLong"];
 					$target_path=$target_path.basename($_FILES['upload']['name']);
 					if(move_uploaded_file($_FILES['upload']['tmp_name'], $target_path)){
-$sql = "INSERT INTO accommodation (`acname`, `lat`, `lang`, `description`, `adress`, `phone`, `attracID`, `image`)";
+$sql = "INSERT INTO accommodation (`acname`, `lat`, `lng`, `description`, `adress`, `phone`, `attracID`, `image`)";
 $sql .="VALUES ";
 $sql .="('".$_POST["textacname"]."','".$_POST["textLat"]."','".$_POST["textLong"]."','".$_POST["textDescription"]."','".$_POST["textadress"]."'
 ,'".$_POST["textphone"]."','".$_POST["attID"]."','".$target_path."') ";
