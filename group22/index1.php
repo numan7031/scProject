@@ -17,8 +17,8 @@
 	$objQuery = mysqli_query($con,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 ?>
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html>
 <head>
 <title>Attractions</title>
@@ -87,7 +87,7 @@ function ConfirmDelete(id)
 			<li><a href="selectCom.php">ข้อมูลสถานที่พักผ่อน</a></li>
 
 		</ul>
-				<li><a href="#">Report</a></li>
+				<li><a href="pages/html/ChartAdmin.php">Report</a></li>
 				<li><a href="editRegAdmin.php">Profile</a></li>
 			</ul>
 		</nav>

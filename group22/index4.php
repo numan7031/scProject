@@ -180,7 +180,7 @@ img {vertical-align: middle;}
             <li><a href="indexAccom.php">สถานที่พักผ่อน</a></li>
           </ul>
         </li>
-        
+
         <li><a href="pages/aboutAs.php">About Me</a></li>
       </ul>
     </nav>
@@ -395,3 +395,39 @@ $total_page = ceil($total_record / $perpage);
   <script  src="js/index.js"></script>
 </body>
 </html>
+<?php
+	//*** By Weerachai Nukitram ThaiCreate.Com ***//
+  date_default_timezone_set("Asia/Bangkok");
+
+	//*** Connect MySQL ***//
+
+//include("php-wrapper-master/src/fusioncharts.php");
+
+  //$conn=mysqli_connect("localhost", "root", "","counter");
+  //$conn->query("SET NAMES UTF8");
+  // get results from database
+
+	//*** Select วันที่ในตาราง Counter ว่าปัจจุบันเก็บของวันที่เท่าไหร่  ***//
+	//*** ถ้าเป็นของเมื่อวานให้ทำการ Update Counter ไปยังตาราง daily และลบข้อมูล เพื่อเก็บของวันปัจจุบัน ***//
+  //$objResult = mysql_fetch_array($objQuery);
+	$strSQL = " SELECT DATE FROM counter LIMIT 0,1";
+	$objQuery = $con->query($strSQL);
+  $objResult = $objQuery->fetch_assoc();
+	if($objResult["DATE"] != date("Y-m-d"))
+	{
+		//*** บันทึกข้อมูลของเมื่อวานไปยังตาราง daily ***//
+		$strSQL = " INSERT INTO daily (DATE,NUM) SELECT '".date('Y-m-d',strtotime("-1 day"))."',COUNT(*) AS intYesterday FROM  counter WHERE 1 AND DATE = '".date('Y-m-d',strtotime("-1 day"))."'";
+		mysqli_query($con,$strSQL);
+
+
+		//*** ลบข้อมูลของเมื่อวานในตาราง counter ***//
+		$strSQL = " DELETE FROM counter WHERE DATE != '".date("Y-m-d")."' ";
+		mysqli_query($con,$strSQL);
+	}
+
+	//*** Insert Counter ปัจจุบัน ***//
+	$strSQL = " INSERT INTO counter (DATE,IP) VALUES ('".date("Y-m-d")."','".$_SERVER["REMOTE_ADDR"]."') ";
+	mysqli_query($con,$strSQL);
+
+  //mysqli_close($con);
+?>

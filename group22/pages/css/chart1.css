@@ -1,0 +1,39 @@
+.code-block-holder pre {
+      max-height: 188px;
+      min-height: 188px;
+      overflow: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+}
+
+
+.tab-btn-holder {
+	width: 100%;
+	margin: 20px 0 0;
+	border-bottom: 1px solid #dfe3e4;
+	min-height: 30px;
+}
+
+.tab-btn-holder a {
+	background-color: #fff;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #006bb8;
+	text-decoration: none;
+	display: inline-block;
+	*zoom:1; *display:inline;
+
+
+}
+
+.tab-btn-holder a.active {
+	color: #858585;
+    padding: 9px 10px 8px;
+    border: 1px solid #dfe3e4;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    z-index: 300;
+}
