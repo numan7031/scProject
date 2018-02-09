@@ -168,7 +168,7 @@ function ConfirmDelete(id)
 					<input class="input100" type="float" name="textLat" id="textLat" placeholder="Latitude" value="<?php echo $row["lat"];?>">
 					<span class="focus-input100"></span>
 
-					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude" value="<?php echo $row["lang"];?>">
+					<input class="input100" type="float" name="textLong" id="textLong" placeholder="Longitude" value="<?php echo $row["lng"];?>">
 					<span class="focus-input100"></span>
 				</div>
 
