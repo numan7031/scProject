@@ -398,7 +398,7 @@ $total_page = ceil($total_record / $perpage);
 <?php
 	//*** By Weerachai Nukitram ThaiCreate.Com ***//
   date_default_timezone_set("Asia/Bangkok");
-
+  //echo date("Y-m-d");
 	//*** Connect MySQL ***//
 
 //include("php-wrapper-master/src/fusioncharts.php");
