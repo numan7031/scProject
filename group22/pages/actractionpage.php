@@ -86,10 +86,24 @@ $_atid = $_SESSION['abc'];
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="../index4.php">Easy Travel</a>
+
+      <?php
+      if(isset($_SESSION["userID"]) ){?>
+            <a class="navbar-brand" href="../index.php">Easy Travel</a>
+      <?php  }else { ?>
+           <a class="navbar-brand" href="../index4.php">Easy Travel</a>
+      <?php  }
+        ?>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="../index4.php">Home</a></li>
+
+    <?php
+    if(isset($_SESSION["userID"]) ){?>
+          <li><a href="../index.php">Home</a></li>
+    <?php  }else { ?>
+         <li><a href="../index4.php">Home</a></li>
+    <?php  }
+      ?>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ค้นหาสถานที่<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="pages/publicSearch1.php">ค้นหาสถานที่ท่องเที่ยว</a></li>

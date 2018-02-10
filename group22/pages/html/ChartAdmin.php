@@ -8,57 +8,69 @@
 		exit();
 	}
    include("../processphp/fusioncharts.php");
-	 date_default_timezone_set("Asia/Bangkok");
 	//******************** Get Counter ************************//
+  date_default_timezone_set("Asia/Bangkok");
+	$today = date("Y-m-d");
+	$yesterday = date('Y-m-d',strtotime("-1 day"));
+	$thismonth = date('Y-m');
+	$lastmonth = date('Y-m',strtotime("-1 month"));
+	$thisyear = date('Y');
+	$lastyear = date('Y',strtotime("-1 year"));
+
+	//echo "$today<br>";
+	//echo "$yesterday<br>";
+	//echo "$thismonth<br>";
+	//echo "$lastmonth<br>";
+	//echo "$thisyear<br>";
+	//echo "$lastyear<br>";
 
 	// Today //
-	$strSQL = " SELECT COUNT(DATE) AS CounterToday FROM counter WHERE DATE = '".date("Y-m-d")."' ";
+	$strSQL = " SELECT COUNT(*) AS CounterToday FROM counter";
 	$objQuery = mysqli_query($con,$strSQL);
-	while($objResult = mysqli_fetch_assoc($objQuery)){
-	      $strToday = $objResult["CounterToday"];
-	}
+	$objResult = mysqli_fetch_assoc($objQuery);
+	$strToday = $objResult["CounterToday"];
+
+
+		//while($objResult = mysqli_fetch_assoc($objQuery)){
+					//$strToday = $objResult["CounterToday"];
+			//}
+
 
 	// Yesterday //
-	$strSQL = " SELECT NUM FROM daily WHERE DATE = '".date('Y-m-d',strtotime("-1 day"))."' ";
+	$strSQL = " SELECT SUM(NUM) as mary FROM daily WHERE DATE = '".$yesterday."' ";
 	$objQuery =mysqli_query($con,$strSQL);
-	while($objResult = mysqli_fetch_assoc($objQuery)){
-	     $strYesterday = $objResult["NUM"];
-	}
+	$objResult = mysqli_fetch_assoc($objQuery);
+	$strYesterday = $objResult["mary"];
 
 	// This Month //
-	$strSQL = " SELECT SUM(NUM) AS CountMonth FROM daily WHERE DATE_FORMAT(DATE,'%Y-%m')  = '".date('Y-m')."' ";
+	$strSQL = " SELECT SUM(NUM) AS CountMonth FROM daily WHERE DATE_FORMAT(DATE,'%Y-%m')  = '".$thismonth."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	while($objResult = mysqli_fetch_assoc($objQuery)){
-	      $strThisMonth = $objResult["CountMonth"];
-	}
+	$objResult = mysqli_fetch_assoc($objQuery);
+	$strThisMonth = $objResult["CountMonth"];
 
 	// Last Month //
-	$strSQL = " SELECT SUM(NUM) AS CountMonth FROM daily WHERE DATE_FORMAT(DATE,'%Y-%m')  = '".date('Y-m',strtotime("-1 month"))."' ";
+	$strSQL = " SELECT SUM(NUM) AS CountMonth FROM daily WHERE DATE_FORMAT(DATE,'%Y-%m')  = '".$lastmonth."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	while($objResult = mysqli_fetch_assoc($objQuery)){
-	      $strLastMonth = $objResult["CountMonth"];
-	}
+	$objResult = mysqli_fetch_assoc($objQuery);
+	$strLastMonth = $objResult["CountMonth"];
 
 	// This Year //
-	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily WHERE DATE_FORMAT(DATE,'%Y')  = '".date('Y')."' ";
+	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily WHERE DATE_FORMAT(DATE,'%Y')  = '".$thisyear."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	while($objResult = mysqli_fetch_assoc($objQuery)){
-	      $strThisYear = $objResult["CountYear"];
-	}
+	$objResult = mysqli_fetch_assoc($objQuery);
+	$strThisYear = $objResult["CountYear"];
 
 	// Last Year //
-	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily WHERE DATE_FORMAT(DATE,'%Y')  = '".date('Y',strtotime("-1 year"))."' ";
+	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily WHERE DATE_FORMAT(DATE,'%Y')  = '".$lastyear."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	while($objResult = mysqli_fetch_assoc($objQuery)){
-	      $strLastYear = $objResult["CountYear"];
-	}
+	$objResult = mysqli_fetch_assoc($objQuery);
+	$strLastYear = $objResult["CountYear"];
 
 	// All //
 	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily";
 	$objQuery = mysqli_query($con,$strSQL);
-	while($objResult = mysqli_fetch_assoc($objQuery)){
-	      $strAll = $objResult["CountYear"];
-	}
+	$objResult = mysqli_fetch_assoc($objQuery);
+	$strAll = $objResult["CountYear"];
 
 	//*** Close MySQL ***//
 	mysqli_close($con);
@@ -240,10 +252,10 @@
 
 				/* The following 4 code lines contain the database connection information. Alternatively, you can move these code lines to a separate file and include the file here. You can also modify this code based on your database connection. */
 
-				$hostdb = "localhost"; // MySQl host
-				$userdb = "root"; // MySQL username
-				$passdb = ""; // MySQL password
-				$namedb = "scdb"; // MySQL database name
+				$hostdb = "it1.sut.ac.th"; // MySQl host
+				$userdb = "group22"; // MySQL username
+				$passdb = "group22"; // MySQL password
+				$namedb = "group22"; // MySQL database name
 
 				// Establish a connection to the database
 				$dbhandle = new mysqli($hostdb, $userdb, $passdb, $namedb);
