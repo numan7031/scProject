@@ -175,6 +175,7 @@ $query = mysqli_query($con, $sql);
 
 
 			$con->close();
+			mysqli_close($con);
 			header("location:selectAtt.php");
   }else {
 	    echo "Error";
