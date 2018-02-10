@@ -9,47 +9,53 @@
 	}
    include("../processphp/fusioncharts.php");
 	//******************** Get Counter ************************//
-
+  date_default_timezone_set("Asia/Bangkok");
 	// Today //
 	$strSQL = " SELECT COUNT(DATE) AS CounterToday FROM counter WHERE DATE = '".date("Y-m-d")."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	$objResult =$objQuery->fetch_assoc();
+	$objResult = mysqli_fetch_assoc($objQuery);
 	$strToday = $objResult["CounterToday"];
+
+
+		//while($objResult = mysqli_fetch_assoc($objQuery)){
+					//$strToday = $objResult["CounterToday"];
+			//}
+
 
 	// Yesterday //
 	$strSQL = " SELECT NUM FROM daily WHERE DATE = '".date('Y-m-d',strtotime("-1 day"))."' ";
 	$objQuery =mysqli_query($con,$strSQL);
-	$objResult = $objQuery->fetch_assoc();
+	$objResult = mysqli_fetch_assoc($objQuery);
 	$strYesterday = $objResult["NUM"];
 
 	// This Month //
 	$strSQL = " SELECT SUM(NUM) AS CountMonth FROM daily WHERE DATE_FORMAT(DATE,'%Y-%m')  = '".date('Y-m')."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	$objResult = $objQuery->fetch_assoc();
+	$objResult = mysqli_fetch_assoc($objQuery);
 	$strThisMonth = $objResult["CountMonth"];
 
 	// Last Month //
 	$strSQL = " SELECT SUM(NUM) AS CountMonth FROM daily WHERE DATE_FORMAT(DATE,'%Y-%m')  = '".date('Y-m',strtotime("-1 month"))."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	$objResult = $objQuery->fetch_assoc();
+	$objResult = mysqli_fetch_assoc($objQuery);
 	$strLastMonth = $objResult["CountMonth"];
 
 	// This Year //
 	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily WHERE DATE_FORMAT(DATE,'%Y')  = '".date('Y')."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	$objResult = $objQuery->fetch_assoc();
+	$objResult = mysqli_fetch_assoc($objQuery);
 	$strThisYear = $objResult["CountYear"];
 
 	// Last Year //
 	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily WHERE DATE_FORMAT(DATE,'%Y')  = '".date('Y',strtotime("-1 year"))."' ";
 	$objQuery = mysqli_query($con,$strSQL);
-	$objResult = $objQuery->fetch_assoc();
+	$objResult = mysqli_fetch_assoc($objQuery);
 	$strLastYear = $objResult["CountYear"];
 
 	// All //
 	$strSQL = " SELECT SUM(NUM) AS CountYear FROM daily";
 	$objQuery = mysqli_query($con,$strSQL);
-	$objResult = $objQuery->fetch_assoc();
+	$objResult = mysqli_fetch_assoc($objQuery);
 	$strAll = $objResult["CountYear"];
 
 	//*** Close MySQL ***//
