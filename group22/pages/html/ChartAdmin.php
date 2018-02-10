@@ -8,8 +8,9 @@
 		exit();
 	}
    include("../processphp/fusioncharts.php");
+	 date_default_timezone_set("Asia/Bangkok");
 	//******************** Get Counter ************************//
-  date_default_timezone_set("Asia/Bangkok");
+
 	// Today //
 	$strSQL = " SELECT COUNT(DATE) AS CounterToday FROM counter WHERE DATE = '".date("Y-m-d")."' ";
 	$objQuery = mysqli_query($con,$strSQL);
