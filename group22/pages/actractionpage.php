@@ -159,7 +159,7 @@ $_atid = $_SESSION['abc'];
 
       <table>
         <tr>
-          <td colspan="2"><div class="img-resize"><a href="../img/<?php echo $result5['image']; ?>"><img src="../img/<?php echo $result5['image']; ?>"/></a></td></div>
+          <td colspan="2"><div class="img-resize"><a href=".<?php echo $result5['image']; ?>"><img src=".<?php echo $result5['image']; ?>"/></a></td></div>
         </tr>
           <tr><td><p>ประวัติความเป็นมา</p></td>
           <td><?php echo $result5['history']; ?></td></tr>

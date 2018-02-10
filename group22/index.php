@@ -262,7 +262,7 @@ function showSlides(n) {
 	 <li class="<?php echo $arrayName[$i] ?>"><!--//นับอาเรย์-->
 		 <article class="element">
 
-			 <figure><img src="img/<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["typeAttraction"]; ?>">
+			 <figure><img src="<?php echo $result['image']; ?>" style="width:320px;height:210px;" alt="<?php echo $result["typeAttraction"]; ?>">
 				 <figcaption><a class="btn small" href="pages/actractionpage.php?id=<?php echo $result["attracID"]; ?>">More</a></figcaption>
 
 			 </figure>
