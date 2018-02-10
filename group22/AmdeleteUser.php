@@ -1,21 +1,44 @@
 <?php
-	$conn = mysqli_connect("localhost","root","","scdb");
-	$conn->query("SET NAMES UTF8");
+	include('connect.php');
 
-	if (!$conn) {
-		die("Connection failed: " . mysqli_connect_error());
-	}
 
-    $id = $_REQUEST['id'];
+	if( isset($_REQUEST['id']) ){
+	    $delete = $_REQUEST['id'];
 
-	$sql = "DELETE FROM users WHERE userID=" . $id;
+		//ลบแถวของลูกก่อน
+		$sql2 = "DELETE FROM review WHERE userID ='".$delete."'";
+		if ($con->query($sql2) === TRUE) {
+			 echo "review Record deleted successfully";
 
-	if (mysqli_query($conn, $sql)) {
-		echo "ID " . $id . " Deleted Already!!<br><br>";
-		echo "<a href=\"selectAtt.php\">Go to Home</a>";
-	} else {
-		echo "Error deleting record: " . mysqli_error($conn);
-	}
 
-	mysqli_close($conn);
-?>
+				$sql3 = "SELECT * FROM users WHERE userID ='".$delete."'";
+		 		$query3 = mysqli_query($con, $sql3);
+				//ลบแถวไฟล์รูปภาพของตารางแม่
+				 while($result3 = mysqli_fetch_assoc($query3)){
+			 				$image = $result3['image'];
+			 				$file= $image;
+			 				unlink($file);
+			 		}
+
+        //ลบแถวแม่ต่อ
+				$sql4 = "DELETE FROM users WHERE userID ='".$delete."'";
+				if ($con->query($sql4) === TRUE) {
+					 echo "users Record deleted successfully";
+				}else {
+					echo "users Error deleting record: " . $con->error;
+			 }
+
+		 }
+ //finloop
+		 else {
+				echo "review Error deleting record: " . $con->error;
+		      }
+
+			$con->close();
+			header("location:index1.php");
+
+	  }else {
+			echo "Error";
+	  }
+   mysqli_close($con);
+	?>
