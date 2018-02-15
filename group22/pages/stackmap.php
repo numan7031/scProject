@@ -24,7 +24,7 @@ $conn=mysqli_connect("localhost", "root", "","$database");
             body { font: normal 10pt Helvetica, Arial; }
             #map { width: 100%; height: 100%; border: 0px; padding: 0px; }
         </style>
-        <script src="http://maps.google.com/maps/api/js?key=AIzaSyCKqy4qiRmJfaljrynUVX6ZnA8a0IbdQ34&sensor=false" type="text/javascript"></script>
+        <script src="http://maps.google.com/maps/api/js?key=AIzaSyAVrJ5wGheWr_GmdPBCC2C1bloBXUgvLNM" type="text/javascript"></script>
         <script type="text/javascript">
 
             //Sample code written by August Li
